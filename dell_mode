@@ -1,0 +1,2 @@
+#!/bin/zsh
+sudo smbios-thermal-ctl --set-thermal-mode="$1"

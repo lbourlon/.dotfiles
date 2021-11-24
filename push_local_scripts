@@ -1,0 +1,7 @@
+#!/bin/zsh
+# cp /etc/pacman.conf .
+# cp /etc/X11/xorg.conf .
+# cp ./zshrc /home/lbourlon/.zshrc
+cp ./dell_mode /usr/local/bin/
+cp ./cpu_set /usr/local/bin/
+cp ./sudowoodo.png /usr/local/bin
