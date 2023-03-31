@@ -1,4 +1,0 @@
-#!/bin/zsh
-
-cpupower-gui profile $1
-
