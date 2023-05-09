@@ -1,12 +1,13 @@
 #!/bin/bash
 
-alacritty=.config/alacritty
-nvim=.config/nvim 
-zsh=./.zshrc
 
-mkdir -p files/$alacritty
-mkdir -p files/$nvim
+alacritty_path=$HOME/.config/alacritty/
+nvim_path=$HOME/.config/nvim/
+zsh_path=$HOME/./.zshrc
 
-cp -r $HOME/$nvim files/$nvim/../
-cp -r $HOME/$alacritty files/$alacritty/../
-cp -r $HOME/$zsh files/$zsh
+rm -r files/*
+mkdir -p files
+
+cp -r $nvim_path files
+cp -r $alacritty_path files
+cp -r $zsh_path files

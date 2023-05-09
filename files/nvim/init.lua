@@ -40,7 +40,7 @@ require('lazy').setup({
       -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
       { 'j-hui/fidget.nvim', opts = {} },
 
-      -- Additional lua configuration, makes nvim stuff amazing!
+      -- Additional lua configuration, 
       'folke/neodev.nvim',
     },
   },
@@ -333,7 +333,7 @@ local on_attach = function(_, bufnr)
 
   -- See `:help K` for why this keymap
   nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
-  nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
+  nmap('<C-^>', vim.lsp.buf.signature_help, 'Signature Documentation') -- changed from C-k
 
   -- Lesser used LSP functionality
   nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
@@ -360,6 +360,18 @@ local servers = {
   -- pyright = {},
   -- rust_analyzer = {},
   -- tsserver = {},
+  -- python_lsp_server = {},
+  pylsp = {
+    pylsp = {
+      plugins = {
+        pycodestyle = {
+          enabled = false,
+          -- ignore = {'W391'},
+          -- maxLineLength = 100,
+        },
+      },
+    },
+  },
 
   lua_ls = {
     Lua = {
@@ -443,4 +455,5 @@ cmp.setup {
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
-require('custom.leon')
+require('custom.remaps')
+require('custom.options')

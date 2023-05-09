@@ -17,16 +17,16 @@ return {
     -- local nt = require('neo-tree')
     local nt_cmd = require('neo-tree.command')
 
-    vim.keymap.set("n", "<leader>fs",function() nt_cmd.execute({action = "show", toggle="true"}) end, {desc = "[f]ile-tree [s]how (toggle)"})
-    vim.keymap.set("n", "<leader>fd",
-      function()
-        -- if not neo-tree, then open it and focus on currently opened file 
-        if vim.bo.filetype ~= "neo-tree-popup" or "neo-tree"then
-          nt_cmd.execute({action = "focus", reveal="true"})
-          -- else the remap below happens and opens current file 
-        end
-      end,
-      {desc = "[f]iles focus"})
+    vim.keymap.set("n", "<leader>f",function() nt_cmd.execute({action = "focus", toggle="true"}) end, {desc = "[file-tree [s]how (toggle)"})
+    -- vim.keymap.set("n", "<leader>fd",
+    --   function()
+    --     -- if not neo-tree, then open it and focus on currently opened file 
+    --     if vim.bo.filetype ~= "neo-tree-popup" or "neo-tree"then
+    --       nt_cmd.execute({action = "focus", reveal="true"})
+    --       -- else the remap below happens and opens current file 
+    --     end
+    --   end,
+    --   {desc = "[f]iles focus"})
 
     require('neo-tree').setup({
       -- Pero
@@ -35,7 +35,7 @@ return {
         width=20,
         auto_expand_width=true,
         mappings={
-          ["<leader>fd"] = "open",
+          ["o"] = "open",
         },
       },
       filesystem = {

@@ -5,8 +5,6 @@
 	export ZSH="$HOME/.oh-my-zsh"
 
 	# Set name of the theme to load --- if set to "random", it will
-	# load a random theme each time oh-my-zsh is loaded, in which case,
-	# to know which specific one was loaded, run: echo $RANDOM_THEME
 	# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 	ZSH_THEME="robbyrussell"
 
@@ -30,7 +28,7 @@
 	ENABLE_CORRECTION="true"
 
 	# Add wisely, as too many plugins slow down shell startup.
-	plugins=(git zsh-autosuggestions)
+	plugins=(git)
 
 	source $ZSH/oh-my-zsh.sh
 
@@ -41,21 +39,11 @@
 	# You may need to manually set your language environment
 	# export LANG=en_US.UTF-8
 
-	# Preferred editor for local and remote sessions
-	if [[ -n $SSH_CONNECTION ]]; then
-	  export EDITOR='vim'
-	else
-	  export EDITOR='mvim'
-	fi
-
-	# Compilation flags
-	# export ARCHFLAGS="-arch x86_64"
-
 	alias zshconfig="nvim ~/.zshrc"
 	alias alaconfig="nvim ~/.config/alacritty/alacritty.yml"
+	alias nvimconfig="nvim ~/.config/nvim/"
 	alias vim="nvim"
 
-	export EDITOR=/usr/bin/nvim
 	export http_proxy=
 	export https_proxy=
     	export XDG_CONFIG_HOME=$HOME/.config/
