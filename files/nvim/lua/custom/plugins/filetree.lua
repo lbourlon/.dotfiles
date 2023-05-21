@@ -1,4 +1,4 @@
--- Unless you are still migrating, remove the deprecated commands from v1.x
+-- UnlEss you are still migrating, remove the deprecated commands from v1.x
 vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
 
 -- Disable netrw
@@ -33,7 +33,7 @@ return {
       close_if_last_window = true,
       window = {
         width=20,
-        auto_expand_width=true,
+        auto_expand_width=false,
         mappings={
           ["o"] = "open",
         },
