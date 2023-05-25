@@ -1,3 +1,8 @@
-# scripts
+# Scripts
+
 Personal scripts, conf and dot files for linux.
-For now it's just a backup, in the future should help me deploy my machines.
+
+- [x] Neovim Configuration
+- [x] Alacritty
+- [ ] ZSH
+- [ ] lightdm
