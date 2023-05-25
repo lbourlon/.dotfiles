@@ -4,8 +4,6 @@ vim.keymap.set("n", "<leader>ej", ":sp<CR>",{desc = "Split on Bellow"})
 vim.keymap.set("n", "<leader>rl", ":vs|term<CR>",{desc = "Terminal on Left"})
 vim.keymap.set("n", "<leader>rj", ":sp|term<CR>",{desc = "Terminal on Bellow"})
 
-
-
 -- Pane Move
 local mv_up, mv_do, mv_le, mv_ri = "<A-k>", "<A-j>", "<A-h>", "<A-l>";
 

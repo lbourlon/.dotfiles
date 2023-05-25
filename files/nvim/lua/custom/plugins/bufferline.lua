@@ -11,7 +11,7 @@ return {
       numbers = "ordinal",
         indicator = {style ="underline"},
         separator_style = "slant",
-      custom_filter = function(buf, buf_nums)
+      custom_filter = function(buf)
         -- filter out filetypes you don't want to see
 
         if vim.bo[buf].buftype == "terminal" then

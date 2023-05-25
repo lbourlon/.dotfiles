@@ -9,7 +9,8 @@
 * splits 
     * `:vsplit` or `vs`
     * `:split`  or `sp` 
-    * `Ctrl+w` window things
+    * `Ctrl+w` window things    
+
 
 ## Other
 * Change things inside of parentheses
