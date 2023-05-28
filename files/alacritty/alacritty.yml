@@ -1,18 +1,21 @@
 window:
+  opacity: 0.9
   padding:
-    x: 5
-    y: 5
+    x: 0
+    y: 0
   dimensions:
     comuns: 60
 
-font: {"size": 14}
+font:
+  family: FiraCode Nerd Font
+  size: 14
 
 draw_bold_text_with_bright_colors: true
-
+ 
 
 colors:
   primary:
-    background: '#000000'
+    background: '#111111'
     foreground: '#FFFFFF'
 
   # Normal Colours

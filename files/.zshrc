@@ -41,6 +41,7 @@
 
 	alias zshconfig="nvim ~/.zshrc"
 	alias alaconfig="nvim ~/.config/alacritty/alacritty.yml"
+	alias kittyconfig="nvim ~/.config/kitty/kitty.conf"
 	alias nvimconfig="nvim ~/.config/nvim/"
 	alias vim="nvim"
 
