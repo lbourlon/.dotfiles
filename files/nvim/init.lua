@@ -130,12 +130,12 @@ require('lazy').setup({
   { import = 'custom.plugins'},
 },{
 
-    change_detection = {enagled=true, notify = false },
-    -- checker = {
-    --   enabled = true,
-    --   notify = false,
-    --   frequency = 3600
-    -- },
+    change_detection = {enabled=true, notify = false },
+    checker = {
+      enabled = true,
+      notify = false,
+      frequency = 3600
+    },
 
 })
 
@@ -422,4 +422,3 @@ cmp.setup {
 require('custom.remaps')
 require('custom.options')
 require('custom.panes')
-
