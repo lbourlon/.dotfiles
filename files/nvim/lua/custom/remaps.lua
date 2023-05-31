@@ -8,7 +8,6 @@ vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 
 
-
 -- Terminal
 local esc_string ="<C-\\><C-N>"
 vim.keymap.set("t", "<esc>", esc_string,{desc = "Leave Terminal Mode"})

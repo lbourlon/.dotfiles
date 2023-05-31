@@ -1,4 +1,8 @@
 -- VIM OPTIONS
+
+--tj
+-- vim.opt.smoothscroll = true -- I didn't know this was a thing
+
 -- Get panes to go on the direction I expect
 vim.opt.splitbelow = true
 vim.opt.splitright = true
@@ -24,7 +28,7 @@ vim.opt.autoindent = true
 vim.o.hlsearch = true
 vim.opt.incsearch = true
 vim.o.ignorecase = true
-vim.o.smartcase = true
+vim.o.smartcase = true -- Keep Capital if in query
 
 -- Cursor
 vim.opt.guicursor = "n-v-c-sm:block,i-ci-ve:block,r-cr-o:hor20"
@@ -34,12 +38,13 @@ vim.o.mouse = 'a' -- Enable mouse mode
 vim.opt.termguicolors = true
 
 -- Decrease update time
-vim.o.updatetime = 250
-vim.o.timeout = true
-vim.o.timeoutlen = 300
+vim.opt.updatetime = 1000
+vim.opt.timeout = true
+vim.opt.timeoutlen = 300
 
--- -- Autosave things :)
-vim.api.nvim_create_autocmd({"FocusLost"},{command = "silent! wa"})
+-- -- Autosave things
+-- vim.api.nvim_create_autocmd({"FocusLost"},{command = "silent! wa"}) sometimes bad
+
 local event_list = {"BufLeave", "BufWinLeave","WinLeave"}
 vim.api.nvim_create_autocmd(event_list,{command = "silent! w!"})
 
@@ -49,4 +54,3 @@ vim.wo.signcolumn = 'yes' -- git, debug, column, and others
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menu,noselect'
-

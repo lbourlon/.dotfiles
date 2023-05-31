@@ -30,7 +30,6 @@
 *   Select then "=" to auto indent
 *   `:nohl` to remove highlightings
 *   select thing then `#` to find other occurence
-*   set waypoint `m<char>` then jump with `'<char>`
 *   recenter with `zz`
 *   re-execute last command with `.`
 
