@@ -4,10 +4,10 @@ return {
 		require('lualine').setup{
 			options = {
 				icons_enabled = true,
-				--theme = 'onedark',
+				theme = 'onedark',
 				--theme = 'iceberg_dark',
 				--theme = 'ayu_dark',
-				theme = "gruvbox_dark",
+				-- theme = "gruvbox_dark",
 				-- component_separators = '|',
 				-- section_separators = '',
 				-- component_separators = { left = '', right = ''},
@@ -17,12 +17,12 @@ return {
 				disabled_filetypes = {"neo-tree", "neo-tree-popup", "None", ""}, -- maybe see how to remove it from terminal ?
 			},
 			sections = {
-				lualine_a = {'mode'},
+				lualine_a = {{'mode', separator = {left='', right=''}}}, -- nice
 				lualine_b = {'branch'},
 				lualine_c = {'filename'},
 				lualine_x = {'searchcount', 'selectioncount', 'fileformat', 'filetype'},
 				lualine_y = {'filesize'},
-				lualine_z = {'progress'}
+				lualine_z = {{'progress', separator = {left='', right=''}}}, -- nice
 			},
 			inactive_sections = {
 				lualine_a = {},
