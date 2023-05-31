@@ -42,6 +42,8 @@ vim.opt.updatetime = 1000
 vim.opt.timeout = true
 vim.opt.timeoutlen = 300
 
+
+-- Make a function to turn this on off
 -- -- Autosave things
 -- vim.api.nvim_create_autocmd({"FocusLost"},{command = "silent! wa"}) sometimes bad
 

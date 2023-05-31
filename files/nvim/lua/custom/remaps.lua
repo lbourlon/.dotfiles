@@ -19,4 +19,7 @@ vim.keymap.set("t", "kk", esc_string..":bd!<CR>", { desc = "Closes the current b
 vim.keymap.set("x", "<leader>p", "\"_dP", {desc = "[P]aste while keeping yanked"})
 vim.keymap.set("n", "<leader>q", ":bp|sp|bn|bd<CR>", { desc = "Closes the current buffer" })
 
+
+-- Inspired / Yoinked from Teej_dv
+vim.keymap.set("n", "<a-r>", ":%s/<c-r><c-w>//g<left><left>") -- Replace current word
 --vim.keymap.set('t', '<C-w>', [[<C-\><C-n><C-w>]])
