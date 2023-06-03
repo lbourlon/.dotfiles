@@ -8,7 +8,11 @@ vim.g.loaded_netrwPlugin = 1
 
 return {
   "nvim-neo-tree/neo-tree.nvim",
+
+  cmd="DirectoryLoad", -- LazyLoad
+  keys = {{"<leader>f"}},
   version = "*",
+
   dependencies = {
     "nvim-lua/plenary.nvim",
     "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
@@ -18,19 +22,7 @@ return {
     -- local nt = require('neo-tree')
     local nt_cmd = require('neo-tree.command')
 
-    vim.keymap.set("n", "<leader>f",function() nt_cmd.execute({action = "focus", toggle="true"}) end, {desc = "[file-tree [s]how (toggle)"})
-    -- vim.keymap.set("n", "<leader>fd",
-    --   function()
-    --     -- if not neo-tree, then open it and focus on currently opened file 
-    --     if vim.bo.filetype ~= "neo-tree-popup" or "neo-tree"then
-    --       nt_cmd.execute({action = "focus", reveal="true"})
-    --       -- else the remap below happens and opens current file 
-    --     end
-    --   end,
-    --   {desc = "[f]iles focus"})
-
     require('neo-tree').setup({
-      -- Pero
       close_if_last_window = true,
       window = {
         width=20,
@@ -44,5 +36,10 @@ return {
         follow_current_file = true,
       }
     })
+
+    vim.keymap.set("n", "<leader>f",
+      function() nt_cmd.execute({action = "focus", toggle="true"}) end,
+      {desc = "[F]ile-tree Toggle"})
+
   end,
 }

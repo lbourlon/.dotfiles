@@ -22,8 +22,6 @@ elseif (theme == "catp") then
 		'catppuccin/nvim',
 		priority = 1000,
 		config = function()
-			local mocha = require("catppuccin.palettes").get_palette "mocha"
-
 			require('catppuccin').setup {
 				flavour = "mocha", -- latte, frappe, macchiato, mocha
 				transparent_background = true,

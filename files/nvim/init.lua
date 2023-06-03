@@ -4,13 +4,11 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
-
 -- Install package manager
 --    `:help lazy.nvim.txt` for more info
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system {
-
     'git',
     'clone',
     '--filter=blob:none',
@@ -22,126 +20,15 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 -- NOTE: Here is where you install your plugins.
---  You can configure plugins using the `config` key.
-require('lazy').setup({
-
-  -- Git related plugins
-  'tpope/vim-fugitive',
-  'tpope/vim-rhubarb',
-
-  -- Detect tabstop and shiftwidth automatically
-  'tpope/vim-sleuth',
-
-  -- NOTE: This is where your plugins related to LSP can be installed.
-  { -- LSP Configuration & Plugins
-    'neovim/nvim-lspconfig',
-    dependencies = {
-      -- Automatically install LSPs to stdpath for neovim
-      'williamboman/mason.nvim',
-      'williamboman/mason-lspconfig.nvim',
-
-      -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-      { 'j-hui/fidget.nvim', opts = {} },
-
-      -- Additional lua configuration, 
-      'folke/neodev.nvim',
-    },
+require('lazy').setup('plugins', {
+  change_detection = { enabled = true, notify = false },
+  checker = {
+    enabled = true,
+    notify = false,
+    frequency = 3600
   },
-
-  { -- Autocompletion
-    'hrsh7th/nvim-cmp',
-    dependencies = { 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip' },
-  },
-
-  -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim', opts = {} },
-  { -- Adds git releated signs to the gutter, as well as utilities for managing changes
-    'lewis6991/gitsigns.nvim',
-    opts = {
-      -- See `:help gitsigns.txt`
-      signs = {
-        add = { text = '+' },
-        change = { text = '~' },
-        delete = { text = '_' },
-        topdelete = { text = '‾' },
-        changedelete = { text = '~' },
-      },
-    },
-  },
-
-
-
-  { -- Add indentation guides even on blank lines
-    'lukas-reineke/indent-blankline.nvim',
-    -- Enable `lukas-reineke/indent-blankline.nvim`
-    -- See `:help indent_blankline.txt`
-    opts = {
-      char = '┊',
-      show_trailing_blankline_indent = false,
-    },
-  },
-
-  -- "gc" to comment visual regions/lines
-  { 'numToStr/Comment.nvim', opts = {} },
-
-  -- Fuzzy Finder (files, lsp, etc)
-  { 'nvim-telescope/telescope.nvim', version = '*', dependencies = { 'nvim-lua/plenary.nvim' } },
-
-  -- Fuzzy Finder Algorithm which requires local dependencies to be built.
-  -- Only load if `make` is available. Make sure you have the system
-  -- requirements installed.
-  {
-    'nvim-telescope/telescope-fzf-native.nvim',
-    -- NOTE: If you are having trouble with this installation,
-    --       refer to the README for telescope-fzf-native for more instructions.
-    build = 'make',
-    cond = function()
-      return vim.fn.executable 'make' == 1
-    end,
-  },
-
-  { -- Highlight, edit, and navigate code
-    'nvim-treesitter/nvim-treesitter',
-    dependencies = {
-      'nvim-treesitter/nvim-treesitter-textobjects',
-    },
-    config = function()
-      pcall(require('nvim-treesitter.install').update { with_sync = true })
-    end,
-  },
-
-  -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
-  --       These are some example plugins that I've included in the kickstart repository.
-  --       Uncomment any of the lines below to enable them.
-  -- require 'kickstart.plugins.autoformat',
-  -- require 'kickstart.plugins.debug',
-
-  -- NOTE: The import below automatically adds your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
-  --    You can use this folder to prevent any conflicts with this init.lua if you're interested in keeping
-  --    up-to-date with whatever is in the kickstart repo.
-  --
-  --    For additional information see: https://github.com/folke/lazy.nvim#-structuring-your-plugins
-  --
-  --    An additional note is that if you only copied in the `init.lua`, you can just comment this line
-  --    to get rid of the warning telling you that there are not plugins in `lua/custom/plugins/`.
-  --, 
-  --
-  { import = 'custom.style'},
-  { import = 'custom.plugins'},
-},{
-
-    change_detection = {enabled=true, notify = false },
-    checker = {
-      enabled = true,
-      notify = false,
-      frequency = 3600
-    },
-
 })
 
-
--- [[ Setting options ]]
--- See `:help vim.o`
 
 -- [[ Basic Keymaps ]]
 
@@ -191,10 +78,10 @@ vim.keymap.set('n', '<leader>/', function()
   })
 end, { desc = '[/] Fuzzily search in current buffer' })
 
-vim.keymap.set('n', '<leader>sf', require('telescope.builtin').find_files,  { desc = '[S]earch [F]iles' })
-vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags,   { desc = '[S]earch [H]elp' })
+vim.keymap.set('n', '<leader>sf', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
+vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc = '[S]earch [H]elp' })
 vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' })
-vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep,   { desc = '[S]earch by [G]rep' })
+vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
 vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
 
 -- [[ Configure Treesitter ]]
@@ -336,7 +223,6 @@ local servers = {
       },
     },
   },
-
   lua_ls = {
     Lua = {
       workspace = { checkThirdParty = false },
@@ -393,6 +279,7 @@ cmp.setup {
       select = true,
     },
     ['<Tab>'] = cmp.mapping(function(fallback)
+      -- TODO : REMOVE THIS
       if cmp.visible() then
         cmp.select_next_item()
       elseif luasnip.expand_or_jumpable() then
@@ -419,6 +306,7 @@ cmp.setup {
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
-require('custom.remaps')
+require('custom.keymaps')
 require('custom.options')
 require('custom.panes')
+require('custom.aucmds')

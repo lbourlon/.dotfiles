@@ -44,6 +44,8 @@
 	alias kittyconfig="nvim ~/.config/kitty/kitty.conf"
 	alias nvimconfig="nvim ~/.config/nvim/"
 	alias vim="nvim"
+	alias code="nvim"
+	alias vscode="nvim"
 
 	export http_proxy=
 	export https_proxy=

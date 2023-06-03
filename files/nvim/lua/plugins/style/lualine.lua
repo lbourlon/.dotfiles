@@ -1,14 +1,12 @@
 return {
 	'nvim-lualine/lualine.nvim',  -- See `:help lualine.txt`
 	config = function()
-		local funny_haha = '󰣇'
 		require('lualine').setup{
 			options = {
 				icons_enabled = true,
 				theme = 'onedark',
 				--theme = 'iceberg_dark',
 				--theme = 'ayu_dark',
-				-- theme = "gruvbox_dark",
 				-- component_separators = '|',
 				-- section_separators = '',
 				-- component_separators = { left = '', right = ''},

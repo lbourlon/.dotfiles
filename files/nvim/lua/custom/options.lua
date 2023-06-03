@@ -1,18 +1,16 @@
 -- VIM OPTIONS
-
---tj
 -- vim.opt.smoothscroll = true -- I didn't know this was a thing
 
 -- Get panes to go on the direction I expect
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 
-vim.opt.nu = true
+vim.opt.number = true
 vim.opt.relativenumber = false
 vim.opt.scrolloff = 8
 
 -- Wrap options
-vim.opt.wrap = false
+vim.opt.wrap = true
 vim.o.breakindent = true -- Enable break indent
 
 -- Indentation
@@ -43,16 +41,7 @@ vim.opt.timeout = true
 vim.opt.timeoutlen = 300
 
 
--- Make a function to turn this on off
--- -- Autosave things
--- vim.api.nvim_create_autocmd({"FocusLost"},{command = "silent! wa"}) sometimes bad
-
-local event_list = {"BufLeave", "BufWinLeave","WinLeave"}
-vim.api.nvim_create_autocmd(event_list,{command = "silent! w!"})
-
 --  Misc
 vim.o.undofile = true -- Save undo history
-vim.wo.signcolumn = 'yes' -- git, debug, column, and others
-
--- Set completeopt to have a better completion experience
+vim.o.signcolumn = 'yes' -- git, debug, column, and others
 vim.o.completeopt = 'menu,noselect'
