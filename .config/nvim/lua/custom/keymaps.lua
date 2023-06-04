@@ -16,9 +16,18 @@ vim.keymap.set("t", "kk", esc_string..":bd!<CR>", { desc = "Closes the current b
 
 -- Miscellaenous
 vim.keymap.set("x", "<leader>p", "\"_dP", {desc = "[P]aste while keeping yanked"})
+vim.keymap.set("x", "<leader>y", "\"+y", {desc = "[Y]ank to system clipboard"})
 vim.keymap.set("n", "<leader>q", ":bp|sp|bn|bd<CR>", { desc = "Closes the current buffer" })
+
+
+vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true }) -- no spaces
+
+-- Remap for dealing with word wrap
+vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
 -- Inspired / Yoinked from Teej_dv
 vim.keymap.set("n", "<a-r>", ":%s/<c-r><c-w>//g<left><left>") -- Replace current word
 vim.keymap.set("n", "<leader>sws", ":%s/\\s\\+$//<CR>") -- Remove whitespaces
 --vim.keymap.set('t', '<C-w>', [[<C-\><C-n><C-w>]])
+--

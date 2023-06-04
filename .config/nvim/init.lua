@@ -1,11 +1,8 @@
--- Set <space> as the leader key
-
---  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 -- Install package manager
---    `:help lazy.nvim.txt` for more info
+--
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system {
@@ -27,28 +24,6 @@ require('lazy').setup('plugins', {
     notify = false,
     frequency = 3600
   },
-})
-
-
--- [[ Basic Keymaps ]]
-
--- Keymaps for better default experience
--- See `:help vim.keymap.set()`
-vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
-
--- Remap for dealing with word wrap
-vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
-vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
-
--- [[ Highlight on yank ]]
--- See `:help vim.highlight.on_yank()`
-local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
-vim.api.nvim_create_autocmd('TextYankPost', {
-  callback = function()
-    vim.highlight.on_yank()
-  end,
-  group = highlight_group,
-  pattern = '*',
 })
 
 -- [[ Configure Telescope ]]
@@ -91,7 +66,7 @@ require('nvim-treesitter.configs').setup {
   ensure_installed = { 'c', 'lua', 'python', 'rust' },
 
   -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
-  auto_install = false,
+  auto_install = true,
 
   highlight = { enable = true },
   indent = { enable = true, disable = { 'python' } },
@@ -207,22 +182,7 @@ end
 --  the `settings` field of the server config. You must look up that documentation yourself.
 local servers = {
   -- clangd = {},
-  -- gopls = {},
-  -- pyright = {},
   -- rust_analyzer = {},
-  -- tsserver = {},
-  -- python_lsp_server = {},
-  pylsp = {
-    pylsp = {
-      plugins = {
-        pycodestyle = {
-          enabled = false,
-          -- ignore = {'W391'},
-          -- maxLineLength = 100,
-        },
-      },
-    },
-  },
   lua_ls = {
     Lua = {
       workspace = { checkThirdParty = false },
@@ -304,8 +264,6 @@ cmp.setup {
   },
 }
 
--- The line beneath this is called `modeline`. See `:help modeline`
--- vim: ts=2 sts=2 sw=2 et
 require('custom.keymaps')
 require('custom.options')
 require('custom.panes')

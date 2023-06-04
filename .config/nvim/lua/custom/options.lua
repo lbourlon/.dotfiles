@@ -45,3 +45,15 @@ vim.opt.timeoutlen = 300
 vim.o.undofile = true -- Save undo history
 vim.o.signcolumn = 'yes' -- git, debug, column, and others
 vim.o.completeopt = 'menu,noselect'
+
+
+-- [[ Highlight on yank ]]
+
+local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
+vim.api.nvim_create_autocmd('TextYankPost', {
+  callback = function()
+    vim.highlight.on_yank()
+  end,
+  group = highlight_group,
+  pattern = '*',
+})
