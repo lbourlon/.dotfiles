@@ -1,12 +1,11 @@
 #!/bin/bash
 
-
 alacritty=$HOME/.config/alacritty/
 kitty=$HOME/.config/kitty/
 nvim=$HOME/.config/nvim/
 zsh=$HOME/.zshrc
 
-folder=files
+folder=.config
 
 rm -r $folder
 mkdir -p $folder

@@ -1,12 +1,15 @@
 #!/bin/bash
 
-alacritty=.config/alacritty/alacritty.yml
-nvim=.config/nvim 
-zsh=./.zshrc
+alac=.config/alacritty/
+kitt=.config/kitty/
+nvim=.config/nvim/
+zsh_=.zshrc
 
-mkdir -p $HOME/$alacritty
-mkdir -p $HOME/$nvim
+mkdir -p ~/$alac && mkdir -p ~/$kitt && mkdir -p ~/$nvim
+rm -rf   ~/$alac && rm -rf   ~/$kitt && rm -rf   ~/$nvim
+rm ~/$zsh_
 
-# cp -r $nvim $HOME/$nvim/../
-# cp -r $alacritty $HOME/$alacritty/../
-# cp -r files/$zsh $HOME/$zsh
+cp -r ./$kitt ~/$kitt
+cp -r ./$alac ~/$alac
+cp      $zsh_ ~/$zsh_
+cp -r ./$nvim ~/$nvim
