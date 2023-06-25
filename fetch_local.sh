@@ -4,6 +4,7 @@ alacritty=$HOME/.config/alacritty/
 kitty=$HOME/.config/kitty/
 nvim=$HOME/.config/nvim/
 zsh=$HOME/.zshrc
+gdb=$HOME/.gdbinit
 
 folder=.config
 
