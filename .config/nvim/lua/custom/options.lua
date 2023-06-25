@@ -23,7 +23,7 @@ vim.opt.autoindent = true
 --vim.opt.cindent = true
 
 -- Search
-vim.o.hlsearch = true
+vim.o.hlsearch = false
 vim.opt.incsearch = true
 vim.o.ignorecase = true
 vim.o.smartcase = true -- Keep Capital if in query

@@ -25,7 +25,7 @@
 	# DISABLE_AUTO_TITLE="true"
 
 	# Uncomment the following line to enable command auto-correction.
-	ENABLE_CORRECTION="true"
+	ENABLE_CORRECTION="false"
 
 	# Add wisely, as too many plugins slow down shell startup.
 	plugins=(git)

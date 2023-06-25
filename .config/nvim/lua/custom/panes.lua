@@ -20,14 +20,14 @@ vim.keymap.set(modes, mv_ri, change_window.."l")
 -- Pane Quit, swa, & change hor to vert
 vim.keymap.set("n", "<leader>pq", change_window.."q", {desc = "[P]ane [Q]uit"})
 vim.keymap.set("n", "<leader>ps", change_window.."x", {desc = "[P]ane [S]wap"})
-vim.keymap.set("n", "<leader>ph", "<C-w>t<C-w>H",{desc = "[P]ane [V]orizontal"})
-vim.keymap.set("n", "<leader>pv", "<C-w>t<C-w>K",{desc = "[P]ane [H]orizontal"})
+vim.keymap.set("n", "<leader>pv", "<C-w>t<C-w>H",{desc = "[P]ane [V]orizontal"})
+vim.keymap.set("n", "<leader>ph", "<C-w>t<C-w>K",{desc = "[P]ane [H]orizontal"})
 
 -- Pane Reajust Size
-vim.keymap.set("n", "<C-h>", "<C-W>5<")
-vim.keymap.set("n", "<C-l>", "<C-W>5>")
-vim.keymap.set("n", "<C-k>", "<C-W>3-")
-vim.keymap.set("n", "<C-j>", "<C-W>3+")
+vim.keymap.set({"n", "t"}, "<C-h>", change_window.."5<") -- <C-W>5< 
+vim.keymap.set({"n", "t"}, "<C-l>", change_window.."5>") -- <C-W>5>
+vim.keymap.set({"n"}, "<C-k>", change_window.."3-")-- <C-W>3-
+vim.keymap.set({"n"}, "<C-j>", change_window.."3+") -- <C-W>3- 
 
 -- Terminal Management
 local term_events = {"BufWinEnter", "WinEnter"}

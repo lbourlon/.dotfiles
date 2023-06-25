@@ -1,7 +1,7 @@
 return {
   'akinsho/bufferline.nvim',
 
-  cmd="DirectoryLoad", -- Lazy Load
+  -- cmd="DirectoryLoad", -- Lazy Load
 
   dependencies = {'nvim-tree/nvim-web-devicons'},
 

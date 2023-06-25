@@ -20,6 +20,11 @@
       * Autosave, at all
       * Filetree
       * Bufferline
+- [ ] Add way to toggle transparency and theme via user function
+- [ ] Make <C-l> be <CR> in insert mode for fast autocompletion
+- [x] Resizable in terminal insert mode
+- [ ] Neo-tree l
+- [ ] Next/Prior function with f-l
 
 ## Bugs :
 
@@ -28,3 +33,4 @@
 - [x] Can't update recustomized plugins from lazy neovim, look into it 
     with You can configure plugins using the `config` key.
 - [ ] Why is my yank being yoinked ?
+- [ ] Strange tab thing

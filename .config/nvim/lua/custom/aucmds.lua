@@ -32,7 +32,7 @@ vim.api.nvim_create_autocmd("VimEnter",
       if vim.fn.isdirectory(vim.fn.argv(0)) == 1 then
         vim.cmd("Save")
       else
-        print("This is not a directory.")
+        print("No Autosave")
       end
     end,
     group=bob,

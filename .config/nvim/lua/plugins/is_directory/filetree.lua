@@ -9,8 +9,8 @@ vim.g.loaded_netrwPlugin = 1
 return {
   "nvim-neo-tree/neo-tree.nvim",
 
-  cmd="DirectoryLoad", -- LazyLoad
-  keys = {{"<leader>f"}},
+  -- cmd="DirectoryLoad", -- LazyLoad
+  -- keys = {{"<leader>f"}},
   version = "*",
 
   dependencies = {
@@ -28,7 +28,7 @@ return {
         width=20,
         auto_expand_width=false,
         mappings={
-          ["o"] = "open",
+          ["l"] = "open",
         },
       },
       filesystem = {
