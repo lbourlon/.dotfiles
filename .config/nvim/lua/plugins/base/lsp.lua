@@ -67,6 +67,16 @@ return { -- LSP Configuration & Plugins
     local servers = {
       -- clangd = {},
       -- rust_analyzer = {},
+
+      pylsp = { --https://github.com/python-lsp/python-lsp-server/blob/develop/CONFIGURATION.md
+        pylsp = {
+          plugins = {
+            pycodestyle = { enabled = false, --[[ ignore = {'E701', 'E302'} --]] },
+            -- flake8 = { enable = true },
+            jedi_completition = { enabled = true },
+          },
+        },
+      },
       lua_ls = {
         Lua = {
           workspace = { checkThirdParty = false },
