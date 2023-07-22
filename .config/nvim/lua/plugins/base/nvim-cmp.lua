@@ -1,8 +1,14 @@
 return { -- Autocompletion
   'hrsh7th/nvim-cmp',
-  dependencies = { 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip' },
+  dependencies = {
+    'hrsh7th/cmp-nvim-lsp',
+    'L3MON4D3/LuaSnip',
+    'saadparwaiz1/cmp_luasnip',
+    -- 'rafamadriz/friendly-snippets', -- actually sucks
+  },
 
   config = function ()
+    require("luasnip.loaders.from_vscode").lazy_load()
 
     -- nvim-cmp setup
     local cmp = require 'cmp'
@@ -24,33 +30,28 @@ return { -- Autocompletion
           behavior = cmp.ConfirmBehavior.Replace,
           select = true,
         },
-        -- USE C-n and C-p for this
-        -- ['<Tab>'] = cmp.mapping(function(fallback)
-        --   -- TODO : REMOVE THIS
-        --   if cmp.visible() then
-        --     cmp.select_next_item()
-        --   elseif luasnip.expand_or_jumpable() then
-        --     luasnip.expand_or_jump()
-        --   else
-        --     fallback()
-        --   end
-        -- end, { 'i', 's' }),
-        -- ['<S-Tab>'] = cmp.mapping(function(fallback)
-        --   if cmp.visible() then
-        --     cmp.select_prev_item()
-        --   elseif luasnip.jumpable(-1) then
-        --     luasnip.jump(-1)
-        --   else
-        --     fallback()
-        --   end
-        -- end, { 'i', 's' }),
+
+        -- USE C-n and C-p to choose
+        -- Tab and s-Tab to jump
+        ['<Tab>'] = cmp.mapping(function(fallback)
+          if luasnip.expand_or_jumpable() then
+            luasnip.expand_or_jump()
+          else
+            fallback()
+          end
+        end, { 'i', 's' }),
+        ['<S-Tab>'] = cmp.mapping(function(fallback)
+          if luasnip.jumpable(-1) then
+            luasnip.jump(-1)
+          else
+            fallback()
+          end
+        end, { 'i', 's' }),
       },
       sources = {
         { name = 'nvim_lsp' },
         { name = 'luasnip' },
       },
     }
-
-
   end,
 }

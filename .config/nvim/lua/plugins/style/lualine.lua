@@ -13,7 +13,7 @@ return {
 				-- section_separators = { left = '', right = ''},
 				component_separators = { left = '', right = '' },
 				section_separators = { left = '', right = '' },
-				disabled_filetypes = {"neo-tree", "neo-tree-popup", "None", ""}, -- maybe see how to remove it from terminal ?
+				disabled_filetypes = {"neo-tree", "neo-tree-popup", "None", ""},
 				-- color={bg="none"},
 		},
 			sections = {

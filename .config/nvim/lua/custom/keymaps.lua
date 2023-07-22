@@ -1,4 +1,5 @@
 -- KEYMAPS
+vim.keymap.set("i", "<A-,>", "<esc>")
 
 -- Move blocks on Visual mode
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
@@ -27,10 +28,10 @@ vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = tr
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
 
-vim.keymap.set("v", "<a-r>", ":s//g<left><left>") -- Search replace in highlight
+vim.keymap.set("v", "<A-r>", ":s//g<left><left>") -- Search replace in highlight
 
 -- Inspired / Yoinked from Teej_dv
-vim.keymap.set("n", "<a-r>", ":%s/<c-r><c-w>//g<left><left>") -- Replace current word
+vim.keymap.set("n", "<A-r>", ":%s/<c-r><c-w>//g<left><left>") -- Replace current word
 vim.keymap.set("n", "<leader>sws", ":%s/\\s\\+$//<CR>") -- Remove whitespaces
 --vim.keymap.set('t', '<C-w>', [[<C-\><C-n><C-w>]])
 

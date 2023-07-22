@@ -1,5 +1,7 @@
+-- Highlight, edit, and navigate code
+-- `:help nvim-treesitter`
+
 return {
-  -- Highlight, edit, and navigate code
   'nvim-treesitter/nvim-treesitter',
   dependencies = {
     'nvim-treesitter/nvim-treesitter-textobjects',
@@ -7,25 +9,20 @@ return {
   config = function()
     pcall(require('nvim-treesitter.install').update { with_sync = true })
 
-    -- [[ Configure Treesitter ]]
-    -- See `:help nvim-treesitter`
     require('nvim-treesitter.configs').setup {
       -- Add languages to be installed here that you want installed for treesitter
       -- ensure_installed = { 'c', 'lua', 'python', 'rust' },
 
-      -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
       auto_install = true,
 
       highlight = { enable = true },
       indent = { enable = true, disable = { 'python' } },
+
+      -- no idea what this does, never used it
       incremental_selection = {
-        enable = true,
-        keymaps = {
-          init_selection = '<c-space>',
-          node_incremental = '<c-space>',
-          scope_incremental = '<c-s>',
-          node_decremental = '<M-space>',
-        },
+        enable = false,
+        keymaps = { init_selection = '<c-space>', node_incremental = '<c-space>',
+                    scope_incremental = '<c-s>', node_decremental = '<M-space>', },
       },
       textobjects = {
         select = {
@@ -62,7 +59,7 @@ return {
           },
         },
         swap = {
-          enable = true,
+          enable = false,
           swap_next = {
             ['<leader>a'] = '@parameter.inner',
           },

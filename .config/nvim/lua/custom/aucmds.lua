@@ -19,7 +19,7 @@ end, { desc = 'Change Auto Save State' })
 vim.api.nvim_create_user_command(
   'DirectoryLoad',
   function ()
-    vim.cmd("Lazy load bufferline.nvim")
+    -- vim.cmd("Lazy load bufferline.nvim")
     vim.cmd("Lazy load neo-tree.nvim")
   end,
   { desc = 'Change Auto Save State' })
@@ -30,7 +30,8 @@ vim.api.nvim_create_autocmd("VimEnter",
   {
     callback = function()
       if vim.fn.isdirectory(vim.fn.argv(0)) == 1 then
-        vim.cmd("Save")
+        -- vim.cmd("Save")
+        print("No Autosave")
       else
         print("No Autosave")
       end
