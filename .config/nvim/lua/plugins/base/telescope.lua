@@ -1,4 +1,4 @@
--- Find things /
+-- [[ Configure Telescope ]]
 
 return {
   'nvim-telescope/telescope.nvim',
@@ -6,7 +6,6 @@ return {
   dependencies = { 'nvim-lua/plenary.nvim' },
 
   config = function ()
-    -- [[ Configure Telescope ]]
     -- See `:help telescope` and `:help telescope.setup()`
     require('telescope').setup {
       defaults = {
@@ -15,7 +14,7 @@ return {
             ['<C-d>'] = require('telescope.actions').cycle_history_next,
             ['<C-u>'] = require('telescope.actions').cycle_history_prev,
           },
-        },
+      },
       }
     }
 
@@ -23,11 +22,7 @@ return {
     pcall(require('telescope').load_extension, 'fzf')
 
     local nmap = function(keys, func, desc)
-      if desc then
-        desc = 'TELE: ' .. desc
-      end
-
-      vim.keymap.set('n', keys, func, {desc = desc })
+      vim.keymap.set('n', keys, func, {desc = 'TELE: ' .. desc })
     end
 
     local tele_builtin = require('telescope.builtin')
@@ -41,6 +36,7 @@ return {
     nmap('<leader>sh', tele_builtin.help_tags, '[S]earch [H]elp')
     nmap('<leader>sw', tele_builtin.grep_string, '[S]earch current [W]ord')
     nmap('<leader>sg', tele_builtin.live_grep, '[S]earch by [G]rep')
+    -- nmap('<leader>sg', tele_builtin.git_files, '[S]earch [G]it')
     nmap('<leader>sd', tele_builtin.diagnostics, '[S]earch [D]iagnostics')
 
     nmap('<leader>tc', tele_builtin.commands, '[T]elescope [C]ommands')

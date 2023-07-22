@@ -1,4 +1,9 @@
-return { -- Adds git releated signs to the gutter, as well as utilities for managing changes
+return {
+  -- Git Goodies
+  'tpope/vim-fugitive',
+  'tpope/vim-rhubarb',
+  
+  -- Adds git releated signs to the gutter, as well as utilities for managing changes
   'lewis6991/gitsigns.nvim',
   opts = {
     -- See `:help gitsigns.txt`
@@ -10,4 +15,5 @@ return { -- Adds git releated signs to the gutter, as well as utilities for mana
       changedelete = { text = '~' },
     },
   },
+
 }

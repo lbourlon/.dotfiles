@@ -1,42 +1,62 @@
+local map = function(mode, keys, func, opts)
+  if opts and opts['desc'] ~= nil then
+    opts['desc'] = 'PERS: ' .. opts['desc']
+  elseif opts then
+    opts['desc'] = 'PERS: ' .. 'no desc'
+  else
+    opts = {};
+    opts['desc'] = 'PERS: ' .. 'no desc'
+  end
+  vim.keymap.set(mode, keys, func, opts)
+end
+
 -- KEYMAPS
-vim.keymap.set("i", "<A-,>", "<esc>")
+map("i", "<A-,>", "<esc>")
 
 -- Move blocks on Visual mode
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+map("v", "J", ":m '>+1<CR>gv=gv", {desc = "Move block Down"})
+map("v", "K", ":m '<-2<CR>gv=gv", {desc = "Move block Up"})
+map("v", "<A-r>", ":s//g<left><left>") -- Search replace in highlight
 
 -- Keep cursor centered when moving pages
-vim.keymap.set("n", "<C-d>", "<C-d>zz")
-vim.keymap.set("n", "<C-u>", "<C-u>zz")
+map('n', "<C-d>", "<C-d>zz")
+map('n', "<C-u>", "<C-u>zz")
+map('n', "n", "nzzzv")
+map('n', "N", "Nzzzv")
+map('n', "J", "mzJ`z")
 
 -- Terminal
-local esc_string ="<C-\\><C-N>"
-vim.keymap.set("t", "<esc>", esc_string,{desc = "Leave Terminal Mode"})
-vim.keymap.set('t', 'jk', esc_string)
-vim.keymap.set("t", "kk", esc_string..":bd!<CR>", { desc = "Closes the current buffer" })
+local esc_string = "<C-\\><C-N>"
+map("t", "<esc>", esc_string, { desc = "Leave Terminal Mode" })
+map("t", "kk", esc_string .. ":bd!<CR>", { desc = "Closes the current buffer" })
 
 -- Miscellaenous
-vim.keymap.set("x", "<leader>p", "\"_dP", {desc = "[P]aste while keeping yanked"})
-vim.keymap.set("x", "<leader>y", "\"+y", {desc = "[Y]ank to system clipboard"})
-vim.keymap.set("n", "<leader>q", ":bp|sp|bn|bd<CR>", { desc = "Closes the current buffer" })
+map("x", "<leader>p", "\"_dP", { desc = "[P]aste while keeping yanked" })
+map("x", "<leader>y", "\"+y", { desc = "[Y]ank to system clipboard" })
+map('n', "<leader>q", ":bp|sp|bn|bd<CR>", { desc = "Closes the current buffer" })
+-- map("n", "<leader>", ":s//g<left><left>")
 
-
-vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true }) -- no spaces
+map({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true }) -- no spaces
+map('n', 'Q', '<Nop>', { silent = true })                -- no Q
 
 -- Remap for dealing with word wrap
-vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
-vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+map('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+map('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
 
-vim.keymap.set("v", "<A-r>", ":s//g<left><left>") -- Search replace in highlight
+-- cuz of french keyboard :)
+vim.keymap.set('n', "ù", "<C-^>")
 
 -- Inspired / Yoinked from Teej_dv
-vim.keymap.set("n", "<A-r>", ":%s/<c-r><c-w>//g<left><left>") -- Replace current word
-vim.keymap.set("n", "<leader>sws", ":%s/\\s\\+$//<CR>") -- Remove whitespaces
---vim.keymap.set('t', '<C-w>', [[<C-\><C-n><C-w>]])
+map('n', "<A-r>", ":%s/<c-r><c-w>//g<left><left>") -- Replace current word
+map('n', "<leader>sws", ":%s/\\s\\+$//<CR>")       -- Remove whitespaces
+--map('t', '<C-w>', [[<C-\><C-n><C-w>]])
+
+-- Yoinked from theprimeagen
+map('n', "C-f", ":silent !tmux neww tmux-sessionizer<CR>")
 
 -- Diagnostic keymaps
--- vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
--- vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
--- vim.keymap.set('n', '<leader>,', vim.diagnostic.open_float)
--- vim.keymap.set('n', '<leader>;', vim.diagnostic.setloclist)
+-- map('n', '[d', vim.diagnostic.goto_prev)
+-- map('n', ']d', vim.diagnostic.goto_next)
+-- map('n', '<leader>,', vim.diagnostic.open_float)
+-- map('n', '<leader>;', vim.diagnostic.setloclist)

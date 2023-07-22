@@ -31,9 +31,9 @@ vim.api.nvim_create_autocmd("VimEnter",
     callback = function()
       if vim.fn.isdirectory(vim.fn.argv(0)) == 1 then
         -- vim.cmd("Save")
-        print("No Autosave")
+        -- print("No Autosave")
       else
-        print("No Autosave")
+        -- print("No Autosave")
       end
     end,
     group=bob,

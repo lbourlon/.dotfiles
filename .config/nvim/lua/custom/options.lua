@@ -1,6 +1,4 @@
 -- VIM OPTIONS
--- vim.opt.smoothscroll = true -- I didn't know this was a thing
-
 -- Get panes to go on the direction I expect
 vim.opt.splitbelow = true
 vim.opt.splitright = true
@@ -17,7 +15,7 @@ vim.o.breakindent = true -- Enable break indent
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4 -- for indent auto >>
-vim.opt.expandtab = false -- get actual tabs instead of spaces
+vim.opt.expandtab = true -- spaces instead of tabs
 --vim.opt.smartindent = true
 vim.opt.autoindent = true
 --vim.opt.cindent = true
@@ -36,19 +34,17 @@ vim.o.mouse = 'a' -- Enable mouse mode
 vim.opt.termguicolors = true
 
 -- Decrease update time
-vim.opt.updatetime = 1000
+vim.opt.updatetime = 50
 vim.opt.timeout = true
 vim.opt.timeoutlen = 300
-
 
 --  Misc
 vim.o.undofile = true -- Save undo history
 vim.o.signcolumn = 'yes' -- git, debug, column, and others
 vim.o.completeopt = 'menu,noselect'
-
+vim.o.colorcolumn= "80"
 
 -- [[ Highlight on yank ]]
-
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
 vim.api.nvim_create_autocmd('TextYankPost', {
   callback = function()
@@ -57,3 +53,10 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   group = highlight_group,
   pattern = '*',
 })
+
+
+
+
+
+
+
