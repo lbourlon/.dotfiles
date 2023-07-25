@@ -40,11 +40,11 @@ source $ZSH/oh-my-zsh.sh
 # export LANG=en_US.UTF-8
 
 export XDG_CONFIG_HOME=$HOME/.config/
-alias zshconfig="nvim ~/.zshrc"
-alias alaconfig="nvim ~/.config/alacritty/alacritty.yml"
-alias kittyconfig="nvim ~/.config/kitty/kitty.conf"
-alias nvimconfig="nvim ~/.config/nvim/"
-alias tmuxconfig="nvim ~/.config/tmux/tmux.conf"
+alias zshconfig="cd ~/ && nvim ./.zshrc"
+alias alaconfig="cd ~/.config/alacritty && nvim alacritty.yml"
+alias kittyconfig="cd ~/.config/kitty && nvim kitty.conf"
+alias nvimconfig="cd ~/.config/nvim/ && nvim ."
+alias tmuxconfig="cd ~/.config/tmux && nvim tmux.conf"
 
 alias tmuxsource="tmux source ~/.config/tmux/tmux.conf"
 
@@ -55,6 +55,7 @@ alias vscode="nvim"
 alias book="rustup docs --book"
 
 alias xsc="xclip -selection clipboard"
+alias tm="tmux new -s `pwd | sed 's/.*\///g'`" 
 
 export http_proxy=
 export https_proxy=

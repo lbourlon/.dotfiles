@@ -24,21 +24,23 @@ return { -- LSP Configuration & Plugins
         vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
       end
 
-      nmap('<leader>lrn', vim.lsp.buf.rename, '[R]ename')
-      nmap('<leader>lca', vim.lsp.buf.code_action, '[C]code [A]ctions')
-      nmap('<leader>lcr', vim.lsp.buf.clear_references, '[C]lear [R]eferences')
 
-
+      local tlscp = require('telescope.builtin');
       nmap('gd', vim.lsp.buf.definition, '[g]oto [d]efinition')
       nmap('gD', vim.lsp.buf.declaration, '[g]oto [D]eclaration')
-      nmap('gr', require('telescope.builtin').lsp_references, '[g]oto [R]eferences')
       nmap('gI', vim.lsp.buf.implementation, '[g]oto [I]mplementation')
-      nmap('gs', require('telescope.builtin').lsp_document_symbols, '[g]oto [S]ymbols current buf')
-      nmap('gt', require('telescope.builtin').lsp_type_definitions, '[g]oto [T]ypes definition')
+      nmap('gs', tlscp.lsp_document_symbols, '[g]oto [S]ymbols current buf')
+      nmap('gt', tlscp.lsp_type_definitions, '[g]oto [T]ypes definition')
 
       -- `:help K`, got used to it and I like it
       nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
-      nmap('<leader>lk', vim.lsp.buf.signature_help, 'Signature Documentation') -- changed from C-k
+
+      -- lesser used
+      nmap('<leader>vn', vim.lsp.buf.rename, '[R]ename')
+      nmap('<leader>vk', vim.lsp.buf.signature_help, 'Signature Documentation') -- changed from C-k
+      nmap('<leader>vc', vim.lsp.buf.code_action, '[C]code')
+      -- nmap('<leader>vrr', vim.lsp.buf.clear_references, '[C]lear [R]eferences')
+      nmap('<leader>vr', tlscp.lsp_references, '[R]eferences')
 
       -- Workspace things functionality
       nmap('<leader>wa', vim.lsp.buf.add_workspace_folder, '[W]orkspace [A]dd Folder')
@@ -46,8 +48,7 @@ return { -- LSP Configuration & Plugins
       nmap('<leader>wl', function()
         print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
       end, '[W]orkspace [L]ist Folders')
-      nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
-
+      nmap('<leader>ws', tlscp.lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
 
       nmap('<leader>=', vim.lsp.buf.format, 'Format Whole file')
 

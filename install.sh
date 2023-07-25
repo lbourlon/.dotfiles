@@ -8,3 +8,8 @@ wget https://github.com/neovim/neovim/releases/download/v0.9.1/nvim-linux64.tar.
 sha256sum nvim-linux64.tar.gz| grep 6c083017304213c3a3efde8d332a52231b8df8206d35146942097c303ebf93d5
 tar xzvf nvim-linux64.tar.gz
 sudo cp ./nvim-linux64/bin/nvim /bin/nvim
+
+# Prompt for these and replace
+# git config --global user.name ""
+# git config --global user.email ""
+

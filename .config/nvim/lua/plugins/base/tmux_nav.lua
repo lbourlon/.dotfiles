@@ -15,7 +15,6 @@ return {
     nmap("<A-h>", ":TmuxNavigateLeft<CR>", "NavigateLeft")
     nmap("<A-l>", ":TmuxNavigateRight<CR>", "NavigateRight")
 
-
     vim.keymap.del("n", "<C-k>")
     vim.keymap.del("n", "<C-j>")
     vim.keymap.del("n", "<C-l>")

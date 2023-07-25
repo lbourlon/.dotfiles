@@ -1,5 +1,4 @@
 -- [[ Configure Telescope ]]
-
 return {
   'nvim-telescope/telescope.nvim',
   version = '*',

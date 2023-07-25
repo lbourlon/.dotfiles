@@ -10,7 +10,7 @@ return {
   "nvim-neo-tree/neo-tree.nvim",
 
   -- cmd="DirectoryLoad", -- LazyLoad
-  -- keys = {{"<leader>f"}},
+  keys = {{"<leader>f"}},
   version = "*",
 
   dependencies = {
