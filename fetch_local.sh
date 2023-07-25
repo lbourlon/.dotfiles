@@ -4,6 +4,7 @@ alacritty=$HOME/.config/alacritty/
 kitty=$HOME/.config/kitty/
 tmux=$HOME/.config/tmux/
 nvim=$HOME/.config/nvim/
+pbin=$HOME/.config/bin/
 zsh=$HOME/.zshrc
 gdb=$HOME/.gdbinit
 
@@ -17,3 +18,4 @@ cp -r $alacritty $folder
 cp -r $kitty $folder
 cp -r $zsh $folder
 cp -r $tmux $folder
+cp -r $pbin $folder

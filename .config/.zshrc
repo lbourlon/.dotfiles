@@ -35,6 +35,7 @@ source $ZSH/oh-my-zsh.sh
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
+export PATH="$HOME/.config/bin:$PATH"
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -56,6 +57,8 @@ alias book="rustup docs --book"
 
 alias xsc="xclip -selection clipboard"
 alias tm="tmux new -s `pwd | sed 's/.*\///g'`" 
+# alias tz="tmux new -s `find -L ~/fz/* -maxdepth 2 | fzf`"
+
 
 export http_proxy=
 export https_proxy=
