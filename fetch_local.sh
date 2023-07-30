@@ -4,8 +4,9 @@ alacritty=$HOME/.config/alacritty/
 kitty=$HOME/.config/kitty/
 tmux=$HOME/.config/tmux/
 nvim=$HOME/.config/nvim/
-pbin=$HOME/.config/bin/
 zsh=$HOME/.zshrc
+pbin=$HOME/.config/bin/
+
 gdb=$HOME/.gdbinit
 
 folder=.config

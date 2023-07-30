@@ -56,9 +56,12 @@ alias vscode="nvim"
 alias book="rustup docs --book"
 
 alias xsc="xclip -selection clipboard"
-alias tm="tmux new -s `pwd | sed 's/.*\///g'`" 
+alias t="tmux-sessionizer" 
+# alias tm="tmux new -s `pwd | sed 's/.*\///g'`" 
 # alias tz="tmux new -s `find -L ~/fz/* -maxdepth 2 | fzf`"
+alias icat="kitty +kitten icat"
 
 
 export http_proxy=
 export https_proxy=
+launch_tmux.sh

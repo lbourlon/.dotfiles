@@ -43,6 +43,7 @@ vim.o.undofile = true -- Save undo history
 vim.o.signcolumn = 'yes' -- git, debug, column, and others
 vim.o.completeopt = 'menu,noselect'
 vim.o.colorcolumn= "80"
+vim.o.cmdheight = "0"
 
 -- [[ Highlight on yank ]]
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
