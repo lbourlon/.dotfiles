@@ -6,4 +6,4 @@ Personal scripts, conf and dot files for linux.
 - [x] Alacritty
 - [x] ZSH
 - [x] Kitty
-- [ ] TMUX
+- [x] TMUX
