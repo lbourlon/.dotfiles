@@ -17,6 +17,6 @@ mkdir -p $folder
 cp -r $nvim $folder
 cp -r $alacritty $folder
 cp -r $kitty $folder
-cp -r $zsh $folder
+cp $zsh ./
 cp -r $tmux $folder
 cp -r $pbin $folder
