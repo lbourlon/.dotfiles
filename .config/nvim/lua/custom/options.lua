@@ -1,11 +1,15 @@
 -- VIM OPTIONS
 -- Get panes to go on the direction I expect
+
+-- Because these suck
+vim.opt.swapfile = false
+
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 
+vim.opt.scrolloff = 8
 vim.opt.number = true
 vim.opt.relativenumber = false
-vim.opt.scrolloff = 8
 
 -- Wrap options
 vim.opt.wrap = true
@@ -54,10 +58,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   group = highlight_group,
   pattern = '*',
 })
-
-
-
-
 
 
 

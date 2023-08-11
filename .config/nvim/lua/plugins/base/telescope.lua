@@ -51,6 +51,7 @@ return {
     nmap('<leader>tj', tele_builtin.jumplist, '[T]elescope [J]umplist')
 
     nmap('<leader>tk', tele_builtin.keymaps, '[T]elescope [K]eymaps')
+    nmap('<leader>th', tele_builtin.help_tags, '[T]elescope [H]elp')
     -- nmap('<leader>tf', tele_builtin.quickfix, '[T]elescope [F]ix')
     nmap('<leader>tp', tele_builtin.planets, '[T]elescope [P]lanets')
 

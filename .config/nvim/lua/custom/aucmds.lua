@@ -30,8 +30,8 @@ vim.api.nvim_create_autocmd("VimEnter",
   {
     callback = function()
       if vim.fn.isdirectory(vim.fn.argv(0)) == 1 then
-        -- vim.cmd("Save")
-        -- print("No Autosave")
+        vim.cmd(":Telescope find_files")
+        print("No Autosave")
       else
         -- print("No Autosave")
       end

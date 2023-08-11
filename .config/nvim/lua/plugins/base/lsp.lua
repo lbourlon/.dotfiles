@@ -36,11 +36,11 @@ return { -- LSP Configuration & Plugins
       nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
 
       -- lesser used
-      nmap('<leader>vn', vim.lsp.buf.rename, '[R]ename')
-      nmap('<leader>vk', vim.lsp.buf.signature_help, 'Signature Documentation') -- changed from C-k
-      nmap('<leader>vc', vim.lsp.buf.code_action, '[C]code')
+      nmap('<leader>rn', vim.lsp.buf.rename, '[R]ename')
+      nmap('<leader>sk', vim.lsp.buf.signature_help, '[S]ignature Documentation') -- changed from C-k
+      nmap('<leader>ca', vim.lsp.buf.code_action, '[C]code [A]ction')
       -- nmap('<leader>vrr', vim.lsp.buf.clear_references, '[C]lear [R]eferences')
-      nmap('<leader>vr', tlscp.lsp_references, '[R]eferences')
+      nmap('<leader>cr', tlscp.lsp_references, '[C]ode [R]eferences')
 
       -- Workspace things functionality
       nmap('<leader>wa', vim.lsp.buf.add_workspace_folder, '[W]orkspace [A]dd Folder')
@@ -66,16 +66,25 @@ return { -- LSP Configuration & Plugins
     --  the `settings` field of the server config. You must look up that documentation yourself.
     --
     local servers = {
-      clangd = {},
+      clangd = {
+        -- filetypes = { "c", "cpp", "objc", "objcpp", "cuda", "proto" },
+        filetypes = { "c", "cuda"},
+      },
       rust_analyzer = {},
       --https://github.com/python-lsp/python-lsp-server/blob/develop/CONFIGURATION.md
+      --https://github.com/williamboman/mason-lspconfig.nvim/blob/main/doc/server-mapping.md
+      --	https://github.com/bergercookie/asm-lsp
+      -- asm_lsp = {
+      --   cmd = { "asm-lsp" },
+      --   filetypes = { "asm", "vmasm" }
+      -- },
 
       pylsp = {
         pylsp = {
           plugins = {
             pycodestyle = { enabled = false, },
             jedi_completition = { enabled = true },
-          },
+        },
         },
       },
       lua_ls = {
@@ -85,6 +94,7 @@ return { -- LSP Configuration & Plugins
         },
       },
     }
+
 
     -- Setup neovim lua configuration
     require('neodev').setup()

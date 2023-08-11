@@ -60,6 +60,8 @@ alias t="tmux-sessionizer"
 # alias tm="tmux new -s `pwd | sed 's/.*\///g'`" 
 # alias tz="tmux new -s `find -L ~/fz/* -maxdepth 2 | fzf`"
 alias icat="kitty +kitten icat"
+alias clangdhelp="clang-format -style=llvm -dump-config > .clang-format"
+alias gdb_print_argv1="p *(char**)($rsp + 16)"
 
 
 export http_proxy=

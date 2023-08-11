@@ -24,24 +24,11 @@ nmap("<leader>pv",  "<C-w>t<C-w>H", "[P]ane [V]orizontal")
 nmap("<leader>ph",  "<C-w>t<C-w>K","[P]ane [H]orizontal")
 
 -- Pane Reajust Size
-nmap("<leader>pl",  change_window .."5<", "why?") -- <C-W>5<
-nmap("<leader>ph",  change_window .."5>", "why?") -- <C-W>5>
-nmap("<leader>pj",  change_window .."3-", "why?")-- <C-W>3-
-nmap("<leader>pk",  change_window .."3+", "why?") -- <C-W>3-
+nmap("<C-Up>",    change_window .."3-", "Resize window")-- <C-W>3-
+nmap("<C-Down>",  change_window .."3+", "Resize window") -- <C-W>3-
+nmap("<C-Left>", change_window .."5<",  "Resize window") -- <C-W>5<
+nmap("<C-Right>",  change_window .."5>","Resize window") -- <C-W>5>
 
-nmap("<C-Up>",    change_window .."3-", "why?")-- <C-W>3-
-nmap("<C-Down>",  change_window .."3+", "why?") -- <C-W>3-
-nmap("<C-Left>", change_window .."5<", "why?") -- <C-W>5<
-nmap("<C-Right>",  change_window .."5>", "why?") -- <C-W>5>
-
--- nmap("n", "<C-Right>",  ":resize -5<CR>") -- <C-W>5<
--- nmap("n", "<C-Left>",   ":resize -5<CR>") -- <C-W>5>
--- nmap("n", "<C-Up>",     ":vertical resize +3<CR>")-- <C-W>3-
--- nmap("n", "<C-Down>",   ":vertical resize +3<CR>") -- <C-W>3-
--- vim.api.nvim_set_keymap('n', '<C-Right>', change_window .."5<", {desc = "j"})
--- vim.api.nvim_set_keymap('n', '<C-Left>', change_window .."5>",{desc = "j"} )
--- vim.api.nvim_set_keymap('n', '<C-Up>', change_window .."3-"  ,  {desc = "j"})
--- vim.api.nvim_set_keymap('n', '<C-Down>', change_window .."3+", {desc = "j"})
 
 -- Terminal Management
 local term_events = { "BufWinEnter", "WinEnter" }
