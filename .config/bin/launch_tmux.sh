@@ -1,3 +1,4 @@
+#!/bin/bash
 tmux_sessions=$(tmux ls | sed 's/:.*//g')
 
 if [[ -z $TMUX ]]; then
