@@ -11,7 +11,7 @@ return {
 
     require('nvim-treesitter.configs').setup {
       -- Add languages to be installed here that you want installed for treesitter
-      ensure_installed = {'help','c', 'lua', 'python', 'rust' },
+      ensure_installed = {'c', 'lua'},
 
       auto_install = true,
 

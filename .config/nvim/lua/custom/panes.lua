@@ -31,8 +31,8 @@ nmap("<C-Right>",  change_window .."5>","Resize window") -- <C-W>5>
 
 
 -- Terminal Management
-local term_events = { "BufWinEnter", "WinEnter" }
-local term_grouperino = vim.api.nvim_create_augroup("Term_grouperino", { clear = true })
-vim.api.nvim_create_autocmd(term_events, { pattern = "term://*", command = "startinsert", group = term_grouperino })
-vim.api.nvim_create_autocmd("TermOpen *", { command = "set bufhidden=delete", group = term_grouperino })
-vim.api.nvim_create_autocmd("TermOpen *", { command = "startinsert", group = term_grouperino })
+-- local term_events = { "BufWinEnter", "WinEnter" }
+-- local term_grouperino = vim.api.nvim_create_augroup("Term_grouperino", { clear = true })
+-- vim.api.nvim_create_autocmd(term_events, { pattern = "term://*", command = "startinsert", group = term_grouperino })
+-- vim.api.nvim_create_autocmd("TermOpen *", { command = "set bufhidden=delete", group = term_grouperino })
+-- vim.api.nvim_create_autocmd("TermOpen *", { command = "startinsert", group = term_grouperino })

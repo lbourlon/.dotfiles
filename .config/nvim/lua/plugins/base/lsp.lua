@@ -70,7 +70,7 @@ return { -- LSP Configuration & Plugins
         -- filetypes = { "c", "cpp", "objc", "objcpp", "cuda", "proto" },
         filetypes = { "c", "cuda"},
       },
-      rust_analyzer = {},
+      -- rust_analyzer = {},
       --https://github.com/python-lsp/python-lsp-server/blob/develop/CONFIGURATION.md
       --https://github.com/williamboman/mason-lspconfig.nvim/blob/main/doc/server-mapping.md
       --	https://github.com/bergercookie/asm-lsp
@@ -79,14 +79,14 @@ return { -- LSP Configuration & Plugins
       --   filetypes = { "asm", "vmasm" }
       -- },
 
-      pylsp = {
-        pylsp = {
-          plugins = {
-            pycodestyle = { enabled = false, },
-            jedi_completition = { enabled = true },
-        },
-        },
-      },
+      -- pylsp = {
+      --   pylsp = {
+      --     plugins = {
+      --       pycodestyle = { enabled = false, },
+      --       jedi_completition = { enabled = true },
+      --   },
+      --   },
+      -- },
       lua_ls = {
         Lua = {
           workspace = { checkThirdParty = false },
