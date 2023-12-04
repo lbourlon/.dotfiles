@@ -1,11 +1,9 @@
 return {
   'christoomey/vim-tmux-navigator',
-  version = '*',
-  dependencies = { 'nvim-lua/plenary.nvim' },
+  commit = '7db70e0',
+  -- commit = "85b8e5f60c1690cde57dbb66467ce39cd1b63343",
 
   config = function ()
-    -- [[ Configure Telescope ]]
-    --
     local nmap = function(keys, func, desc)
       vim.keymap.set({'n','t','i','v'}, keys, "<C-\\><C-N>" .. func, {desc = 'TMUX: ' .. desc })
     end

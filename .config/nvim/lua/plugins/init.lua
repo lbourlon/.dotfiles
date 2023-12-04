@@ -1,17 +1,13 @@
 return {
   -- Detect tabstop and shiftwidth automatically
-  'tpope/vim-sleuth',
+  {'tpope/vim-sleuth', commit="1cc4557"},
 
-  -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim', opts = {} },
-
-
-  -- "gc" to comment visual regions/lines
-  { 'numToStr/Comment.nvim', opts = {} },
-
+  -- Shows pending keybinds actions
+  { 'folke/which-key.nvim', commits = "4433e5e" },
 
   {
     'nvim-telescope/telescope-fzf-native.nvim',
+    commit="6c921ca",
     -- NOTE: If you are having trouble with this installation,
     --       refer to the README for telescope-fzf-native for more instructions.
     build = 'make',
@@ -20,10 +16,9 @@ return {
     end,
   },
 
-  --    https://github.com/tjdevries/config_manager/blob/master/xdg_config/nvim/after/plugin/completion.lua
-  --    https://github.com/tjdevries/config_manager/blob/master/xdg_config/nvim/plugin/options.lua
-  --    https://github.com/tjdevries/config_manager/tree/master/xdg_config/nvim/after/plugin
-  --    https://github.com/nvim-lua/kickstart.nvim/blob/master/lua/kickstart/plugins/autoformat.lua
+  -- "gc" to comment visual regions/lines
+  { 'numToStr/Comment.nvim', commit = "0236521" },
+
   --, 
   { import = 'plugins.base'},
   { import = 'plugins.style'},

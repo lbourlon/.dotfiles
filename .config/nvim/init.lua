@@ -25,7 +25,6 @@ require('lazy').setup('plugins', {
   },
 })
 
-
 require('custom.keymaps')
 require('custom.options')
 require('custom.panes')

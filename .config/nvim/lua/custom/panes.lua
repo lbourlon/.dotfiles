@@ -8,12 +8,10 @@ local nmap = function(keys, func, desc)
 end
 
 -- Splits
--- vim.keynmap.set("n", "<leader>e", "", "Split"})
 nmap("<leader>l", ":vs<CR>", "Split Left")
 nmap("<leader>j", ":sp<CR>", "Split Bellow")
 
 -- Splits Move
--- local mv_up, mv_do, mv_le, mv_ri = "<A-k>", "<A-j>", "<A-h>", "<A-l>";
 local change_window = "<C-\\><C-N>" .. "<C-w>"
 
 -- Pane Quit, swa, & change hor to vert
@@ -31,6 +29,11 @@ nmap("<C-Right>",  change_window .."5>","Resize window") -- <C-W>5>
 
 
 -- Terminal Management
+--
+-- nmap("n", "<leader>r", "", {desc = "Term Split"})
+-- nmap("n", "<leader>rl", ":vs|term<CR>",{desc = "Terminal on Left"})
+-- nmap("n", "<leader>rj", ":sp|term<CR>",{desc = "Terminal on Bellow"})
+--
 -- local term_events = { "BufWinEnter", "WinEnter" }
 -- local term_grouperino = vim.api.nvim_create_augroup("Term_grouperino", { clear = true })
 -- vim.api.nvim_create_autocmd(term_events, { pattern = "term://*", command = "startinsert", group = term_grouperino })

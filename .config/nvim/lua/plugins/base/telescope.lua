@@ -1,9 +1,8 @@
 -- [[ Configure Telescope ]]
-
 return {
   'nvim-telescope/telescope.nvim',
-  version = '*',
-  dependencies = { 'nvim-lua/plenary.nvim' },
+  commit="d909568",
+  dependencies = {{'nvim-lua/plenary.nvim', commit="55d9fe8"}},
 
   config = function ()
     -- See `:help telescope` and `:help telescope.setup()`
@@ -52,7 +51,7 @@ return {
 
     nmap('<leader>tk', tele_builtin.keymaps, '[T]elescope [K]eymaps')
     nmap('<leader>th', tele_builtin.help_tags, '[T]elescope [H]elp')
-    -- nmap('<leader>tf', tele_builtin.quickfix, '[T]elescope [F]ix')
+    nmap('<leader>tf', tele_builtin.quickfix, '[T]elescope [F]ix')
     nmap('<leader>tp', tele_builtin.planets, '[T]elescope [P]lanets')
 
 

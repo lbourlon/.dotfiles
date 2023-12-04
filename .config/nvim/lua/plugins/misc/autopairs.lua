@@ -1,7 +1,10 @@
 return {
   "windwp/nvim-autopairs",
-  -- Optional dependency
-  dependencies = { 'hrsh7th/nvim-cmp' },
+  comit="0f04d78",
+  dependencies = {{'hrsh7th/nvim-cmp',
+                   commit="0b751f6beef40fd47375eaf53d3057e0bfa317e4"
+                 }},
+
   config = function()
     require("nvim-autopairs").setup {}
     -- If you want to automatically add `(` after selecting a function or method

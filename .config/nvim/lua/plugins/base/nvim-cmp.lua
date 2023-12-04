@@ -1,10 +1,10 @@
 return { -- Autocompletion
   'hrsh7th/nvim-cmp',
+  commit="0b751f6beef40fd47375eaf53d3057e0bfa317e4",
   dependencies = {
-    'hrsh7th/cmp-nvim-lsp',
-    'L3MON4D3/LuaSnip',
-    'saadparwaiz1/cmp_luasnip',
-    -- 'rafamadriz/friendly-snippets', -- actually sucks
+    {'hrsh7th/cmp-nvim-lsp',commit="44b16d1"},
+    {'L3MON4D3/LuaSnip',commit="f030898"},
+    {'saadparwaiz1/cmp_luasnip',commit="05a9ab2"},
   },
 
   config = function ()

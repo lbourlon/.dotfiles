@@ -1,15 +1,16 @@
 return { -- LSP Configuration & Plugins
   'neovim/nvim-lspconfig',
+  commit="694aaec",
   dependencies = {
     -- Automatically install LSPs to stdpath for neovim
-    'williamboman/mason.nvim',
-    'williamboman/mason-lspconfig.nvim',
+    {'williamboman/mason.nvim', commit="41e75af"},
+    {'williamboman/mason-lspconfig.nvim', commit="4eb8e15"},
 
     -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
     { 'j-hui/fidget.nvim', tag = "legacy", opts = { text = { spinner = "moon" } } },
 
     -- Additional lua configuration,
-    'folke/neodev.nvim',
+    {'folke/neodev.nvim', config="1676d2c"},
   },
 
 
@@ -61,14 +62,10 @@ return { -- LSP Configuration & Plugins
 
     -- Enable the following language servers
     --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
-    --
-    --  Add any additional override configuration in the following tables. They will be passed to
-    --  the `settings` field of the server config. You must look up that documentation yourself.
-    --
     local servers = {
       clangd = {
         -- filetypes = { "c", "cpp", "objc", "objcpp", "cuda", "proto" },
-        filetypes = { "c", "cuda"},
+        filetypes = { "c"},
       },
       -- rust_analyzer = {},
       --https://github.com/python-lsp/python-lsp-server/blob/develop/CONFIGURATION.md

@@ -3,13 +3,15 @@
 
 return {
   'nvim-treesitter/nvim-treesitter',
+  commit="0791b5ebb590a2d44e20640c52679df1fc42e8ab",
   dependencies = {
-    'nvim-treesitter/nvim-treesitter-textobjects',
+    {'nvim-treesitter/nvim-treesitter-textobjects',commit="ec1c5bd"},
   },
   config = function()
     pcall(require('nvim-treesitter.install').update { with_sync = true })
 
-    require('nvim-treesitter.configs').setup {
+    require('nvim-treesitter.configs').setup
+    {
       -- Add languages to be installed here that you want installed for treesitter
       ensure_installed = {'c', 'lua'},
 

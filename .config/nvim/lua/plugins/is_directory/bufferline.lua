@@ -1,9 +1,10 @@
 return {
   'akinsho/bufferline.nvim',
+  commit="1a33975",
 
   cmd="DirectoryLoad", -- Lazy Load
 
-  dependencies = {'nvim-tree/nvim-web-devicons'},
+  dependencies = {{'nvim-tree/nvim-web-devicons',commit="5efb8bd"}},
 
   config = function()
     require("bufferline").setup{
@@ -16,7 +17,8 @@ return {
         show_close_icon = false,
         --enforce_regular_tabs = false | true,
 
-      custom_filter = function(buf) -- filter out filetypes you don't want to see
+      -- filter out filetypes you don't want to see
+      custom_filter = function(buf)
         if vim.bo[buf].buftype == "terminal" then
           return false
         end
