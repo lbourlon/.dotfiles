@@ -10,13 +10,13 @@ return {
   "nvim-neo-tree/neo-tree.nvim",
 
   -- cmd="DirectoryLoad", -- LazyLoad
-  keys = {{"<leader>f"}},
+  -- keys = {{"<leader>f"}},
   version = "*",
 
   dependencies = {
-    {'nvim-tree/nvim-web-devicons',commit="5efb8bd"},
-    {"nvim-lua/plenary.nvim", commit="55d9fe89e33efd26f532ef20223e5f9430c8b0c0"},
-    {"MunifTanjim/nui.nvim",commit="1d044af"},
+    {'nvim-tree/nvim-web-devicons'},
+    {"nvim-lua/plenary.nvim"},
+    {"MunifTanjim/nui.nvim"},
   },
   config = function ()
     require('neo-tree').setup({
@@ -31,6 +31,7 @@ return {
       filesystem = {
         filtered_items = { hide_dotfiles = false,},
         follow_current_file = {enabled = true,},
+        hijack_netrw_behaviour = "open_current",
       }
     })
 

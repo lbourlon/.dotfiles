@@ -24,19 +24,20 @@ vim.api.nvim_create_user_command(
   end,
   { desc = 'Change Auto Save State' })
 
-local bob = vim.api.nvim_create_augroup("bob", {clear = true})
+local bob = vim.api.nvim_create_augroup("dir_check", {clear = true})
 
 vim.api.nvim_create_autocmd("VimEnter",
   {
     callback = function()
       if vim.fn.isdirectory(vim.fn.argv(0)) == 1 then
-        vim.cmd(":Telescope find_files")
-        print("No Autosave")
+        print("Welcome")
+        --vim.cmd(":set path+=**")
+        -- vim.cmd(":Telescope find_files")
       else
         -- print("No Autosave")
       end
     end,
-    group=bob,
+    group=dir_check,
   }
 
 )

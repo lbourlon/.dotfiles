@@ -37,25 +37,21 @@ source $ZSH/oh-my-zsh.sh
 # export MANPATH="/usr/local/man:$MANPATH"
 export PATH="$HOME/.config/bin:$PATH"
 
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
 export XDG_CONFIG_HOME=$HOME/.config/
+
 alias zshconfig="cd ~/ && nvim ./.zshrc"
-alias alaconfig="cd ~/.config/alacritty && nvim alacritty.yml"
 alias kittyconfig="cd ~/.config/kitty && nvim kitty.conf"
 alias nvimconfig="cd ~/.config/nvim/ && nvim ."
 alias tmuxconfig="cd ~/.config/tmux && nvim tmux.conf"
 
+export WORK_DIRS="$HOME/.config/ $HOME/git_lb/"
+alias gw='cd $(find -L $(echo $WORK_DIRS) -maxdepth 1 -type d | fzf)'
+alias xsc="xclip -selection clipboard"
+alias vim="nvim"
+
 alias tmuxsource="tmux source ~/.config/tmux/tmux.conf"
 
 
-alias vim="nvim"
-alias code="nvim"
-alias vscode="nvim"
-alias book="rustup docs --book"
-
-alias xsc="xclip -selection clipboard"
 alias t="tmux-sessionizer" 
 # alias tm="tmux new -s `pwd | sed 's/.*\///g'`" 
 # alias tz="tmux new -s `find -L ~/fz/* -maxdepth 2 | fzf`"
@@ -66,4 +62,4 @@ alias gdb_print_argv1="p *(char**)($rsp + 16)"
 
 export http_proxy=
 export https_proxy=
-launch_tmux.sh
+#launch_tmux.sh

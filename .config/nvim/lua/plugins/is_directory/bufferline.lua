@@ -1,10 +1,9 @@
 return {
   'akinsho/bufferline.nvim',
-  commit="1a33975",
 
   cmd="DirectoryLoad", -- Lazy Load
 
-  dependencies = {{'nvim-tree/nvim-web-devicons',commit="5efb8bd"}},
+  dependencies = {{'nvim-tree/nvim-web-devicons'}},
 
   config = function()
     require("bufferline").setup{

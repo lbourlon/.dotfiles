@@ -1,9 +1,6 @@
 return {
   "windwp/nvim-autopairs",
-  comit="0f04d78",
-  dependencies = {{'hrsh7th/nvim-cmp',
-                   commit="0b751f6beef40fd47375eaf53d3057e0bfa317e4"
-                 }},
+  dependencies = {{'hrsh7th/nvim-cmp'}},
 
   config = function()
     require("nvim-autopairs").setup {}

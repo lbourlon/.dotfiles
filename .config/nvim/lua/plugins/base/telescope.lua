@@ -1,8 +1,7 @@
 -- [[ Configure Telescope ]]
 return {
   'nvim-telescope/telescope.nvim',
-  commit="d909568",
-  dependencies = {{'nvim-lua/plenary.nvim', commit="55d9fe8"}},
+  dependencies = {{'nvim-lua/plenary.nvim'}},
 
   config = function ()
     -- See `:help telescope` and `:help telescope.setup()`

@@ -1,16 +1,15 @@
 return { -- LSP Configuration & Plugins
   'neovim/nvim-lspconfig',
-  commit="694aaec",
   dependencies = {
     -- Automatically install LSPs to stdpath for neovim
-    {'williamboman/mason.nvim', commit="41e75af"},
-    {'williamboman/mason-lspconfig.nvim', commit="4eb8e15"},
+    {'williamboman/mason.nvim'},
+    {'williamboman/mason-lspconfig.nvim'},
 
     -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
     { 'j-hui/fidget.nvim', tag = "legacy", opts = { text = { spinner = "moon" } } },
 
     -- Additional lua configuration,
-    {'folke/neodev.nvim', config="1676d2c"},
+    {'folke/neodev.nvim'},
   },
 
 

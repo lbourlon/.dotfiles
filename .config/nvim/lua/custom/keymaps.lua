@@ -45,10 +45,13 @@ map('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 -- cuz of french keyboard :)
 vim.keymap.set('n', "ù", "<C-^>")
 
--- Inspired / Yoinked from Teej_dv
+-- Search Replace
 map('n', "<A-r>", ":%s/<c-r><c-w>//g<left><left>", {desc = "replace current word"})
 map('n', "<leader>sws", ":%s/\\s\\+$//<CR>")       -- Remove whitespaces
 
+map("v", "<A-r>", ":s//g<left><left>") -- Search replace in highlight
+-- map("v", "<A-r>", ":s/\\(<c-r><c-w>\\)//g<left><left>") -- Search replace reuse
+--
 map('n', "<leader>rc", ":s/<c-r><c-w>/'<c-r><c-w>'/g<CR>") -- Replace current word
 -- map('n', '<leader>r"', ':s/<c-r><c-w>/"<c-r><c-w>"/g<CR>') -- Replace current word
 
@@ -58,11 +61,6 @@ for k, v in pairs(surround) do
     {desc = "Surrounds selection with " .. k})
 end
 
-
-
-
-map("v", "<A-r>", ":s//g<left><left>") -- Search replace in highlight
--- map("v", "<A-r>", ":s/\\(<c-r><c-w>\\)//g<left><left>") -- Search replace reuse
 
 -- Yoinked from theprimeagen
 map('n', "C-f", ":silent !tmux new tmux-sessionizer<CR>")
