@@ -44,6 +44,7 @@ return {
     nmap('<leader>tm1', ":Telescope man_pages sections=1,1<CR>", '[T]elescope [M]an 1')
     nmap('<leader>tm2', ":Telescope man_pages sections=2,2<CR>", '[T]elescope [M]an 2')
     nmap('<leader>tm3', ":Telescope man_pages sections=3,3<CR>", '[T]elescope [M]an 3')
+    nmap('<leader>tm7', ":Telescope man_pages sections=7,7<CR>", '[T]elescope [M]an 7')
 
     nmap('<leader>tr', tele_builtin.marks, '[T]elescope [r] marks')
     nmap('<leader>tj', tele_builtin.jumplist, '[T]elescope [J]umplist')

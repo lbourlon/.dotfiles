@@ -23,6 +23,5 @@ return {
   { import = 'plugins.style'},
   { import = 'plugins.misc'},
   { import = 'plugins.is_directory'},
-  --{ import = 'plugins.lazy_loaded'}
 
 }

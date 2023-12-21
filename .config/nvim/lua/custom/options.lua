@@ -30,6 +30,8 @@ vim.opt.incsearch = true
 vim.o.ignorecase = true
 vim.o.smartcase = true -- Keep Capital if in query
 
+vim.opt.virtualedit = "block"
+
 -- Cursor
 vim.opt.guicursor = "n-v-c-sm:block,i-ci-ve:block,r-cr-o:hor20"
 vim.opt.guicursor = "i:blinkon20,i:blinkoff100"
