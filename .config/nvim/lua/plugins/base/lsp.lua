@@ -9,19 +9,21 @@ return { -- LSP Configuration & Plugins
   },
 
   config = function()
+
     local on_attach = function(_, bufnr)
       local nmap = function(keys, func, desc)
         if desc then desc = 'LSP: ' .. desc end
         vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
       end
-
       nmap('gd', vim.lsp.buf.definition, '[g]oto [d]efinition')
       nmap('gD', vim.lsp.buf.declaration, '[g]oto [D]eclaration')
       nmap('gI', vim.lsp.buf.implementation, '[g]oto [I]mplementation')
       nmap('K',  vim.lsp.buf.hover, 'Hover Documentation')
       nmap('<leader>rn', vim.lsp.buf.rename, '[R]ename')
       nmap('<leader>sk', vim.lsp.buf.signature_help, '[S]ignature Documentation')
-      nmap('<leader>ca', vim.lsp.buf.code_action, '[C]code [A]ction')
+      nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
+
+      nmap('<leader>cs',  ":ClangdSwitchSourceHeader<CR>", '[C]langd [S]witch')
 
       local telescopeconfig = require('telescope.builtin');
       nmap('gs', telescopeconfig.lsp_document_symbols, '[g]oto [S]ymbols current buf')
@@ -37,8 +39,8 @@ return { -- LSP Configuration & Plugins
 
     local servers = {
       clangd = {
-        filetypes = { "c", "cpp", "objc", "objcpp", "cuda", "proto" },
-        cmd = {"clangd", }
+        filetypes = { "c", "cpp"},
+        cmd = {"clangd", "-xc"},
       },
       -- asm_lsp = { cmd = { "asm-lsp" }, filetypes = { "asm", "vmasm" } },
       -- pylsp = { pylsp = { plugins = { pycodestyle = { enabled = false, },
