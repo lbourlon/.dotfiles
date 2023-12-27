@@ -35,7 +35,7 @@ vim.opt.virtualedit = "block"
 -- Cursor
 vim.opt.guicursor = "n-v-c-sm:block,i-ci-ve:block,r-cr-o:hor20"
 vim.opt.guicursor = "i:blinkon20,i:blinkoff100"
-vim.o.mouse = 'a' -- Enable mouse mode
+vim.o.mouse = '' -- Enable mouse mode
 
 vim.opt.termguicolors = true
 

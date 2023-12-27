@@ -9,7 +9,7 @@ return {
     require("bufferline").setup{
         options = {
         mode = "buffers",
-        --style_preset = bl.presets.default,
+        -- style_preset = bl.presets.default,
         themable = true,
         indicator = {style ="underline"},
         separator_style = "thick",

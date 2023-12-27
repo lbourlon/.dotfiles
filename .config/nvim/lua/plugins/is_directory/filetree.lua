@@ -1,10 +1,7 @@
--- UnlEss you are still migrating, remove the deprecated commands from v1.x
 vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
 
--- Disable netrw
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
-
 
 return {
   "nvim-neo-tree/neo-tree.nvim",
@@ -24,9 +21,6 @@ return {
       window = {
         width=20,
         auto_expand_width=false,
-        mappings={
-          ["l"] = "open",
-        },
       },
       filesystem = {
         filtered_items = { hide_dotfiles = false,},
