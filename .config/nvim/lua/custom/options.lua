@@ -33,8 +33,8 @@ vim.o.smartcase = true -- Keep Capital if in query
 vim.opt.virtualedit = "block"
 
 -- Cursor
-vim.opt.guicursor = "n-v-c-sm:block,i-ci-ve:block,r-cr-o:hor20"
-vim.opt.guicursor = "i:blinkon20,i:blinkoff100"
+-- vim.opt.guicursor = "n-v-c-sm:block,i-ci-ve:block,r-cr-o:hor20"
+vim.opt.guicursor = "n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20," .. "i:blinkon20,i:blinkoff100"
 vim.o.mouse = '' -- Enable mouse mode
 
 vim.opt.termguicolors = true
@@ -48,7 +48,7 @@ vim.opt.timeoutlen = 300
 vim.o.undofile = true -- Save undo history
 vim.o.signcolumn = 'yes' -- git, debug, column, and others
 vim.o.completeopt = 'menu,noselect'
-vim.o.colorcolumn= "80"
+-- vim.o.colorcolumn= "80"
 vim.o.cmdheight = "0"
 
 -- [[ Highlight on yank ]]

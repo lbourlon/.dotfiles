@@ -3,12 +3,35 @@ return { -- LSP Configuration & Plugins
   dependencies = {
     { 'williamboman/mason.nvim', opts = {} },
     { 'williamboman/mason-lspconfig.nvim' },
-    { 'j-hui/fidget.nvim', tag = "v1.1.0" },
-    {'folke/neodev.nvim', opts = {}},
-    {'hrsh7th/cmp-nvim-lsp'},
+    { 'j-hui/fidget.nvim', tag = "v1.1.0", opts = {} },
+    { 'folke/neodev.nvim', opts = {}},
+    { 'hrsh7th/cmp-nvim-lsp', opts = {}},
   },
 
   config = function()
+    -- STYLE
+    -- vim.cmd [[autocmd! ColorScheme * highlight NormalFloat guibg=#1f2335]]
+    -- vim.cmd [[autocmd! ColorScheme * highlight FloatBorder guifg=white guibg=#1f2335]]
+
+    Border = { {"🭽", "FloatBorder"}, {"▔", "FloatBorder"},
+      {"🭾", "FloatBorder"}, {"▕", "FloatBorder"}, {"🭿", "FloatBorder"},
+      {"▁", "FloatBorder"}, {"🭼", "FloatBorder"}, {"▏", "FloatBorder"}}
+
+    -- LSP settings (for overriding per client)
+    local handlers =  {
+      ["textDocument/hover"] =  vim.lsp.with(vim.lsp.handlers.hover, {border = Border}),
+      ["textDocument/signatureHelp"] =  vim.lsp.with(vim.lsp.handlers.signature_help, {border = Border }),
+    }
+
+    vim.diagnostic.config({ virtual_text = false, signs = true,
+      underline = true, update_in_insert = false, severity_sort = true, })
+
+    local signs = { Error = "󰅚 ", Warn = "󰀪 ", Hint = "󰌶 ", Info = " " }
+    for type, icon in pairs(signs) do
+      local hl = "DiagnosticSign" .. type
+      vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+    end
+    -- STYLE
 
     local on_attach = function(_, bufnr)
       local nmap = function(keys, func, desc)
@@ -35,21 +58,37 @@ return { -- LSP Configuration & Plugins
       vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
         vim.lsp.buf.format()
       end, { desc = 'Format current buffer with LSP' })
-    end
 
+      -- Hints under cursor
+      vim.api.nvim_create_autocmd("CursorHold", {
+        buffer = bufnr,
+        callback = function()
+          local opts = {
+            focusable = false,
+            close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
+            border = Border, source = 'always', prefix = ' ', scope = 'cursor',
+          }
+          vim.diagnostic.open_float(nil, opts)
+        end
+      })
+
+   end -- END on_attach
+
+
+
+    -- SERVERS
     local servers = {
       clangd = {
-        filetypes = { "c", "cpp"},
+        filetypes = { "c" },
         cmd = {"clangd", "-xc"},
       },
-      -- asm_lsp = { cmd = { "asm-lsp" }, filetypes = { "asm", "vmasm" } },
-      -- pylsp = { pylsp = { plugins = { pycodestyle = { enabled = false, },
-      -- jedi_completition = { enabled = true }, }, }, },
+      -- asm_lsp = { cmd = { "asm-lsp" }, filetypes = { "asm", "vmasm" } }, pylsp = { pylsp = { plugins = { pycodestyle = { enabled = false, }, jedi_completition = { enabled = true }, }, }, },
       lua_ls = { Lua = {
         workspace = { checkThirdParty = false },
         telemetry = { enable = false },
       }}
     }
+
 
     local cap = vim.lsp.protocol.make_client_capabilities()
     cap = require('cmp_nvim_lsp').default_capabilities(cap)
@@ -60,11 +99,13 @@ return { -- LSP Configuration & Plugins
       function(server_name)
         require('lspconfig')[server_name].setup {
           capabilities = cap,
+          handlers = handlers,
           on_attach = on_attach,
           settings = servers[server_name],
           filetypes = (servers[server_name] or {}).filetypes,
         }
       end,
     })
+
   end
 }
