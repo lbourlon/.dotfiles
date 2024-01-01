@@ -61,12 +61,12 @@ for k, v in pairs(surround) do
     {desc = "Surrounds selection with " .. k})
 end
 
-
--- Yoinked from theprimeagen
-map('n', "C-f", ":silent !tmux new tmux-sessionizer<CR>")
-
 -- Diagnostic keymaps
--- map('n', '[d', vim.diagnostic.goto_prev)
--- map('n', ']d', vim.diagnostic.goto_next)
+map('n', '[d', vim.diagnostic.goto_prev)
+map('n', ']d', vim.diagnostic.goto_next)
 -- map('n', '<leader>,', vim.diagnostic.open_float)
--- map('n', '<leader>;', vim.diagnostic.setloclist)
+map('n', '<leader>;', vim.diagnostic.setloclist)
+
+-- quickfix
+map("n", '<A-ç>', ":cprev<CR>")
+map("n", '<A-à>', ":cnext<CR>")
