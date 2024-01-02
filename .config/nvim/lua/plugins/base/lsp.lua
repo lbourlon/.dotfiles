@@ -9,10 +9,6 @@ return { -- LSP Configuration & Plugins
   },
 
   config = function()
-    -- STYLE
-    -- vim.cmd [[autocmd! ColorScheme * highlight NormalFloat guibg=#1f2335]]
-    -- vim.cmd [[autocmd! ColorScheme * highlight FloatBorder guifg=white guibg=#1f2335]]
-
     Border = { {"🭽", "FloatBorder"}, {"▔", "FloatBorder"},
       {"🭾", "FloatBorder"}, {"▕", "FloatBorder"}, {"🭿", "FloatBorder"},
       {"▁", "FloatBorder"}, {"🭼", "FloatBorder"}, {"▏", "FloatBorder"}}
@@ -58,7 +54,6 @@ return { -- LSP Configuration & Plugins
       vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
         vim.lsp.buf.format()
       end, { desc = 'Format current buffer with LSP' })
-
       -- Hints under cursor
       vim.api.nvim_create_autocmd("CursorHold", {
         buffer = bufnr,
@@ -80,7 +75,12 @@ return { -- LSP Configuration & Plugins
     local servers = {
       clangd = {
         filetypes = { "c" },
-        cmd = {"clangd", "-xc"},
+        cmd = {
+          "clangd",
+          "-xc",
+          --"--completion-style=detailed",
+        },
+        root_patterns = {"compile-commands.json", ".clang", ".clang-format"},
       },
       -- asm_lsp = { cmd = { "asm-lsp" }, filetypes = { "asm", "vmasm" } }, pylsp = { pylsp = { plugins = { pycodestyle = { enabled = false, }, jedi_completition = { enabled = true }, }, }, },
       lua_ls = { Lua = {
@@ -103,6 +103,7 @@ return { -- LSP Configuration & Plugins
           on_attach = on_attach,
           settings = servers[server_name],
           filetypes = (servers[server_name] or {}).filetypes,
+          root_patterns = servers[server_name].root_patterns,
         }
       end,
     })

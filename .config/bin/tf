@@ -1,4 +1,4 @@
 #!/bin/bash
 
-MY_PATH=$(find -L ~/fz/* -maxdepth 2 | fzf)
+MY_PATH=$(find -L $WORK_DIRS -maxdepth 2 | fzf)
 tmux new -c $MY_PATH -s `echo $MY_PATH | sed 's/.*\///g'`

@@ -1,7 +1,12 @@
 # Todos
 
+## Plugins to checkout : 
+
+- [ ] nvim surround
+- [ ] Trouble nvim
+
 ## New features
-- [ ] select into replace (yoink to register into sed)
+- [ ] select into replace (yoink to register into sed
 - [x] Auto save
 - [x] Better way to split than :vs / :sp
 - [x] Open separate tab on a split ? 

@@ -17,16 +17,12 @@ return {
         --enforce_regular_tabs = false | true,
 
       -- filter out filetypes you don't want to see
-      custom_filter = function(buf)
-        if vim.bo[buf].buftype == "terminal" then
-          return false
-        end
-        if vim.fn.bufname(buf) == "" or vim.fn.bufname(buf) == "[No Name]" then
-          return false
-        end
-        return true
-
-      end
+      -- custom_filter = function(buf)
+      --   if vim.bo[buf].buftype == "terminal" then return false end
+      --   -- if vim.fn.bufname(buf) == ""  then return false end
+      --   -- if vim.fn.bufname(buf) == "[No Name]" then return false end
+      --   return true
+      -- end
       },
     }
 

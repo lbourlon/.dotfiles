@@ -6,7 +6,6 @@ return {
         theme = 'onedark',
         component_separators = { left = '', right = '' },
         section_separators = { left = '', right = '' },
-        disabled_filetypes = {"neo-tree", "neo-tree-popup", "None", ""},
         refresh = { statusline = 100 },
         globalstatus = true,
         padding = 1,
@@ -16,7 +15,7 @@ return {
         lualine_b = {{'branch', color = {fg="red"}}},
         lualine_c = {{'filename', path = 1 }},
 
-        lualine_x = {'searchcount', 'selectioncount', 'filetype'},
+        lualine_x = {{'searchcount', 'selectioncount', 'filetype'}},
         lualine_y = {{'diagnostics', always_visible = true, right_padding = 1,
           sections = {'error','warn'}}},
 
