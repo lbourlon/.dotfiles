@@ -36,7 +36,7 @@ return {
       map('n', '<leader>hth', ':Gitsigns togle_linehl', "toggle highlight")
 
       map('n', '<leader>hS', gs.stage_buffer, "Stage Buffer")
-      map('n', '<leader>hR', gs.reset_buffer)
+      map('n', '<leader>hR', gs.reset_buffer, "Reset Buffer")
 
       -- map('n', '<leader>hd', gs.diffthis, "diff this")
       -- map('n', '<leader>hp', gs.preview_hunk, "hunk preview")
