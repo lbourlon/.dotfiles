@@ -9,11 +9,11 @@ vim.opt.splitright = true
 
 vim.opt.scrolloff = 8
 vim.opt.number = true
-vim.opt.relativenumber = false
+vim.opt.relativenumber = true
 
 -- Wrap options
 vim.opt.wrap = true
-vim.o.breakindent = true -- Enable break indent
+vim.opt.breakindent = true -- Enable break indent
 
 -- Indentation
 vim.opt.tabstop = 4
@@ -25,18 +25,17 @@ vim.opt.autoindent = true
 --vim.opt.cindent = true
 
 -- Search
-vim.o.hlsearch = false
+vim.opt.hlsearch = false
 vim.opt.incsearch = true
-vim.o.ignorecase = true
-vim.o.smartcase = true -- Keep Capital if in query
+vim.opt.ignorecase = true
+vim.opt.smartcase = true -- Keep Capital if in query
 
 vim.opt.virtualedit = "block"
 
 -- Cursor
 -- vim.opt.guicursor = "n-v-c-sm:block,i-ci-ve:block,r-cr-o:hor20"
 vim.opt.guicursor = "n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20," .. "i:blinkon20,i:blinkoff100"
-vim.o.mouse = '' -- Enable mouse mode
-
+vim.opt.mouse = '' -- Disable mouse mode
 vim.opt.termguicolors = true
 
 -- Decrease update time
@@ -45,18 +44,10 @@ vim.opt.timeout = true
 vim.opt.timeoutlen = 300
 
 --  Misc
-vim.o.undofile = true -- Save undo history
-vim.o.signcolumn = 'yes' -- git, debug, column, and others
-vim.o.completeopt = 'menu,noselect'
--- vim.o.colorcolumn= "80"
-vim.o.cmdheight = "1"
+vim.opt.undofile = true -- Save undo history
+vim.opt.signcolumn = 'yes' -- git, debug, column, and others
+vim.opt.completeopt = 'menu,noselect'
+vim.opt.colorcolumn= "80"
+vim.opt.cmdheight = 1
 
--- [[ Highlight on yank ]]
-local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
-vim.api.nvim_create_autocmd('TextYankPost', {
-  callback = function()
-    vim.highlight.on_yank()
-  end,
-  group = highlight_group,
-  pattern = '*',
-})
+vim.opt.listchars="space:⋅" -- :set list | set nolist

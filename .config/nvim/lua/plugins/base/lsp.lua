@@ -86,19 +86,27 @@ return { -- LSP Configuration & Plugins
         },
         root_patterns = {"compile-commands.json", ".clang", ".clang-format"},
       },
-      zls = { zls = {}},
       -- asm_lsp = { cmd = { "asm-lsp" }, filetypes = { "asm", "vmasm" } }, 
-      pylsp = { pylsp = { plugins = { pycodestyle = { enabled = false, }, jedi_completition = { enabled = true }, }, }, },
+      pylsp = {
+        pylsp = {
+          plugins = { pycodestyle = { enabled = false, }, jedi_completition = { enabled = true },
+          },
+        },
+      },
       lua_ls = { Lua = {
         workspace = { checkThirdParty = false },
         telemetry = { enable = false },
       }}
     }
 
--- " Set completeopt to have a better completion experience
--- set completeopt=menuone,noinsert,noselect
--- " Enable completions as you type
--- let g:completion_enable_auto_popup = 1
+    if os.getenv("WORK_ENV") == "no" then
+      servers.zls = { zls = {}};
+    end
+
+  -- " Set completeopt to have a better completion experience
+  -- set completeopt=menuone,noinsert,noselect
+  -- " Enable completions as you type
+  -- let g:completion_enable_auto_popup = 1
 
 
     local cap = vim.lsp.protocol.make_client_capabilities()
@@ -108,6 +116,7 @@ return { -- LSP Configuration & Plugins
     masn.setup({
       ensure_installed = vim.tbl_keys(servers)
     })
+
     masn.setup_handlers({
       function(server_name)
         require('lspconfig')[server_name].setup {

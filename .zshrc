@@ -46,7 +46,7 @@ alias tmuxconfig="cd ~/.config/tmux && nvim tmux.conf"
 
 export WORK_DIRS="$HOME/.config/ $HOME/git_lb/ $HOME/misc/"
 alias gw='cd $(find -L $(echo $WORK_DIRS) -maxdepth 1 -type d | fzf)'
-alias xsc="xclip -selection clipboard"
+alias xcp="xclip -selection clipboard"
 alias vim="nvim"
 
 alias tmuxsource="tmux source ~/.config/tmux/tmux.conf"
@@ -69,3 +69,4 @@ serve(){{echo "HTTP/1.0 200 OK\r\nContent-Length:`wc -c <$1`\r\n\r\n`<$1`"}|nc -
 export http_proxy=
 export https_proxy=
 #launch_tmux.sh
+export WORK_ENV=no

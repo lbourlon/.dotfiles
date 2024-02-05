@@ -10,7 +10,7 @@
 - [x] Auto save
 - [x] Better way to split than :vs / :sp
 - [x] Open separate tab on a split ? 
-- ~[ ] Shortcut to close tabs~
+- [x] Shortcut to close tabs~
 - ~[ ] make goto declaration open on a popup~
 - [x] stop config change reload
 - [x] new color schemes
