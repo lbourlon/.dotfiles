@@ -44,7 +44,7 @@ alias kittyconfig="cd ~/.config/kitty && nvim kitty.conf"
 alias nvimconfig="cd ~/.config/nvim/ && nvim ."
 alias tmuxconfig="cd ~/.config/tmux && nvim tmux.conf"
 
-export WORK_DIRS="$HOME/.config/ $HOME/git_lb/"
+export WORK_DIRS="$HOME/.config/ $HOME/git_lb/ $HOME/misc/"
 alias gw='cd $(find -L $(echo $WORK_DIRS) -maxdepth 1 -type d | fzf)'
 alias xsc="xclip -selection clipboard"
 alias vim="nvim"
@@ -59,6 +59,12 @@ alias icat="kitty +kitten icat"
 alias clangdhelp="clang-format -style=llvm -dump-config > .clang-format"
 alias gdb_print_argv1="p *(char**)($rsp + 16)"
 
+
+# crazy func
+#{ echo -ne "HTTP/1.0 200 OK\r\nContent-Length: $(wc -c <some.file)\r\n\r\n"; cat some.file; } | nc -l 8080
+# nc -lN 8080 <<< 'HTTP/1.0 200 OK\r\nContent-Length: '`wc -c <index.html`'\r\n\r\n'`<index.html`
+#alias bob="nc -lN 8080 <<< 'HTTP/1.0 200 OK\r\nContent-Length: '`wc -c <$1`'\r\n\r\n'`<$1`"
+serve(){{echo "HTTP/1.0 200 OK\r\nContent-Length:`wc -c <$1`\r\n\r\n`<$1`"}|nc -lvp 8080}
 
 export http_proxy=
 export https_proxy=

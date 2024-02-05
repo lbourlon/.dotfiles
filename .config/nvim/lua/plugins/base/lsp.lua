@@ -34,6 +34,7 @@ return { -- LSP Configuration & Plugins
         if desc then desc = 'LSP: ' .. desc end
         vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
       end
+
       nmap('gd', vim.lsp.buf.definition, '[g]oto [d]efinition')
       nmap('gD', vim.lsp.buf.declaration, '[g]oto [D]eclaration')
       nmap('gI', vim.lsp.buf.implementation, '[g]oto [I]mplementation')
@@ -51,21 +52,24 @@ return { -- LSP Configuration & Plugins
       -- nmap('<leader>vrr', vim.lsp.buf.clear_references, '[C]lear [R]eferences')
       nmap('<leader>cr', telescopeconfig.lsp_references, '[C]ode [R]eferences')
 
-      vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
-        vim.lsp.buf.format()
-      end, { desc = 'Format current buffer with LSP' })
-      -- Hints under cursor
-      vim.api.nvim_create_autocmd("CursorHold", {
-        buffer = bufnr,
-        callback = function()
-          local opts = {
-            focusable = false,
-            close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
-            border = Border, source = 'always', prefix = ' ', scope = 'cursor',
-          }
-          vim.diagnostic.open_float(nil, opts)
-        end
-      })
+
+      -- vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+      -- vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
+      --   vim.lsp.buf.format()
+      -- end, { desc = 'Format current buffer with LSP' })
+      -- -- Hints under cursor
+      -- vim.api.nvim_create_autocmd("CursorHold", {
+      --   buffer = bufnr,
+      --   callback = function()
+      --     local opts = {
+      --       focusable = false,
+      --       close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
+      --       border = Border, source = 'always', prefix = ' ', scope = 'cursor',
+      --     }
+      --     vim.diagnostic.open_float(nil, opts)
+      --   end
+      -- })
 
    end -- END on_attach
 
@@ -82,26 +86,35 @@ return { -- LSP Configuration & Plugins
         },
         root_patterns = {"compile-commands.json", ".clang", ".clang-format"},
       },
-      -- asm_lsp = { cmd = { "asm-lsp" }, filetypes = { "asm", "vmasm" } }, pylsp = { pylsp = { plugins = { pycodestyle = { enabled = false, }, jedi_completition = { enabled = true }, }, }, },
+      zls = { zls = {}},
+      -- asm_lsp = { cmd = { "asm-lsp" }, filetypes = { "asm", "vmasm" } }, 
+      pylsp = { pylsp = { plugins = { pycodestyle = { enabled = false, }, jedi_completition = { enabled = true }, }, }, },
       lua_ls = { Lua = {
         workspace = { checkThirdParty = false },
         telemetry = { enable = false },
       }}
     }
 
+-- " Set completeopt to have a better completion experience
+-- set completeopt=menuone,noinsert,noselect
+-- " Enable completions as you type
+-- let g:completion_enable_auto_popup = 1
+
 
     local cap = vim.lsp.protocol.make_client_capabilities()
     cap = require('cmp_nvim_lsp').default_capabilities(cap)
 
-    local mason_lspconfig = require('mason-lspconfig')
-    mason_lspconfig.setup({ ensure_installed = vim.tbl_keys(servers)})
-    mason_lspconfig.setup_handlers({
+    local masn = require('mason-lspconfig')
+    masn.setup({
+      ensure_installed = vim.tbl_keys(servers)
+    })
+    masn.setup_handlers({
       function(server_name)
         require('lspconfig')[server_name].setup {
+          settings = servers[server_name],
           capabilities = cap,
           handlers = handlers,
           on_attach = on_attach,
-          settings = servers[server_name],
           filetypes = (servers[server_name] or {}).filetypes,
           root_patterns = servers[server_name].root_patterns,
         }

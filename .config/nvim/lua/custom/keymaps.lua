@@ -64,7 +64,7 @@ end
 -- Diagnostic keymaps
 map('n', '[d', vim.diagnostic.goto_prev)
 map('n', ']d', vim.diagnostic.goto_next)
--- map('n', '<leader>,', vim.diagnostic.open_float)
+map('n', '<leader>,', vim.diagnostic.open_float)
 map('n', '<leader>;', vim.diagnostic.setloclist)
 
 -- quickfix

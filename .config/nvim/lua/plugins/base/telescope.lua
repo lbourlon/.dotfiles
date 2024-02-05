@@ -19,9 +19,6 @@ return {
     -- Enable telescope fzf native, if installed
     pcall(require('telescope').load_extension, 'fzf')
 
-    -- Enable Harpoon telescope integration
-    require('telescope').load_extension('harpoon')
-
     local nmap = function(keys, func, desc)
       vim.keymap.set('n', keys, func, {desc = 'TELE: ' .. desc })
     end
