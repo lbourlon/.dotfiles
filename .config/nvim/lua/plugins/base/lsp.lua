@@ -83,6 +83,7 @@ return { -- LSP Configuration & Plugins
           "clangd",
           "-xc",
           --"--completion-style=detailed",
+          --'--tweaks="-ferror-limit=0"',
         },
         root_patterns = {"compile-commands.json", ".clang", ".clang-format"},
       },
@@ -126,6 +127,7 @@ return { -- LSP Configuration & Plugins
           on_attach = on_attach,
           filetypes = (servers[server_name] or {}).filetypes,
           root_patterns = servers[server_name].root_patterns,
+          cmd = (servers[server_name] or {}).cmd,
         }
       end,
     })
