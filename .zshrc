@@ -29,7 +29,6 @@ alias gdb_print_argv1="p *(char**)($rsp + 16)"
 serve(){{echo "HTTP/1.0 200 OK\r\nContent-Length:`wc -c <$1`\r\n\r\n`<$1`"}|nc -lvp 8080}
 
 export WORK_ENV=no
-if [[ $WORK_ENV == "yes" ]]; then
-    source ~/.at_work.sh
+if [ -f ~/.extra_source.sh ]; then
+    source ~/.extra_source.sh
 fi
-
