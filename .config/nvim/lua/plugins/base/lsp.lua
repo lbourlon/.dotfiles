@@ -114,9 +114,7 @@ return { -- LSP Configuration & Plugins
     cap = require('cmp_nvim_lsp').default_capabilities(cap)
 
     local masn = require('mason-lspconfig')
-    masn.setup({
-      ensure_installed = vim.tbl_keys(servers)
-    })
+    -- masn.setup({ ensure_installed = vim.tbl_keys(servers) })
 
     masn.setup_handlers({
       function(server_name)
@@ -126,7 +124,7 @@ return { -- LSP Configuration & Plugins
           handlers = handlers,
           on_attach = on_attach,
           filetypes = (servers[server_name] or {}).filetypes,
-          root_patterns = servers[server_name].root_patterns,
+          root_patterns = (servers[server_name] or {}).root_patterns,
           cmd = (servers[server_name] or {}).cmd,
         }
       end,
