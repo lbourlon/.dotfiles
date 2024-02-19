@@ -17,9 +17,11 @@ alias tmuxsource="tmux source ~/.config/tmux/tmux.conf"
 export WORK_DIRS="$HOME/.config/ $HOME/git_lb/ $HOME/misc/"
 alias enumerate_wd="find -L $(echo $WORK_DIRS) -maxdepth 1 -type d | fzf"
 
-gw(){cd $(enumerate_wd)}
+alias gw="find -L $(echo $WORK_DIRS) -maxdepth 1 -type d | fzf"
+
 alias t="tmux-sessionizer" 
 alias xcp="xclip -selection clipboard"
+xcp_sh(){xclip -selection clipboard}
 
 alias clangdhelp="clang-format -style=llvm -dump-config > .clang-format"
 alias gdb_print_argv1="p *(char**)($rsp + 16)"
