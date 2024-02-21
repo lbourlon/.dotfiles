@@ -1,23 +1,19 @@
-export ZSH="$HOME/.oh-my-zsh"
 export PATH="$HOME/.local/bin:$PATH"
 export XDG_CONFIG_HOME=$HOME/.config/
 
 ZSH_THEME="robbyrussell"
 ENABLE_CORRECTION="false"
-
 plugins=(fzf git)
-source $ZSH/oh-my-zsh.sh
+source $HOME/.oh-my-zsh/oh-my-zsh.sh
 
-alias zshconfig="cd ~/ && nvim ./.zshrc"
-alias kittyconfig="cd ~/.config/kitty && nvim kitty.conf"
-alias nvimconfig="cd ~/.config/nvim/ && nvim ."
-alias tmuxconfig="cd ~/.config/tmux && nvim tmux.conf"
+alias zshconfig="nvim ~/.zshrc"
+alias kittyconfig="nvim ~/.config/kitty/kitty.conf"
+alias nvimconfig="nvim ~/.config/nvim/"
+alias tmuxconfig="nvim ~/.config/tmux/tmux.conf"
 alias tmuxsource="tmux source ~/.config/tmux/tmux.conf"
 
 export WORK_DIRS="$HOME/.config/ $HOME/git_lb/ $HOME/misc/"
-alias enumerate_wd="find -L $(echo $WORK_DIRS) -maxdepth 1 -type d | fzf"
-
-alias gw="find -L $(echo $WORK_DIRS) -maxdepth 1 -type d | fzf"
+alias gw="cd \$(find -L \$(echo \$WORK_DIRS) -maxdepth 1 -type d | fzf)"
 
 alias t="tmux-sessionizer" 
 alias xcp="xclip -selection clipboard"
