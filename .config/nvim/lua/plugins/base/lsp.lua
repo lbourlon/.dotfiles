@@ -5,7 +5,6 @@ return { -- LSP Configuration & Plugins
     { 'williamboman/mason-lspconfig.nvim' },
     { 'j-hui/fidget.nvim', tag = "v1.1.0", opts = {} },
     { 'folke/neodev.nvim', opts = {}},
-    { 'hrsh7th/cmp-nvim-lsp', opts = {}},
   },
 
   config = function()
@@ -55,10 +54,11 @@ return { -- LSP Configuration & Plugins
 
       -- vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
-      -- vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
-      --   vim.lsp.buf.format()
-      -- end, { desc = 'Format current buffer with LSP' })
-      -- -- Hints under cursor
+      vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
+        vim.lsp.buf.format()
+      end, { desc = 'Format current buffer with LSP' })
+
+      -- Hints under cursor
       -- vim.api.nvim_create_autocmd("CursorHold", {
       --   buffer = bufnr,
       --   callback = function()
@@ -81,8 +81,8 @@ return { -- LSP Configuration & Plugins
         filetypes = { "c" },
         cmd = {
           "clangd",
-          "-xc",
-          --"--completion-style=detailed",
+          "--header-insertion-decorators",
+          "--completion-style=detailed",
           --'--tweaks="-ferror-limit=0"',
         },
         root_patterns = {"compile-commands.json", ".clang", ".clang-format"},
@@ -94,21 +94,15 @@ return { -- LSP Configuration & Plugins
           },
         },
       },
-      lua_ls = { Lua = {
-        workspace = { checkThirdParty = false },
-        telemetry = { enable = false },
-      }}
+      -- lua_ls = { Lua = {
+      --   workspace = { checkThirdParty = false },
+      --   telemetry = { enable = false },
+      -- }}
     }
 
     if os.getenv("WORK_ENV") == "no" then
       servers.zls = { zls = {}};
     end
-
-  -- " Set completeopt to have a better completion experience
-  -- set completeopt=menuone,noinsert,noselect
-  -- " Enable completions as you type
-  -- let g:completion_enable_auto_popup = 1
-
 
     local cap = vim.lsp.protocol.make_client_capabilities()
     cap = require('cmp_nvim_lsp').default_capabilities(cap)

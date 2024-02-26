@@ -29,13 +29,17 @@ nmap("<C-Right>",  change_window .."5>","Resize window") -- <C-W>5>
 
 
 -- Terminal Management
---
--- nmap("n", "<leader>r", "", {desc = "Term Split"})
--- nmap("n", "<leader>rl", ":vs|term<CR>",{desc = "Terminal on Left"})
--- nmap("n", "<leader>rj", ":sp|term<CR>",{desc = "Terminal on Bellow"})
---
--- local term_events = { "BufWinEnter", "WinEnter" }
--- local term_grouperino = vim.api.nvim_create_augroup("Term_grouperino", { clear = true })
--- vim.api.nvim_create_autocmd(term_events, { pattern = "term://*", command = "startinsert", group = term_grouperino })
--- vim.api.nvim_create_autocmd("TermOpen *", { command = "set bufhidden=delete", group = term_grouperino })
--- vim.api.nvim_create_autocmd("TermOpen *", { command = "startinsert", group = term_grouperino })
+
+nmap("<leader>r", "", "Term Split")
+nmap("<leader>rl", ":vs|term<CR>", "Terminal on Left")
+nmap("<leader>rj", ":sp|term<CR>", "Terminal on Bellow")
+
+local term_events = { "BufWinEnter", "WinEnter" }
+local term_grouperino = vim.api.nvim_create_augroup("Term_grouperino", { clear = true })
+vim.api.nvim_create_autocmd(term_events, { pattern = "term://*", command = "startinsert", group = term_grouperino })
+vim.api.nvim_create_autocmd(term_events, { pattern = "[No Name]", command = "set bufhidden=delete", group = term_grouperino })
+vim.api.nvim_create_autocmd("TermOpen", { command = "set bufhidden=delete", group = term_grouperino })
+vim.api.nvim_create_autocmd("TermOpen", { command = "set nonumber", group = term_grouperino })
+vim.api.nvim_create_autocmd("TermOpen", { command = "set norelativenumber", group = term_grouperino })
+vim.api.nvim_create_autocmd("TermOpen", { command = "set signcolumn=no", group = term_grouperino })
+vim.api.nvim_create_autocmd("TermOpen", { command = "startinsert", group = term_grouperino })

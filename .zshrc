@@ -17,7 +17,7 @@ alias gw="cd \$(find -L \$(echo \$WORK_DIRS) -maxdepth 1 -type d | fzf)"
 
 alias t="tmux-sessionizer" 
 alias xcp="xclip -selection clipboard"
-xcp_sh(){xclip -selection clipboard}
+alias xps="xclip -selection clipboard -o"
 
 alias clangdhelp="clang-format -style=llvm -dump-config > .clang-format"
 alias gdb_print_argv1="p *(char**)($rsp + 16)"

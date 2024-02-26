@@ -3,7 +3,7 @@ return {
   {'tpope/vim-sleuth'},
 
   -- Shows pending keybinds actions
-  { 'folke/which-key.nvim', opts = "" },
+  { 'folke/which-key.nvim', event = 'VeryLazy', opts = "" },
 
   {
     'nvim-telescope/telescope-fzf-native.nvim',

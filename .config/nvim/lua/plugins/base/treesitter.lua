@@ -10,7 +10,7 @@ return {
     pcall(require('nvim-treesitter.install').update({ with_sync = true }))
 
     require('nvim-treesitter.configs').setup({
-      ensure_installed = {'c', 'lua'},
+      ensure_installed = {'c', 'lua','python', 'zig'},
       auto_install = false,
       sync_install = false,
       ignore_install = {},

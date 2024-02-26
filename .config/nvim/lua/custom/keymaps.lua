@@ -68,5 +68,5 @@ map('n', '<leader>,', vim.diagnostic.open_float)
 map('n', '<leader>;', vim.diagnostic.setloclist)
 
 -- quickfix
-map("n", '<A-ç>', ":cprev<CR>")
-map("n", '<A-à>', ":cnext<CR>")
+map("n", 'ç', ":cprev<CR>")
+map("n", 'à', ":cnext<CR>")

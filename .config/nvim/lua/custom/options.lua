@@ -3,13 +3,13 @@
 
 -- Because these suck
 vim.opt.swapfile = false
-
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 
 vim.opt.scrolloff = 8
 vim.opt.number = true
 vim.opt.relativenumber = true
+vim.opt.numberwidth = 1
 
 -- Wrap options
 vim.opt.wrap = true
@@ -39,7 +39,7 @@ vim.opt.mouse = '' -- Disable mouse mode
 vim.opt.termguicolors = true
 
 -- Decrease update time
-vim.opt.updatetime = 50
+vim.opt.updatetime = 5
 vim.opt.timeout = true
 vim.opt.timeoutlen = 300
 
