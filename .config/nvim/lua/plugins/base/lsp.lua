@@ -100,15 +100,16 @@ return { -- LSP Configuration & Plugins
       -- }}
     }
 
-    if os.getenv("WORK_ENV") == "no" then
-      servers.zls = { zls = {}};
-    end
+    -- if os.getenv("WORK_ENV") == "no" then
+    --   servers.zls = { zls = {}};
+    -- end
 
     local cap = vim.lsp.protocol.make_client_capabilities()
     cap = require('cmp_nvim_lsp').default_capabilities(cap)
 
     local masn = require('mason-lspconfig')
     -- masn.setup({ ensure_installed = vim.tbl_keys(servers) })
+    -- MasonInstall python-lsp-server@1.3.3
 
     masn.setup_handlers({
       function(server_name)
