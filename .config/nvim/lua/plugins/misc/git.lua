@@ -18,8 +18,8 @@ return {
         },
       })
 
-      local map = function(mode, keys, func, xeesc)
-        vim.keymap.set(mode, keys, func, {desc = '[G]it ' .. xeesc })
+      local map = function(mode, keys, func, desc)
+        vim.keymap.set(mode, keys, func, {desc = '[G]it ' .. desc })
       end
 
       local vfl = vim.fn.line
