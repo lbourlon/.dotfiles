@@ -25,7 +25,7 @@ vim.opt.autoindent = true
 --vim.opt.cindent = true
 
 -- Search
-vim.opt.hlsearch = false
+vim.opt.hlsearch = true
 vim.opt.incsearch = true
 vim.opt.ignorecase = true
 vim.opt.smartcase = true -- Keep Capital if in query
@@ -49,5 +49,6 @@ vim.opt.signcolumn = 'yes' -- git, debug, column, and others
 vim.opt.completeopt = 'menu,noselect'
 vim.opt.colorcolumn= "80"
 vim.opt.cmdheight = 1
+
 
 vim.opt.listchars="space:⋅" -- :set list | set nolist

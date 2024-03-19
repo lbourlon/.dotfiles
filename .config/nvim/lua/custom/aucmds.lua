@@ -6,23 +6,30 @@ vim.api.nvim_create_autocmd({"BufEnter", "BufWinEnter"}, {
   group=headers_in_c,
 })
 
+
+
+local highlight_group = vim.api.nvim_create_augroup('le_group', { clear = true })
 vim.api.nvim_create_autocmd({"BufEnter", "BufWinEnter"}, {
   pattern = {"*.robot"},
   callback = function ()
     vim.api.nvim_set_option("colorcolumn", "100")
   end,
+  group=le_group,
 })
 
--- vim.api.nvim_create_user_command('Align', "'<,'>%!column -t -s = -o =", {nargs = 1})
+-- [[ incsearch better highlight ]]
+-- vim.api.nvim_create_autocmd({'CmdLineEnter'}, { pattern = '*', callback = function() vim.opt.hlsearch = true end, group=le_group, })
+
+-- vim.api.nvim_create_autocmd({'CmdLineLeave'}, { pattern = '*', callback = function() vim.opt.hlsearch = false end, group=le_group, })
 
 -- [[ Highlight on yank ]]
-local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
 vim.api.nvim_create_autocmd('TextYankPost', {
+  pattern = '*',
   callback = function()
     vim.highlight.on_yank()
   end,
-  group = highlight_group,
-  pattern = '*',
+  group=le_group,
 })
 
 
+-- vim.api.nvim_create_user_command('Align', "'<,'>%!column -t -s = -o =", {nargs = 1})

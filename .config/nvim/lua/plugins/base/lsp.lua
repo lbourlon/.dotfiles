@@ -31,9 +31,7 @@ return { -- LSP Configuration & Plugins
       nmap('<leader>rn', vim.lsp.buf.rename, '[R]ename')
 
       nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
-      nmap('<leader>cs', require('telescope.builtin').lsp_document_symbols, '[C]ode [S]ymbols current buf')
       nmap('<leader>cr', require('telescope.builtin').lsp_references, '[C]ode [R]eferences')
-
       nmap('<leader>cs',  ":ClangdSwitchSourceHeader<CR>", '[C]langd [S]witch')
 
       -- vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')

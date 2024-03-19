@@ -8,21 +8,20 @@ return {
   config = function()
     require("bufferline").setup{
         options = {
-        mode = "buffers",
+        mode = "tabs", -- |buffers
         -- style_preset = bl.presets.default,
         themable = true,
         indicator = {style ="underline"},
-        separator_style = "thick",
+        separator_style = "slant",
         show_close_icon = false,
-        --enforce_regular_tabs = false | true,
 
       -- filter out filetypes you don't want to see
-      custom_filter = function(buf)
-        if vim.bo[buf].buftype == "terminal" then return false end
+      -- custom_filter = function(buf)
+      --   if vim.bo[buf].buftype == "terminal" then return false end
         -- if vim.fn.bufname(buf) == ""  then return false end
         -- if vim.fn.bufname(buf) == "[No Name]" then return false end
-        return true
-      end
+        -- return true
+      -- end
       },
     }
 

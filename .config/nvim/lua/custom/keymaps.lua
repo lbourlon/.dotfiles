@@ -14,8 +14,8 @@ end
 map("i", "<A-,>", "<esc>")
 
 -- Move blocks on Visual mode
-map("v", "J", ":m '>+1<CR>gv=gv", {desc = "Move block Down"})
-map("v", "K", ":m '<-2<CR>gv=gv", {desc = "Move block Up"})
+map("v", "<C-p>", ":m '<-2<CR>gv=gv", {desc = "Move block Up"})
+map("v", "<C-n>", ":m '>+1<CR>gv=gv", {desc = "Move block Down"})
 
 -- Keep cursor centered when moving pages
 map('n', "<C-d>", "<C-d>zz")
@@ -29,12 +29,9 @@ local esc_string = "<C-\\><C-N>"
 map("t", "<esc>", esc_string, { desc = "Leave Terminal Mode" })
 map("t", "kk", esc_string .. ":bd!<CR>", { desc = "Closes the current buffer" })
 
--- Miscellaenous
+-- Miscellaneous
 map("x", "<leader>p", "\"_dP", { desc = "[P]aste while keeping yanked" })
 map("x", "<leader>y", "\"+y", { desc = "[Y]ank to system clipboard" })
-map('n', "<leader>q", ":bp|sp|bn|bd<CR>", { desc = "Closes the current buffer" })
--- map("n", "<leader>", ":s//g<left><left>")
-
 map({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true }) -- no spaces
 map('n', 'Q', '<Nop>', { silent = true })                -- no Q
 
@@ -43,23 +40,24 @@ map('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 map('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
 -- cuz of french keyboard :)
-vim.keymap.set('n', "ù", "<C-^>")
+map('n', "ù", "<C-^>")
 
 -- Search Replace
-map('n', "<A-r>", ":%s/<c-r><c-w>//g<left><left>", {desc = "replace current word"})
-map('n', "<leader>sws", ":%s/\\s\\+$//<CR>")       -- Remove whitespaces
+map('n', "<leader>rc",  ":%s/<c-r><c-w>//g<left><left>", {desc = "[R]eplace [c]urrent word"})
+map('n', "<leader>rws", ":%s/\\s\\+$//<CR>", {desc = "[R]emove trailing [W]hitespaces"})
+map('n', "<leader>rb", ":%s/^.*\\(<c-r><c-w>\\)\\@=//g<left><left>",  {desc = "[R]eplace [B]ehind"})
+map('n', "<leader>ra", ":%s/\\(<c-r><c-w>\\)\\@<=.*$//g<left><left>", {desc = "[R]eplace [A]head"})
 
-map("v", "<A-r>", ":s//g<left><left>") -- Search replace in highlight
--- map("v", "<A-r>", ":s/\\(<c-r><c-w>\\)//g<left><left>") -- Search replace reuse
---
-map('n', "<leader>rc", ":s/<c-r><c-w>/'<c-r><c-w>'/g<CR>") -- Replace current word
--- map('n', '<leader>r"', ':s/<c-r><c-w>/"<c-r><c-w>"/g<CR>') -- Replace current word
+map('n', "<A-r>", ":%s//g<left><left>", {desc = "Start search and replace"})
+map("v", "<A-r>", ":s//g<left><left>", {desc = "Start search and replace"})
 
+-- TODO: Better surround
 local surround={['"']='"',["'"]="'",['(']=')',['[']=']',['{']='}',['<']='>'}
 for k, v in pairs(surround) do
-  map('v', '<leader>r' .. k, 'xi' .. k .. v .. '<Esc><left>p<right>',
+  map('v', '<leader>s' .. k, 'xi' .. k .. v .. '<Esc><left>p<right>',
     {desc = "Surrounds selection with " .. k})
 end
+map({'n', 'v'}, '<leader>s',"", {desc="Unbinds leader s"})
 
 -- Diagnostic keymaps
 map('n', '[d', vim.diagnostic.goto_prev)
@@ -68,5 +66,8 @@ map('n', '<leader>,', vim.diagnostic.open_float)
 map('n', '<leader>;', vim.diagnostic.setloclist)
 
 -- quickfix
-map("n", 'ç', ":cprev<CR>")
-map("n", 'à', ":cnext<CR>")
+map("n", 'ç', ":cprev<CR>", {desc = 'quickfix move'})
+map("n", 'à', ":cnext<CR>", {desc = 'quickfix move'})
+
+map("n", '<leader>zi', ":tabedit %<CR>", {desc = 'tab out pane'})
+map("n", '<leader>zo', ":tabclose<CR>", {desc = 'tab close'})

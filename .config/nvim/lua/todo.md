@@ -2,8 +2,10 @@
 
 ## Plugins to checkout : 
 
-- [ ] nvim surround
-- [ ] Trouble nvim
+- [ ] tpope's Obsession
+- [ ] tpope's nvim surround
+- [ ] folke Trouble nvim
+- [ ] stevearc oil nvim
 
 ## New features
 - [ ] select into replace (yoink to register into sed
