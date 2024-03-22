@@ -43,11 +43,10 @@ map('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 map('n', "ù", "<C-^>")
 
 -- Search Replace
-map('n', "<leader>rc",  ":%s/<c-r><c-w>//g<left><left>", {desc = "[R]eplace [c]urrent word"})
-map('n', "<leader>rws", ":%s/\\s\\+$//<CR>", {desc = "[R]emove trailing [W]hitespaces"})
+map('n', "<leader>ru",  ":%s/<c-r><c-w>//g<left><left>", {desc = "[R]eplace word [U]nder"})
+map('n', "<leader>rs", ":%s/\\s\\+$//<CR>", {desc = "[R]emove trailing [S]paces"})
 map('n', "<leader>rb", ":%s/^.*\\(<c-r><c-w>\\)\\@=//g<left><left>",  {desc = "[R]eplace [B]ehind"})
-map('n', "<leader>ra", ":%s/\\(<c-r><c-w>\\)\\@<=.*$//g<left><left>", {desc = "[R]eplace [A]head"})
-
+map({'n', 'v'}, "<leader>ra", ":%s/\\(<c-r><c-w>\\)\\@<=.*$//g<left><left>", {desc = "[R]eplace [A]head"})
 map('n', "<A-r>", ":%s//g<left><left>", {desc = "Start search and replace"})
 map("v", "<A-r>", ":s//g<left><left>", {desc = "Start search and replace"})
 
@@ -71,3 +70,5 @@ map("n", 'à', ":cnext<CR>", {desc = 'quickfix move'})
 
 map("n", '<leader>zi', ":tabedit %<CR>", {desc = 'tab out pane'})
 map("n", '<leader>zo', ":tabclose<CR>", {desc = 'tab close'})
+map("n", "<S-l>", ":tabnext<CR>", {desc="Cycle to Next Tab"})
+map("n", "<S-h>", ":tabprev<CR>", {desc="Cycle to Prev Tab"})

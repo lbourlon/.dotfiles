@@ -3,7 +3,19 @@ return {
   {'tpope/vim-sleuth'},
 
   -- Shows pending keybinds actions
-  { 'folke/which-key.nvim', event = 'VeryLazy', opts = "" },
+  {
+    'folke/which-key.nvim',
+    event = 'VeryLazy',
+    config = function()
+      require("which-key").setup {
+        plugins = {
+          marks = false,
+          registers = false,
+          spelling = { enabled = false },
+        }
+        }
+    end
+  },
 
   {
     'nvim-telescope/telescope-fzf-native.nvim',

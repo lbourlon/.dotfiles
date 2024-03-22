@@ -1,4 +1,5 @@
 -- [[ Configure Telescope ]]
+-- 
 return {
   'nvim-telescope/telescope.nvim',
   dependencies = {{'nvim-lua/plenary.nvim'}},
@@ -36,38 +37,32 @@ return {
     nmap('<leader>sg', tele_builtin.live_grep, '[S]earch by [G]rep')
     nmap('<leader>sr', tele_builtin.git_files, '[S]earch [R]epo Files')
 
-    nmap('<leader>ths', tele_builtin.search_history, '[T]elescope [C]ommand [H]istory')
-    nmap('<leader>thc', tele_builtin.command_history, '[T]elescope [C]ommand [H]istory')
-    nmap('<leader>tch', tele_builtin.commands, '[T]elescope [C]ommand [L]ist')
-    -- nmap('<leader>tm1', ":Telescope man_pages sections=1,1<CR>", '[T]elescope [M]an 1')
-    -- nmap('<leader>tm2', ":Telescope man_pages sections=2,2<CR>", '[T]elescope [M]an 2')
-    -- nmap('<leader>tm3', ":Telescope man_pages sections=3,3<CR>", '[T]elescope [M]an 3')
-    -- nmap('<leader>tm7', ":Telescope man_pages sections=7,7<CR>", '[T]elescope [M]an 7')
+    -- nmap('<leader>sc', tele_builtin.search_history, '[S]earch [C]ommand history')
+    nmap('<leader>sc', tele_builtin.command_history, '[S]earch [C]ommand history')
+    -- nmap('<leader>tch', tele_builtin.commands, '[T]elescope [C]ommand [L]ist')
 
-    nmap('<leader>tr', tele_builtin.resume, '[T]elescope [R]esume')
+    nmap('<leader>sr', tele_builtin.resume, '[S]earch [R]esume')
+    nmap('<leader>sk', tele_builtin.keymaps, '[S]earch [K]eymaps')
 
-    nmap('<leader>tk', tele_builtin.keymaps, '[T]elescope [K]eymaps')
-    nmap('<leader>th', tele_builtin.help_tags, '[T]elescope [H]elp')
+    local tele_themes = require('telescope.themes')
 
-    local tthemes = require('telescope.themes')
+    nmap('<leader>sd', function ()
+      tele_builtin.diagnostics(tele_themes.get_ivy()) end, '[S]earch [D]iagnostics')
 
-    nmap('<leader>td', function ()
-      tele_builtin.diagnostics(tthemes.get_ivy()) end, '[T]elescope [D]iagnostics')
+    nmap('<leader>sm', function ()
+      tele_builtin.marks(tele_themes.get_ivy()) end, '[S]earch [M]arks')
 
-    nmap('<leader>tm', function ()
-      tele_builtin.marks(tthemes.get_ivy()) end, '[T]elescope [M]arks')
+    nmap('<leader>sj', function ()
+      tele_builtin.jumplist(tele_themes.get_ivy()) end, '[S]earch [J]umplist')
 
-    nmap('<leader>tj', function ()
-      tele_builtin.jumplist(tthemes.get_ivy()) end, '[T]elescope [J]umplist')
+    nmap('<leader>ss', function ()
+      tele_builtin.spell_suggest(tele_themes.get_cursor()) end, '[S]earch [S]pelling')
 
-    nmap('<leader>ts', function ()
-      tele_builtin.spell_suggest(tthemes.get_cursor()) end, '[T]elescope [S]pelling')
-
-    nmap('<leader>tq', function()
-      tele_builtin.quickfix(tthemes.get_ivy()) end, '[T]elescope [Q]uickfix')
+    nmap('<leader>sq', function()
+      tele_builtin.quickfix(tele_themes.get_ivy()) end, '[S]earch [Q]uickfix')
 
     nmap('<leader>:', function()
-      tele_builtin.current_buffer_fuzzy_find(tthemes.get_dropdown {
+      tele_builtin.current_buffer_fuzzy_find(tele_themes.get_dropdown {
         winblend = 10, previewer = false, })
     end, '[/] Fuzzily search in current buffer')
 

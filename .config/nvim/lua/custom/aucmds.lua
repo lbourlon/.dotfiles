@@ -7,7 +7,6 @@ vim.api.nvim_create_autocmd({"BufEnter", "BufWinEnter"}, {
 })
 
 
-
 local highlight_group = vim.api.nvim_create_augroup('le_group', { clear = true })
 vim.api.nvim_create_autocmd({"BufEnter", "BufWinEnter"}, {
   pattern = {"*.robot"},
