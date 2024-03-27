@@ -4,8 +4,8 @@
 #sudo apt update
 #sudo apt install neovim spice-vdagent kitty
 
-wget https://github.com/neovim/neovim/releases/download/v0.9.4/nvim-linux64.tar.gz
-sha256sum nvim-linux64.tar.gz| grep dbf4eae83647ca5c3ce1cd86939542a7b6ae49cd78884f3b4236f4f248e5d447
+#wget https://github.com/neovim/neovim/releases/download/v0.9.4/nvim-linux64.tar.gz
+#sha256sum nvim-linux64.tar.gz| grep dbf4eae83647ca5c3ce1cd86939542a7b6ae49cd78884f3b4236f4f248e5d447
 #tar xzvf nvim-linux64.tar.gz
 #sudo cp ./nvim-linux64/bin/nvim /bin/nvim
 
