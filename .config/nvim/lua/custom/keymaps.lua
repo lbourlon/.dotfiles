@@ -50,10 +50,10 @@ map({'n', 'v'}, "<leader>ra", ":%s/\\(<c-r><c-w>\\)\\@<=.*$//g<left><left>", {de
 map('n', "<A-r>", ":%s//g<left><left>", {desc = "Start search and replace"})
 map("v", "<A-r>", ":s//g<left><left>", {desc = "Start search and replace"})
 
--- TODO: Better surround
-local surround={['"']='"',["'"]="'",['(']=')',['[']=']',['{']='}',['<']='>'}
+-- My Surround
+local surround={['"']='"',["'"]="'",['(']=')',['[']=']',['{']='}',['<']='>', ['`']='`'}
 for k, v in pairs(surround) do
-  map('v', '<leader>s' .. k, 'xi' .. k .. v .. '<Esc><left>p<right>',
+  map('v', '<leader>s' .. k, 'c' .. k .. v .. '<Esc><left>p<right>',
     {desc = "Surrounds selection with " .. k})
 end
 map({'n', 'v'}, '<leader>s',"", {desc="Unbinds leader s"})
