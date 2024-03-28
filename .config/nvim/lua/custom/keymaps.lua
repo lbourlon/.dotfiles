@@ -1,13 +1,15 @@
 local map = function(mode, keys, func, opts)
+  local l_opts = {}
   if opts and opts['desc'] ~= nil then
-    opts['desc'] = 'PERS: ' .. opts['desc']
+    l_opts['desc'] = 'PERS: ' .. opts['desc']
+  elseif opts and type(opts) == "string" then
+    l_opts['desc'] = 'PERS: ' .. opts
   elseif opts then
-    opts['desc'] = 'PERS: ' .. 'no desc'
+    l_opts = opts
   else
-    opts = {};
-    opts['desc'] = 'PERS: ' .. 'no desc'
+    l_opts['desc'] = 'PERS: ' .. 'no desc'
   end
-  vim.keymap.set(mode, keys, func, opts)
+  vim.keymap.set(mode, keys, func, l_opts)
 end
 
 -- KEYMAPS
@@ -43,12 +45,14 @@ map('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 map('n', "ù", "<C-^>")
 
 -- Search Replace
-map('n', "<leader>ru",  ":%s/<c-r><c-w>//g<left><left>", {desc = "[R]eplace word [U]nder"})
-map('n', "<leader>rs", ":%s/\\s\\+$//<CR>", {desc = "[R]emove trailing [S]paces"})
-map('n', "<leader>rb", ":%s/^.*\\(<c-r><c-w>\\)\\@=//g<left><left>",  {desc = "[R]eplace [B]ehind"})
-map({'n', 'v'}, "<leader>ra", ":%s/\\(<c-r><c-w>\\)\\@<=.*$//g<left><left>", {desc = "[R]eplace [A]head"})
-map('n', "<A-r>", ":%s//g<left><left>", {desc = "Start search and replace"})
-map("v", "<A-r>", ":s//g<left><left>", {desc = "Start search and replace"})
+map('n', "<leader>sru", ":%s/<c-r><c-w>//g<left><left>",               "[S]earch [R]eplace [U]nder")
+map('n', "<leader>srb", ":%s/^.*\\(<c-r><c-w>\\)\\@=//g<left><left>",  "[S]earch [R]eplace [B]ehind")
+map('n', "<leader>sra", ":%s/\\(<c-r><c-w>\\)\\@<=.*$//g<left><left>", "[S]earch [R]eplace [A]head")
+map('v', "<leader>srs", ":lua print('TODO!')<CR>",                     "[S]earch [R]eplace [S]election")
+
+map('n', "<leader>srn", ":%s//g<left><left>", "[S]earch [R]eplace [N]ow")
+map("v", "<leader>srn", ":s//g<left><left>",  "[S]earch [R]eplace [N]ow")
+map('n', "<leader>rts", ":%s/\\s\\+$//<CR>", "[R]emove [T]railing [S]paces")
 
 -- My Surround
 local surround={['"']='"',["'"]="'",['(']=')',['[']=']',['{']='}',['<']='>', ['`']='`'}
@@ -68,7 +72,13 @@ map('n', '<leader>;', vim.diagnostic.setloclist)
 map("n", 'ç', ":cprev<CR>", {desc = 'quickfix move'})
 map("n", 'à', ":cnext<CR>", {desc = 'quickfix move'})
 
-map("n", '<leader>zi', ":tabedit %<CR>", {desc = 'tab out pane'})
+
+map("n", '<leader>zi', "mw:tabedit % <CR>'wzz", {desc = 'tab out pane'})
 map("n", '<leader>zo', ":tabclose<CR>", {desc = 'tab close'})
 map("n", "<S-l>", ":tabnext<CR>", {desc="Cycle to Next Tab"})
 map("n", "<S-h>", ":tabprev<CR>", {desc="Cycle to Prev Tab"})
+
+
+-- test later
+-- nnoremap <expr> * ':%s/'.expand('<cword>').'//gn<CR>``'
+-- noremap * :let @/ = "\\<<C-r><C-w>\\>"<cr>:set hlsearch<cr>
