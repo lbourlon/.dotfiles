@@ -29,10 +29,9 @@ nmap("<C-Right>",  change_window .."5>","Resize window") -- <C-W>5>
 
 
 -- Terminal Management
-
-nmap("<leader>r", "", "Term Split")
-nmap("<leader>rl", ":vs|term<CR>", "Terminal on Left")
-nmap("<leader>rj", ":sp|term<CR>", "Terminal on Bellow")
+-- nmap("<leader>r", "", "Term Split")
+-- nmap("<leader>rl", ":vs|term<CR>", "Terminal on Left")
+-- nmap("<leader>rj", ":sp|term<CR>", "Terminal on Bellow")
 
 local term_events = { "BufWinEnter", "WinEnter" }
 local term_grouperino = vim.api.nvim_create_augroup("Term_grouperino", { clear = true })
