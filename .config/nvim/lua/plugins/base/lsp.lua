@@ -18,8 +18,6 @@ return { -- LSP Configuration & Plugins
 
     -- STYLE
 
-    --- @param lsp_handler function
-    --- @return function
     local round_handler = function (lsp_handler)
       return vim.lsp.with(lsp_handler, {border="rounded"})
     end
