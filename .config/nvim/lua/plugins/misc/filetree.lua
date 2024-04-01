@@ -1,7 +1,5 @@
-vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
-
-vim.g.loaded_netrw = 0
-vim.g.loaded_netrwPlugin = 0
+-- vim.g.loaded_netrw = 1
+-- vim.g.loaded_netrwPlugin = 0
 
 return {
   "nvim-neo-tree/neo-tree.nvim",

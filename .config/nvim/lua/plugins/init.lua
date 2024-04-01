@@ -5,7 +5,8 @@ return {
   -- Shows pending keybinds actions
   {
     'folke/which-key.nvim',
-    event = 'VeryLazy',
+    cmd = "Which", --lazyload
+    -- event = 'VeryLazy',
     config = function()
       require("which-key").setup {
         plugins = {
