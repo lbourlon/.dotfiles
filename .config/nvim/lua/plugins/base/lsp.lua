@@ -34,8 +34,6 @@ return { -- LSP Configuration & Plugins
       nmap('<leader>cr', require('telescope.builtin').lsp_references, '[C]ode [R]eferences')
       nmap('<leader>cs',  ":ClangdSwitchSourceHeader<CR>", '[C]langd [S]witch')
 
-      -- vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-
       vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
         vim.lsp.buf.format()
       end, { desc = 'Format current buffer with LSP' })
@@ -44,7 +42,7 @@ return { -- LSP Configuration & Plugins
     -- SERVERS
     local servers = {
       clangd = {
-        filetypes = { "c" },
+        filetypes = { "c", "cpp" },
         cmd = {
           "clangd", "--header-insertion-decorators",
           "--completion-style=detailed",
@@ -52,7 +50,6 @@ return { -- LSP Configuration & Plugins
         },
         root_patterns = {"compile-commands.json", ".clang", ".clang-format"},
       },
-      -- asm_lsp = { cmd = { "asm-lsp" }, filetypes = { "asm", "vmasm" } }, 
       pylsp = { pylsp = {
           plugins = {
             pycodestyle = { enabled = false, },
@@ -62,11 +59,6 @@ return { -- LSP Configuration & Plugins
       },
       lua_ls = { Lua = {
         runtime = { version = 'LuaJIT' },
-        workspace = {
-          checkThirdParty = false,
-          -- library = { '${3rd}/luv/library', unpack(vim.api.nvim_get_runtime_file('', true)), },
-          library = { vim.env.VIMRUNTIME },
-        },
         telemetry = { enable = false },
       }}
     }

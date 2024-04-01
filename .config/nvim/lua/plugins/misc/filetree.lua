@@ -24,7 +24,6 @@ return {
       filesystem = {
         filtered_items = { hide_dotfiles = false,},
         follow_current_file = {enabled = true,},
-        hijack_netrw_behaviour = "open_current",
         use_libuv_file_watcher = true,
       }
     })
