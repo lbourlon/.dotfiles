@@ -8,10 +8,26 @@ return { -- LSP Configuration & Plugins
   },
 
   config = function()
-    vim.diagnostic.config({ virtual_text = false, signs = true,
-      underline = true, update_in_insert = false, severity_sort = true, })
+    vim.diagnostic.config({
+      virtual_text = true,
+      signs = true,
+      underline = true,
+      update_in_insert = false,
+      severity_sort = true,
+    })
 
     -- STYLE
+
+    --- @param lsp_handler function
+    --- @return function
+    local round_handler = function (lsp_handler)
+      return vim.lsp.with(lsp_handler, {border="rounded"})
+    end
+    local handlers =  {
+      ["textDocument/hover"] =  round_handler(vim.lsp.handlers.hover),
+      ["textDocument/signatureHelp"] =  round_handler(vim.lsp.handlers.signature_help),
+    }
+
     local signs = { Error = "󰅚 ", Warn = "󰀪 ", Hint = "󰌶 ", Info = " " }
     for type, icon in pairs(signs) do
       local hl = "DiagnosticSign" .. type
@@ -30,11 +46,10 @@ return { -- LSP Configuration & Plugins
       nmap('K',  vim.lsp.buf.hover, 'Hover Documentation')
       nmap('<leader>rn', vim.lsp.buf.rename, '[R]ename')
 
+      nmap('<leader>ch',  vim.lsp.buf.signature_help, '[C]ode [H]elp')
       nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
       nmap('<leader>cr', require('telescope.builtin').lsp_references, '[C]ode [R]eferences')
       nmap('<leader>cs',  ":ClangdSwitchSourceHeader<CR>", '[C]langd [S]witch')
-
-      -- vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
       vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
         vim.lsp.buf.format()
@@ -44,7 +59,7 @@ return { -- LSP Configuration & Plugins
     -- SERVERS
     local servers = {
       clangd = {
-        filetypes = { "c" },
+        filetypes = { "c", "cpp" },
         cmd = {
           "clangd", "--header-insertion-decorators",
           "--completion-style=detailed",
@@ -52,7 +67,6 @@ return { -- LSP Configuration & Plugins
         },
         root_patterns = {"compile-commands.json", ".clang", ".clang-format"},
       },
-      -- asm_lsp = { cmd = { "asm-lsp" }, filetypes = { "asm", "vmasm" } }, 
       pylsp = { pylsp = {
           plugins = {
             pycodestyle = { enabled = false, },
@@ -61,18 +75,15 @@ return { -- LSP Configuration & Plugins
         },
       },
       lua_ls = { Lua = {
+        completition = {callSnipet = "Replace"},
         runtime = { version = 'LuaJIT' },
-        workspace = {
-          checkThirdParty = false,
-          -- library = { '${3rd}/luv/library', unpack(vim.api.nvim_get_runtime_file('', true)), },
-          library = { vim.env.VIMRUNTIME },
-        },
         telemetry = { enable = false },
       }}
     }
 
     -- if os.getenv("WORK_ENV") == "no" then
     --   servers.zls = { zls = {}};
+    --   servers.asm_lsp = { cmd = { "asm-lsp" }, filetypes = { "asm", "vmasm" } },
     -- end
 
     local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -87,9 +98,10 @@ return { -- LSP Configuration & Plugins
         require('lspconfig')[server_name].setup {
           settings = servers[server_name],
           capabilities = capabilities,
+          handlers = handlers or {},
           -- handlers = handlers,
           on_attach = on_attach,
-          filetypes = (servers[server_name] or {}).filetypes,
+          -- filetypes = (servers[server_name] or {}).filetypes,
           root_patterns = (servers[server_name] or {}).root_patterns,
           cmd = (servers[server_name] or {}).cmd,
         }

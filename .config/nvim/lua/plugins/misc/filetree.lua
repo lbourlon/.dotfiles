@@ -1,7 +1,5 @@
-vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
-
-vim.g.loaded_netrw = 0
-vim.g.loaded_netrwPlugin = 0
+-- vim.g.loaded_netrw = 1
+-- vim.g.loaded_netrwPlugin = 0
 
 return {
   "nvim-neo-tree/neo-tree.nvim",
@@ -24,7 +22,6 @@ return {
       filesystem = {
         filtered_items = { hide_dotfiles = false,},
         follow_current_file = {enabled = true,},
-        hijack_netrw_behaviour = "open_current",
         use_libuv_file_watcher = true,
       }
     })

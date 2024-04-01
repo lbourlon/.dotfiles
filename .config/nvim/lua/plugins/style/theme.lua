@@ -1,5 +1,30 @@
 local theme = "onedark";
 
+local m = {
+  square_border_outer= {"🭽", "▔", "🭾", "▕", "🭿", "▁", "🭼", "▏"},
+  square_border_inner = {"┌", "─", "┐", "│", "┘", "─", "└", "│"},
+  round_border = {"╭", "─", "╮", "│", "╯", "─", "╰", "│"},
+  winhighlight= 'Normal:Normal,FloatBorder:Normal,Search:None',
+}
+
+local set_hl_for_floating_window = function()
+  vim.api.nvim_set_hl(0, 'NormalFloat', { link = 'Normal'})
+  vim.api.nvim_set_hl(0, 'FloatBorder', { bg = 'none', })
+  vim.api.nvim_set_hl(0, 'Search', { bg = 'none', })
+  vim.api.nvim_set_hl(0, 'TelescopeBorder', {link = 'Normal'})
+  vim.api.nvim_set_hl(0, 'TelescopeResultsBorder', {link = 'Normal'})
+  vim.api.nvim_set_hl(0, 'TelescopePromptBorder',  {link = 'Normal'})
+  vim.api.nvim_set_hl(0, 'TelescopePreviewBorder', {link = 'Normal'})
+end
+
+set_hl_for_floating_window()
+
+vim.api.nvim_create_autocmd('ColorScheme', {
+  pattern = '*',
+  desc = 'Avoid overwritten by loading color schemes later',
+  callback = set_hl_for_floating_window,
+})
+
 if (theme == "onedark") then
   return {
     'navarasu/onedark.nvim',
@@ -12,8 +37,14 @@ if (theme == "onedark") then
         style = 'darker',
         --transparent = true,
         --term_colors = true,
-        --
-        code_style = { comments = 'italic', keywords = 'none', functions = 'none', strings = 'none', variables = 'none' },
+
+        code_style = {
+          comments = 'italic',
+          keywords = 'none',
+          functions = 'none',
+          strings = 'none',
+          variables = 'none'
+        },
 
         colors = {
           my_lblue = '#2a8df4',

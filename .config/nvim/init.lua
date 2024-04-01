@@ -15,7 +15,6 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
--- NOTE: Here is where you install your plugins.
 require('lazy').setup('plugins', {
   change_detection = { enabled = true, notify = false },
   checker = {

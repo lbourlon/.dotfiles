@@ -26,10 +26,9 @@ return {
       }
     }
 
-    require_tele.load_extension("ui-select")
-
     -- Enable telescope fzf native, if installed
     pcall(require_tele.load_extension, 'fzf')
+    pcall(require_tele.load_extension, 'ui-select')
 
     local nmap = function(keys, func, desc)
       vim.keymap.set('n', keys, func, {desc = 'TELE: ' .. desc })
@@ -43,7 +42,7 @@ return {
     nmap('<leader>sh', tele_builtin.help_tags, '[S]earch [H]elp')
     nmap('<leader>su', tele_builtin.grep_string, '[S]earch [U]nder')
     nmap('<leader>sg', tele_builtin.live_grep, '[S]earch by [G]rep')
-    nmap('<leader>sr', tele_builtin.git_files, '[S]earch [R]epo Files')
+    -- nmap('<leader>scr', tele_builtin.git_files, '[S]earch [C]ode [R]epo')
     nmap('<leader>sch', tele_builtin.command_history, '[S]earch [C]ommand [H]istory')
     -- nmap('<leader>tch', tele_builtin.commands, '[T]elescope [C]ommand [L]ist')
     nmap('<leader>sl', tele_builtin.resume, '[S]earch [L]ast')
