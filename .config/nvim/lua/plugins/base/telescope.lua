@@ -26,8 +26,6 @@ return {
       }
     }
 
-    require_tele.load_extension("ui-select")
-
     -- Enable telescope fzf native, if installed
     pcall(require_tele.load_extension, 'fzf')
     pcall(require_tele.load_extension, 'ui-select')

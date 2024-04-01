@@ -10,7 +10,11 @@ return {
     pcall(require('nvim-treesitter.install').update({ with_sync = true }))
 
     require('nvim-treesitter.configs').setup({
-      ensure_installed = {'c', 'lua','python', 'zig'},
+      ensure_installed = {
+        'c', 'cpp', 'python', 'zig',
+        'vim', 'vimdoc', 'query',
+        'lua', 'luadoc', 'luap'
+      },
       auto_install = false,
       sync_install = false,
       ignore_install = {},
@@ -19,27 +23,27 @@ return {
       highlight = { enable = true },
       indent = { enable = true, disable = { 'python' } },
 
-      incremental_selection = {
-        enable = true,
-        keymaps = {
-          init_selection = '<Leader>oo',
-          node_incremental = '<Leader>op',
-          scope_incremental = '<Leader>os',
-          node_decremental = '<Leader>om',
-        },
-      },
+      -- incremental_selection = {
+      --   enable = true,
+      --   keymaps = {
+      --     init_selection = '<Leader>oo',
+      --     node_incremental = '<Leader>op',
+      --     scope_incremental = '<Leader>os',
+      --     node_decremental = '<Leader>om',
+      --   },
+      -- },
       textobjects = {
         select = {
           enable = true,
           lookahead = true,
           keymaps = {
             -- You can use the capture groups defined in textobjects.scm
-            ['aa'] = '@parameter.outer',
-            ['ia'] = '@parameter.inner',
+            -- ['aa'] = '@parameter.outer',
+            -- ['ia'] = '@parameter.inner',
             ['af'] = '@function.outer',
             ['if'] = '@function.inner',
-            ['ac'] = '@class.outer',
-            ['ic'] = '@class.inner',
+            -- ['ac'] = '@class.outer',
+            -- ['ic'] = '@class.inner',
           },
         },
         move = {
