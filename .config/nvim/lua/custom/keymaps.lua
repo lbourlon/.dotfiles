@@ -16,8 +16,8 @@ end
 map("i", "<A-,>", "<esc>")
 
 -- Move blocks on Visual mode
-map("v", "<C-K>", ":m '<-2<CR>gv=gv", {desc = "Move block Up"})
-map("v", "<C-J>", ":m '>+1<CR>gv=gv", {desc = "Move block Down"})
+map("v", "K", ":m '<-2<CR>gv=gv", {desc = "Move block Up"})
+map("v", "J", ":m '>+1<CR>gv=gv", {desc = "Move block Down"})
 
 -- Keep cursor centered when moving pages
 map('n', "<C-d>", "<C-d>zz")

@@ -1,6 +1,6 @@
 local theme = "onedark";
 
-local m = {
+ThemeVars = {
   square_border_outer= {"🭽", "▔", "🭾", "▕", "🭿", "▁", "🭼", "▏"},
   square_border_inner = {"┌", "─", "┐", "│", "┘", "─", "└", "│"},
   round_border = {"╭", "─", "╮", "│", "╯", "─", "╰", "│"},
@@ -15,6 +15,7 @@ local set_hl_for_floating_window = function()
   vim.api.nvim_set_hl(0, 'TelescopeResultsBorder', {link = 'Normal'})
   vim.api.nvim_set_hl(0, 'TelescopePromptBorder',  {link = 'Normal'})
   vim.api.nvim_set_hl(0, 'TelescopePreviewBorder', {link = 'Normal'})
+  vim.diagnostic.config { float = { border = "rounded" }, }
 end
 
 set_hl_for_floating_window()
@@ -64,11 +65,11 @@ if (theme == "onedark") then
           -- ["Whitespace"] = {fg = '$grey', fmt = 'none'},
         },
 
-      --   diagnostics = {
-      --     darker = true, -- darker colors for diagnostic
-      --     undercurl = true,   -- use undercurl instead of underline for diagnostics
-      --     background = true,    -- use background color for virtual text
-      -- },
+        diagnostics = {
+          darker = true, -- darker colors for diagnostic
+          undercurl = true,   -- use undercurl instead of underline for diagnostics
+          background = true,    -- use background color for virtual text
+      },
 
       }
       vim.cmd.colorscheme 'onedark'
