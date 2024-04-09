@@ -45,14 +45,15 @@ map('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 map('n', "ù", "<C-^>")
 
 -- Search Replace
-map('n', "<leader>sru", ":%s/<c-r><c-w>//g<left><left>",               "[S]earch [R]eplace [U]nder")
-map('n', "<leader>srb", ":%s/^.*\\(<c-r><c-w>\\)\\@=//g<left><left>",  "[S]earch [R]eplace [B]ehind")
-map('n', "<leader>sra", ":%s/\\(<c-r><c-w>\\)\\@<=.*$//g<left><left>", "[S]earch [R]eplace [A]head")
-map('v', "<leader>srs", ":lua print('TODO!')<CR>",                     "[S]earch [R]eplace [S]election")
+map('n', "<leader>ru",  ":%s/\\<<c-r><c-w>\\>//g<left><left>",         "[R]eplace [U]nder")
+map('n', "<leader>rb",  ":%s/^.*\\(<c-r><c-w>\\)\\@=//g<left><left>",  "[R]eplace [B]ehind")
 
-map('n', "<leader>srn", ":%s//g<left><left>", "[S]earch [R]eplace [N]ow")
-map("v", "<leader>srn", ":s//g<left><left>",  "[S]earch [R]eplace [N]ow")
-map('n', "<leader>rts", ":%s/\\s\\+$//<CR>", "[R]emove [T]railing [S]paces")
+map('n', "<leader>ra",  ":%s/\\(<c-r><c-w>\\)\\@<=.*$//g<left><left>", "[R]eplace [A]head")
+map('n', "<leader>rts", ":%s/\\s\\+$//<CR>",                           "[R]eplace [T]railing [S]paces")
+map('v', "<leader>rs",  '"wy:%s/<c-r>w//gc<left><left><left>',         "[R]eplace [S]election")
+
+map('n', "<A-r>", ":%s//g<left><left>", "[R]eplace")
+map("v", "<A-r>", ":s//g<left><left>",  "[R]eplace")
 
 -- My Surround
 local surround={['"']='"',["'"]="'",['(']=')',['[']=']',['{']='}',['<']='>', ['`']='`'}

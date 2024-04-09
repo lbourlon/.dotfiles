@@ -23,11 +23,11 @@ return { -- Autocompletion
       ['<C-n>']     = map.select_next_item(),
       ['<C-p>']     = map.select_prev_item(),
       ['<C-y>']     = map.confirm { select = true },
-      ['<C-I>']     = map.complete {},
+      -- ['<C-i>']     = map.complete(),
 
       ['<C-l>'] = map(function()
           if lsnip.expand_or_locally_jumpable() then lsnip.expand_or_jump() end
-        end, { 'i', 's' }),
+      end, { 'i', 's' }),
 
       ['<C-h>'] = map(function()
         if lsnip.locally_jumpable(-1) then lsnip.jump(-1) end
