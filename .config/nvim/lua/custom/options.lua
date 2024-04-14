@@ -46,7 +46,7 @@ vim.opt.timeoutlen = 300
 --  Misc
 vim.opt.undofile = true -- Save undo history
 vim.opt.signcolumn = 'yes' -- git, debug, column, and others
-vim.opt.completeopt = 'menu,noselect'
+vim.opt.completeopt = 'menu,noselect,noinsert'
 vim.opt.colorcolumn= "80"
 vim.opt.cmdheight = 1
 

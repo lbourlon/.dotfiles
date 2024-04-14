@@ -1,8 +1,9 @@
 return {
   'nvim-lualine/lualine.nvim',  -- See `:help lualine.txt`
+  dependencies = { 'nvim-tree/nvim-web-devicons' },
   config = function()
 
-    local location = function(str)
+    local location = function(_)
       local line = vim.fn.line('.')
       local col = vim.fn.virtcol('.')
       return string.format('%03d:%03d', line, col)

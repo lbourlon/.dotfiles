@@ -45,6 +45,7 @@ map('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 map('n', "ù", "<C-^>")
 
 -- Search Replace
+map("n", "<Esc>", "<cmd>nohlsearch<CR>", "nohl on <esc>");
 map('n', "<leader>ru",  ":%s/\\<<c-r><c-w>\\>//g<left><left>",         "[R]eplace [U]nder")
 map('n', "<leader>rb",  ":%s/^.*\\(<c-r><c-w>\\)\\@=//g<left><left>",  "[R]eplace [B]ehind")
 

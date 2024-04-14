@@ -36,7 +36,7 @@ return {
 
 
     nmap('<leader>?', tele_builtin.oldfiles, '[?] Find recently opened files')
-    nmap('<leader><space>', tele_builtin.buffers,'[ ] Find existing buffers')
+    nmap('<leader>sb', tele_builtin.buffers,'[S]earch [B]uffers')
 
     nmap('<leader>sf', tele_builtin.find_files, '[S]earch [F]iles')
     nmap('<leader>sh', tele_builtin.help_tags, '[S]earch [H]elp')
@@ -45,7 +45,7 @@ return {
     -- nmap('<leader>scr', tele_builtin.git_files, '[S]earch [C]ode [R]epo')
     nmap('<leader>sch', tele_builtin.command_history, '[S]earch [C]ommand [H]istory')
     -- nmap('<leader>tch', tele_builtin.commands, '[T]elescope [C]ommand [L]ist')
-    nmap('<leader>sl', tele_builtin.resume, '[S]earch [L]ast')
+    nmap('<leader>sr', tele_builtin.resume, '[S]earch [R]esume')
     nmap('<leader>sk', tele_builtin.keymaps, '[S]earch [K]eymaps')
 
 
