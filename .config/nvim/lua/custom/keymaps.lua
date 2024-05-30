@@ -65,8 +65,8 @@ end
 map({'n', 'v'}, '<leader>s',"", {desc="Unbinds leader s"})
 
 -- Diagnostic keymaps
-map('n', '[d', vim.diagnostic.goto_prev)
-map('n', ']d', vim.diagnostic.goto_next)
+map('n', '[d', vim.diagnostic.goto_prev) -- became default in nvim v10.0
+map('n', ']d', vim.diagnostic.goto_next) -- became default in nvim v10.0
 map('n', '<leader>,', vim.diagnostic.open_float)
 map('n', '<leader>;', vim.diagnostic.setloclist)
 

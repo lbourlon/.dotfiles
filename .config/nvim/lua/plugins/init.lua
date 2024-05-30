@@ -33,7 +33,7 @@ return {
   },
 
   -- "gc" to comment visual regions/lines
-  { 'numToStr/Comment.nvim', opts = "" },
+ { 'numToStr/Comment.nvim', opts = "" }, -- became default in nvim v10.0
 
   -- Toggle collors hexcolors
   -- {'norcalli/nvim-colorizer.lua', commit='36c610a9717cc9ec426a07c8e6bf3b3abcb139d6'}

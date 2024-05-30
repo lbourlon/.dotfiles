@@ -41,7 +41,7 @@ return { -- LSP Configuration & Plugins
       nmap('gd', vim.lsp.buf.definition, '[g]oto [d]efinition')
       nmap('gD', vim.lsp.buf.declaration, '[g]oto [D]eclaration')
       nmap('gI', vim.lsp.buf.implementation, '[g]oto [I]mplementation')
-      nmap('K',  vim.lsp.buf.hover, 'Hover Documentation')
+      nmap('K',  vim.lsp.buf.hover, 'Hover Documentation')  -- became default in nvim v10.0
       nmap('<leader>rn', vim.lsp.buf.rename, '[R]ename')
 
       nmap('<leader>ch',  vim.lsp.buf.signature_help, '[C]ode [H]elp')
