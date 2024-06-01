@@ -56,14 +56,6 @@ map('v', "<leader>rs",  '"wy:%s/<c-r>w//gc<left><left><left>',         "[R]eplac
 map('n', "<A-r>", ":%s//g<left><left>", "[R]eplace")
 map("v", "<A-r>", ":s//g<left><left>",  "[R]eplace")
 
--- My Surround
-local surround={['"']='"',["'"]="'",['(']=')',['[']=']',['{']='}',['<']='>', ['`']='`'}
-for k, v in pairs(surround) do
-  map('v', '<leader>s' .. k, 'c' .. k .. v .. '<Esc><left>p<right>',
-    {desc = "Surrounds selection with " .. k})
-end
-map({'n', 'v'}, '<leader>s',"", {desc="Unbinds leader s"})
-
 -- Diagnostic keymaps
 map('n', '[d', vim.diagnostic.goto_prev) -- became default in nvim v10.0
 map('n', ']d', vim.diagnostic.goto_next) -- became default in nvim v10.0
@@ -80,6 +72,28 @@ map("n", '<leader>zo', ":tabclose<CR>", {desc = 'tab close'})
 map("n", "<S-l>", ":tabnext<CR>", {desc="Cycle to Next Tab"})
 map("n", "<S-h>", ":tabprev<CR>", {desc="Cycle to Prev Tab"})
 
+-- My Surround
+local function my_surround()
+  local surround_yangs={['(']=')',['[']=']',['{']='}',['<']='>',['<p>']='</p>'}
+  vim.ui.input({ prompt = "Surround with : "}, function (ying)
+    if ying == "" or ying == nil then return end -- exit if error
+
+    local yang = surround_yangs[ying]
+    if yang == nil then yang = ying end
+
+    vim.cmd("norm c" .. ying .. yang)
+    local r,c = unpack(vim.api.nvim_win_get_cursor(0)) -- get position
+    vim.api.nvim_win_set_cursor(0, {r, c - string.len(yang)})
+    vim.cmd("norm p")
+
+  end)
+end
+map({'n', 'v'}, '<leader>s', my_surround, {desc="Unbinds leader s"})
+
+-- make session restore with :
+-- local function select_example()
+--   vim.ui.select({'option_1',"option_2"}, {prompt="Select surround"}, function(choice) print(choice .. 'is a good one') end)
+-- end
 
 -- test later
 -- nnoremap <expr> * ':%s/'.expand('<cword>').'//gn<CR>``'
