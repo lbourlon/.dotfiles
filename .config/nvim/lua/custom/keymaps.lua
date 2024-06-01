@@ -31,18 +31,13 @@ local esc_string = "<C-\\><C-N>"
 map("t", "<esc>", esc_string, { desc = "Leave Terminal Mode" })
 map("t", "kk", esc_string .. ":bd!<CR>", { desc = "Closes the current buffer" })
 
--- Miscellaneous
+-- Yanks
 map("x", "<leader>p", "\"_dP", { desc = "[P]aste while keeping yanked" })
 map("x", "<leader>y", "\"+y", { desc = "[Y]ank to system clipboard" })
-map({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true }) -- no spaces
-map('n', 'Q', '<Nop>', { silent = true })                -- no Q
 
 -- Remap for dealing with word wrap
 map('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 map('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
-
--- cuz of french keyboard :)
-map('n', "ù", "<C-^>")
 
 -- Search Replace
 map("n", "<Esc>", "<cmd>nohlsearch<CR>", "nohl on <esc>");
@@ -79,23 +74,6 @@ vim.keymap.set({'n', 'v'}, 'q:', function() print("go learn to quit") end)
 map('n', '<leader>mpy', ":let @+ = expand('%:p') .. ':' .. line('.')<CR>", {desc = "[M]isc [Y]ank [P]ath"})
 map('n', "ù", "<C-^>") -- cuz of french keyboard :)
 
--- My Surround
-local function my_surround()
-  local surround_yangs={['(']=')',['[']=']',['{']='}',['<']='>',['<p>']='</p>'}
-  vim.ui.input({ prompt = "Surround with : "}, function (ying)
-    if ying == "" or ying == nil then return end -- exit if error
-
-    local yang = surround_yangs[ying]
-    if yang == nil then yang = ying end
-
-    vim.cmd("norm c" .. ying .. yang)
-    local r,c = unpack(vim.api.nvim_win_get_cursor(0)) -- get position
-    vim.api.nvim_win_set_cursor(0, {r, c - string.len(yang)})
-    vim.cmd("norm p")
-
-  end)
-end
-map({'n', 'v'}, '<leader>s', my_surround, {desc="Unbinds leader s"})
 
 -- make session restore with :
 -- local function select_example()

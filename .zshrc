@@ -1,9 +1,9 @@
 export PATH="$HOME/.local/bin:$PATH"
 export XDG_CONFIG_HOME=$HOME/.config/
 
-ZSH_THEME="robbyrussell"
+# ZSH_THEME="robbyrussell"
 # ZSH_THEME="bureau"
-# ZSH_THEME="avit"
+ZSH_THEME="avit"
 
 ENABLE_CORRECTION="false"
 plugins=(fzf timer)

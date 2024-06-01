@@ -3,7 +3,6 @@
 ## Plugins to checkout : 
 
 - [ ] tpope's Obsession
-- [ ] tpope's nvim surround
 - [ ] folke Trouble nvim
 - [ ] stevearc oil nvim
 
