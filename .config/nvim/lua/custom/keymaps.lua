@@ -72,6 +72,13 @@ map("n", '<leader>zo', ":tabclose<CR>", {desc = 'tab close'})
 map("n", "<S-l>", ":tabnext<CR>", {desc="Cycle to Next Tab"})
 map("n", "<S-h>", ":tabprev<CR>", {desc="Cycle to Prev Tab"})
 
+-- Miscellaneous
+map({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true }) -- no spaces
+map({ 'n', 'v' }, 'Q', '<Nop>', { silent = true }) -- no Q
+vim.keymap.set({'n', 'v'}, 'q:', function() print("go learn to quit") end)
+map('n', '<leader>mpy', ":let @+ = expand('%:p') .. ':' .. line('.')<CR>", {desc = "[M]isc [Y]ank [P]ath"})
+map('n', "ù", "<C-^>") -- cuz of french keyboard :)
+
 -- My Surround
 local function my_surround()
   local surround_yangs={['(']=')',['[']=']',['{']='}',['<']='>',['<p>']='</p>'}
