@@ -5,6 +5,8 @@
 - [ ] tpope's Obsession
 - [ ] folke Trouble nvim
 - [ ] stevearc oil nvim
+- [ ] neogen to generate anotations
+- [ ] Undootree
 
 ## New features
 - [ ] select into replace (yoink to register into sed

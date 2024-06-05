@@ -17,7 +17,6 @@ return { -- LSP Configuration & Plugins
     })
 
     -- STYLE
-
     local round_handler = function (lsp_handler)
       return vim.lsp.with(lsp_handler, {border="rounded"})
     end
@@ -40,13 +39,13 @@ return { -- LSP Configuration & Plugins
 
       nmap('gd', vim.lsp.buf.definition, '[g]oto [d]efinition')
       nmap('gD', vim.lsp.buf.declaration, '[g]oto [D]eclaration')
-      nmap('gI', vim.lsp.buf.implementation, '[g]oto [I]mplementation')
       nmap('K',  vim.lsp.buf.hover, 'Hover Documentation')  -- became default in nvim v10.0
       nmap('<leader>rn', vim.lsp.buf.rename, '[R]ename')
 
-      nmap('<leader>ch',  vim.lsp.buf.signature_help, '[C]ode [H]elp')
+      -- nmap('<leader>ch',  vim.lsp.buf.signature_help, '[C]ode [H]elp')
       nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
       nmap('<leader>cr', require('telescope.builtin').lsp_references, '[C]ode [R]eferences')
+      nmap('<leader>ct', require('telescope.builtin').lsp_references, '[C]ode [T]ype')
       nmap('<leader>cs',  ":ClangdSwitchSourceHeader<CR>", '[C]langd [S]witch')
 
       vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
@@ -97,7 +96,6 @@ return { -- LSP Configuration & Plugins
           settings = servers[server_name],
           capabilities = capabilities,
           handlers = handlers or {},
-          -- handlers = handlers,
           on_attach = on_attach,
           -- filetypes = (servers[server_name] or {}).filetypes,
           root_patterns = (servers[server_name] or {}).root_patterns,

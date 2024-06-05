@@ -1,26 +1,29 @@
 [core]
 	editor = nvim
+[merge]
+    tool = vimdiff
 [alias]
     ; REBASING
-    rb ="!f(){ git rebase -i HEAD~$1 ;}; f"
-    rbc=rebase --continue
-    rbc=rebase --abort
-
-    ; COMMITS
-    ca =commit --amend
-    cf =commit --fixup HEAD
-
-    ; CHECKOUT
-    c  =checkout
-    ct =checkout --theirs
-    co =checkout --ours
-
-    ; LOG
-    ll =log --oneline
-    lgs=log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
-
- 
-    ; MISC
-    pushorigin=!git push -u origin $(git rev-parse --abbrev-ref HEAD
-    listaliases = "!git config -l | grep alias"
-    unstage = reset --soft HEAD~
+ ;    rb ="!f(){ git rebase -i HEAD~$1 ;}; f"
+ ;    rbc=rebase --continue
+ ;    rbc=rebase --abort
+ ;
+ ;    ; COMMITS
+ ;    ca =commit --amend
+ ;    cf =commit --fixup HEAD
+ ;
+ ;    ; CHECKOUT
+ ;    c  =checkout
+ ;    ct =checkout --theirs
+ ;    co =checkout --ours
+ ;
+ ;    ; LOG
+ ;    ll =log --oneline
+ ;    lgs=log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
+ ;    lt=log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)' --all
+ ;
+ ; 
+ ;    ; MISC
+ ;    pushorigin=!git push -u origin $(git rev-parse --abbrev-ref HEAD
+ ;    listaliases = "!git config -l | grep alias"
+ ;    unstage = reset --soft HEAD~
