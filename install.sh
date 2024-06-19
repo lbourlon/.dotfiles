@@ -1,4 +1,13 @@
 #!/bin/sh
+
+# For i3
+# i3-wm polybar blueman lxappearance xrandr picom feh pavucontrol brightnessctl
+# xserver-xorg-input-synaptics
+
+
+# Others 
+# neovim tmux fzf bat ripgrep eza ranger
+
 #sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 #sudo apt update
@@ -12,4 +21,3 @@
 # Prompt for these and replace
 # git config --global user.name ""
 # git config --global user.email ""
-
