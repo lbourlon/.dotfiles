@@ -7,3 +7,4 @@ Personal scripts, conf and dot files for linux.
 - [x] ZSH
 - [x] Kitty
 - [x] TMUX
+- [x] i3
