@@ -32,8 +32,9 @@ else
     export EDITOR=vim
 fi
 if command -v eza &> /dev/null; then
-    alias l="eza -l";
-    alias ll="eza -lg";
+    alias l="eza -la";
+    alias ll="eza -lag";
+    alias lt="eza -T";
 else
     alias l="ls -hoa"
     alias ll="ls -lah"

@@ -2,33 +2,34 @@ set $font_size 14
 set $my_font CaskaydiaCove Nerd Font Mono
 font pango:$my_font $font_size
 
-# TODO : swipe and click
+# TODO : swipe workspaces
 # TODO : Layout manipulation && splitting containers
-# TODO : Add exit to polybar
 
 # Focus the next output (effectively toggles when you only have two outputs)
 # bindsym $mod+m move workspace to output next
-exec_always --no-startup-id "synclient HorizTwoFingerScroll=1 TapButton3=2 PalmDetect=100 MinSpeed=0.5  MaxSpeed=1.25 ClickTime=50 HorizHysteresis=2 VertHysteresis=2"
+exec_always --no-startup-id "synclient HorizTwoFingerScroll=1 TapButton3=2 PalmDetect=1 PalmWidth=1 PalmMinZ=50 MinSpeed=0.5  MaxSpeed=1.25 HorizHysteresis=5 VertHysteresis=5 VertScrollDelta=-94 HorizScrollDelta=-94"
 
-# exec --no-startup-id dex-autostart --autostart --environment i3
-# my next cloud is started in the above ^
+# Disable for 0.5s if was pressed
+exec --no-startup-id "syndaemon -i 0.5 -K -d"
+
 exec --no-startup-id nextcloud --background
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock -c 121212 --nofork
 exec --no-startup-id blueman-applet
 exec --no-startup-id nm-applet
 exec --no-startup-id dunst 
 exec --no-startup-id picom --daemon --vsync
+# exec --no-startup-id pasystray
+
+# volumeicon-alsa
 # TODO : stylish -config ~/.config/dunst/dunstrc
 
-
-
-exec_always --no-startup-id ~/.config/i3/xrandr_and_polybar.sh
-# exec_always --no-startup-id ~/.config/i3/polybar/launch_polybar.sh
-
-exec_always --no-startup-id feh --no-fehbg --bg-fill ~/Pictures/desktop-4k-ghost-in-the-shell.jpg
-
-set $int_display eDP
+# TODO on xrandr_script test i3-msg move 7 to eDP
 workspace 7 output eDP
+exec_always --no-startup-id ~/.config/i3/xrandr_polybar_wallpaper.sh
+
+
+# Requires flameshot
+bindsym Print exec flameshot gui
 
 # Requires pavucontrol to use keyboard shortcuts for audio
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -58,7 +59,7 @@ bindsym Control+$alt_mod+Right workspace next
 
 ################# APPLICATIONS ##################
 
-bindsym $super_mod+Return exec alacritty
+bindsym $super_mod+Return exec alacritty msg create-window || alacritty
 bindsym $super_mod+w exec firefox
 
 # kill focused window
@@ -136,11 +137,15 @@ bindsym $super_mod+space focus mode_toggle
 # enable floating mode for all XTerm windows
 # for_window [class="xterm"] floating enable
 # for_window [title="blueman-manager"] floating enable
-# focus_follows_mouse no
+focus_follows_mouse no
 
 # for_window [class="Firefox"] move container to workspace 1
 # for_window [class="alacritty"] move container to workspace 2
-for_window [title="^Calculator"] floating enable
+for_window [title="^Calculator"] floating enable resize set 300 600
+for_window [title="^Calendar"] floating enable resize set 900 500
+for_window [title="^Terminal"] floating enable resize set 900 500
+for_window [class="blueman-manager"] floating enable resize set 900 500
+for_window [class="Pavucontrol"] floating enable resize set 900 500
 
 ################### THEME ###################
 

@@ -1,8 +1,8 @@
 #!/bin/sh
 
 # For i3
-# i3-wm polybar blueman lxappearance xrandr picom feh pavucontrol brightnessctl
-# xserver-xorg-input-synaptics
+# i3-wm polybar blueman lxappearance xrandr picom feh pavucontrol brightnessctl flameshot i3lock xss-lock
+# xserver-xorg-input-synaptics 
 
 
 # Others 
