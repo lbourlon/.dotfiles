@@ -24,17 +24,17 @@ alias v="nvim"
 
 # Better defaults if installed
 if command -v ranger &> /dev/null; then alias r="ranger"; fi
-if command -v bat &> /dev/null; then alias cat="bat"; fi
+# if command -v bat &> /dev/null; then alias cat="bat"; fi
 if command -v nvim &> /dev/null; then
     export EDITOR=nvim
     alias vim="nvim";
 else
     export EDITOR=vim
 fi
-if command -v eza &> /dev/null; then
-    alias l="eza -la";
-    alias ll="eza -lag";
-    alias lt="eza -T";
+if command -v exa &> /dev/null; then
+    alias l="exa -la";
+    alias ll="exa -lag";
+    alias lt="exa -T";
 else
     alias l="ls -hoa"
     alias ll="ls -lah"
@@ -42,21 +42,34 @@ fi
 
 # GIT
 alias gs="git status"
-alias grb="git rebase"
-alias grbi="git rebase -i HEAD~"
-alias grbc="git rebase --continue"
-alias grba="git rebase --abort"
-alias grbs="git rebase --skip"
+alias gr="git rebase"
+alias gri="git rebase -i HEAD~"
+alias grc="git rebase --continue"
+alias gra="git rebase --abort"
+alias grs="git rebase --skip"
 alias ga="git add"
 alias gc="git commit"
 alias gca="git commit --amend"
 alias gcf="git commit --fixup HEAD"
+
+# alias gcr='git reset --soft HEAD~1 && git commit --edit -m"$(git log --format=%B --reverse HEAD..HEAD@{1})"'
+alias gcfr="git commit --fixup HEAD && git rebase -i --autosquash HEAD~1"
+
+# git commit --fixup=a0b1c2d3           # Perform the commit to fix broken a0b1c2d3
+# git rebase -i --autosquash a0b1c2d3~1 # Now merge fixup commit into broken commit
+
+
 alias gx="git checkout"
-alias gu="git reset --soft HEAD~" # git commit unstage last commit # so good
+alias gu="git reset --soft HEAD~" # unstage last commit
+alias gur="git reset 'HEAD@{1}" # undo the unstaging (goes back one action on reflog)
+
 alias gl="git log --oneline"
 alias gls="git log --pretty=format:\"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]\" --decorate"
 alias glt="git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)' --all"
+
 alias gd="git diff"
+alias gdr='git diff origin/$(git rev-parse --abbrev-ref @) $(git rev-parse --abbrev-ref @)'
+alias gdm='echo TODO'
 alias gignored='git ls-files -v | grep "^[[:lower:]]"'
 
 export WORK_ENV=no
