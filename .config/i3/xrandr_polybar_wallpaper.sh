@@ -21,6 +21,7 @@ if [[ -z "$extra_mon" ]]; then
     other_mon=$(xrandr | grep -e 'disconnected [[:digit:]]\{3,4\}x[[:digit:]]\{3,4\}.*normal' | cut -d ' ' -f 1)
     xrandr --output $other_mon --off
     i3-msg workspace 1
+    xrandr --output $other_mon --auto #added
 else
     xrandr --output $other_mon --auto
     xrandr --output $extra_mon --primary \

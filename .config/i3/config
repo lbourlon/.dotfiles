@@ -10,7 +10,8 @@ font pango:$my_font $font_size
 exec_always --no-startup-id "synclient HorizTwoFingerScroll=1 TapButton3=2 PalmDetect=1 PalmWidth=1 PalmMinZ=50 MinSpeed=0.5  MaxSpeed=1.25 HorizHysteresis=5 VertHysteresis=5 VertScrollDelta=-94 HorizScrollDelta=-94"
 
 # Disable for 0.5s if was pressed
-exec --no-startup-id "syndaemon -i 0.5 -K -d"
+exec --no-startup-id syndaemon -i 0.5 -K -d
+exec setxkbmap -option caps:escape
 
 exec --no-startup-id nextcloud --background
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock -c 121212 --nofork
