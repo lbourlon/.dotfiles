@@ -13,8 +13,14 @@ export WORK_DIRS="$HOME/.config/ $HOME/git_lb/ $HOME/misc/"
 alias gw="cd \$(find -L \$(echo \$WORK_DIRS) -maxdepth 1 -type d | fzf)"
 
 alias t="tmux-sessionizer" 
-alias xc="xclip -selection clipboard"
-alias xp="xclip -selection clipboard -o"
+if [[ "$XDG_SESSION_TYPE" == "wayland" ]]; then
+    alias xc="wl-copy --trim-newline"
+    alias xp="wl-paste --no-newline"
+else
+    alias xc="xclip -selection clipboard"
+    alias xp="xclip -selection clipboard -o"
+fi
+
 alias clangdhelp="clang-format -style=llvm -dump-config > .clang-format"
 alias gdb_print_argv1="p *(char**)($rsp + 16)"
 
@@ -53,7 +59,7 @@ alias gca="git commit --amend"
 alias gcf="git commit --fixup HEAD"
 
 # alias gcr='git reset --soft HEAD~1 && git commit --edit -m"$(git log --format=%B --reverse HEAD..HEAD@{1})"'
-alias gcfr="git commit --fixup HEAD && git rebase -i --autosquash HEAD~1"
+alias gcfr="git commit --fixup HEAD && git rebase --autosquash HEAD~2"
 
 # git commit --fixup=a0b1c2d3           # Perform the commit to fix broken a0b1c2d3
 # git rebase -i --autosquash a0b1c2d3~1 # Now merge fixup commit into broken commit
