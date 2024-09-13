@@ -1,12 +1,13 @@
 {
     "height": 30,
+
     // "spacing": 4, // Gaps between modules (4px)
 
-    "modules-left": ["sway/workspaces", "sway/mode", "sway/scratchpad"],
+    "modules-left": ["sway/workspaces",  "sway/mode", "sway/scratchpad"],
     "modules-center": ["clock"],
-    "modules-right": [ "tray", "backlight", "pulseaudio", "network", "battery",
+    "modules-right": [ "tray", "backlight", "pulseaudio", "network","custom/vpn",  "battery", "power-profiles-daemon",
         "custom/power", "custom/reboot", "custom/logout" , "custom/lock",
-        "custom/close"
+        "custom/close", 
     ],
 
     // "cpu", "memory", "temperature", "idle_inhibitor", "custom/media", "privacy",
@@ -16,21 +17,9 @@
         "icon-size": 18,
         "transition-duration": 250,
         "modules": [
-            {
-                "type": "screenshare",
-                "tooltip": true,
-                "tooltip-icon-size": 24
-            },
-            {
-                "type": "audio-out",
-                "tooltip": true,
-                "tooltip-icon-size": 24
-            },
-            {
-                "type": "audio-in",
-                "tooltip": true,
-                "tooltip-icon-size": 24
-            }
+            { "type": "screenshare", "tooltip": true, "tooltip-icon-size": 24 },
+            { "type": "audio-out", "tooltip": true, "tooltip-icon-size": 24 },
+            { "type": "audio-in", "tooltip": true, "tooltip-icon-size": 24 }
         ]
     },
     "sway/workspaces": {
@@ -44,26 +33,6 @@
         "format-icons": ["", ""],
         "tooltip": true,
         "tooltip-format": "{app}: {title}"
-    },
-    "mpd": {
-        "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ",
-        "format-disconnected": "Disconnected ",
-        "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
-        "unknown-tag": "N/A",
-        "interval": 2,
-        "consume-icons": { "on": " " },
-        "random-icons": {
-            "off": "<span color=\"#f53c3c\"></span> ",
-            "on": " "
-        },
-        "repeat-icons": { "on": " " },
-        "single-icons": { "on": "1 " },
-        "state-icons": {
-            "paused": "",
-            "playing": ""
-        },
-        "tooltip-format": "MPD (connected)",
-        "tooltip-format-disconnected": "MPD (disconnected)"
     },
     "idle_inhibitor": {
         "format": "{icon}",
@@ -143,14 +112,17 @@
         "on-click": "swaynag --background 121212 info -m 'Do you really want to Reboot ?' -B '⏻  Power Off' 'systemctl poweroff' -s '󰜺         Cancel        󰜺 '"
         },
 
+    // "off": "<span color=\"#f53c3c\"></span> ",
+    // "on": "     "
     "custom/media": {
         "format": "{icon} {}",
         "return-type": "json",
         "max-length": 40,
         "format-icons": { "spotify": " ", "default": "🎜 " },
         "escape": true,
-        "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null"
-        // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
+        // "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null"
+        //"exec": "python ~/.config/sway/waybar/mediaplayer.py --player spotify 2> /tmp/media.log"
+        // Filter player based on name
     },
     //// Requires v0.10.4
     // "custom/power": {
@@ -165,5 +137,27 @@
     //     "hibernate": "systemctl hibernate",
     //     },
     // },
+
+
+    "custom/vpn": {
+       "interval": 3,
+       "format": "{}",
+       "exec": "ip add show | grep -qF tun0 && echo 'VPN 🔒' || echo 'VPN 🔓'",
+       "max-length": "100",
+       "on-click": "nmcli connection up insertovpnfilenamewithoutextension",
+       "on-click-right": "nmcli connection down insertovpnfilenamewithoutextension"
+    },
+
+    "power-profiles-daemon": {
+        "format": "{icon}",
+        "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+        "tooltip": true,
+        "format-icons": {
+            "default": "",
+            "performance": "",
+            "balanced": "",
+            "power-saver": ""
+        }
+    }
 }
 

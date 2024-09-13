@@ -69,22 +69,12 @@ button:hover {
     border-bottom: 3px solid #ffffff;
 }
 
-#workspaces,
-#clock,
-#battery,
-#cpu,
-#memory,
-#disk,
-#temperature,
-#backlight,
-#network,
-#pulseaudio,
-#wireplumber,
-#custom-media,
-#tray,
-#mode,
-#idle_inhibitor,
-#scratchpad,
+#workspaces, #custom-vpn, #network, #clock,
+#battery, #power-profiles-daemon,
+#cpu, #memory, #disk,
+#temperature, #backlight,
+#pulseaudio, #wireplumber, #custom-media, #tray,
+#mode, #idle_inhibitor, #scratchpad,
 #mpd {
     padding: 0 12px;
     color: #ffffff;
@@ -158,6 +148,9 @@ label:focus { background-color: #000000; }
 #wireplumber { background-color: #fff0f5; color: #000000; }
 #wireplumber.muted { background-color: #f53c3c; }
 
+#custom-vpn {
+  transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
 #custom-media {
     background-color: #66cc99;
     color: #2a5c45;

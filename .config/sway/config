@@ -1,23 +1,5 @@
-
-# TODO : Layout manipulation
-
-# apt install sway swayidle swaylock waybar wl-clipboard
-
-################### KEY_BINDINGS ###################
-set $alt_mod Mod1
-set $super_mod Mod4
-
-bindsym $super_mod+Shift+g mode "resize"
-
-# set $menu dmenu_path | wmenu | xargs swaymsg exec --
-# bindsym $super_mod+u exec $menu
-
-bindsym $super_mod+Shift+r reload
-bindsym $super_mod+Shift+q kill
-bindsym $super_mod+Shift+e exec swaynag --background 121212 info -m 'Do you really want to exit sway?' -B '󰩈  Logout' 'swaymsg exit' -s '󰜺     Cancel    󰜺 '
-bindsym $super_mod+Return exec alacritty msg create-window || alacritty
-bindsym $super_mod+w exec firefox
-bindsym $super_mod+r exec "rofi -show drun -no-plugins -font '$my_font 18' -theme Monokai -show-icons"
+# https://github.com/swaywm/sway/wiki
+# apt install sway swayidle swaylock waybar wl-clipboard xdg-desktop-portal-wlr flameshot xdg-desktop-portal
 
 ################### PREFERENCES ###################
 
@@ -29,31 +11,39 @@ focus_follows_mouse no
 bindgesture swipe:right workspace prev
 bindgesture swipe:left workspace next
 
+################### KEY_BINDINGS ###################
+set $alt_mod Mod1
+set $super_mod Mod4
+
+bindsym $super_mod+Shift+g mode "resize"
+bindsym $super_mod+Shift+r reload
+bindsym $super_mod+Shift+q kill
+bindsym $super_mod+Shift+e exec swaynag --background 121212 info -m 'Do you really want to exit sway?' -B '󰩈  Logout' 'swaymsg exit' -s '󰜺     Cancel    󰜺 '
+bindsym $super_mod+Return exec alacritty msg create-window || alacritty
+bindsym $super_mod+w exec firefox
+bindsym $super_mod+r exec "rofi -show drun -no-plugins -font '$my_font 18' -theme Monokai -show-icons"
+
+bindsym Print exec grimshot copy area
+# bindsym Print exec flameshot gui
+
+
 
 ################### SYSTEM ###################
-# man 7 xkeyboard-config
-# https://github.com/swaywm/sway/wiki#why-is-my-keyboard-layout-wrong
 input type:keyboard {
     xkb_layout fr
-    # xkb_options caps:swapescape
     xkb_options caps:escape
 }
 
 # swaymsg -t get_inputs
-# Read `man 5 sway-input` for more information about this section.
+# swaymsg -t get_outputs swaymsg DP-9 toggle
 input "1267:12802:ELAN06FA:00_04F3:3202_Touchpad" {
     dwt enabled
     tap enabled
     natural_scroll enabled
     middle_emulation enabled
 }
-
-# swaymsg -t get_outputs
-# swaymsg DP-9 toggle
 output * bg ~/Pictures/desktop-4k-ghost-in-the-shell.jpg fill
 
-set $internal_monitor = 'eDP-1'
-set $external_monitor = 'DP-9'
 # 'BOE 0x0AA8 Unknown'
 output eDP-1 position 0,0 mode 3072x1920@120Hz scale 1.5
 
@@ -69,21 +59,7 @@ workspace 6 output DP-9
 workspace 7 output eDP-1
 
 # exec "for i in {1..6}; do swaymsg workspace $i; swaymsg move workspace to output DP-9"
-# `swaymsg workspace {1..7}` then do `sway move workspace to output eDP-1`
 # swaymsg move workspace to output right
-
-################### APPLICATIONS ###################
-exec nextcloud --background
-exec blueman-applet
-exec nm-applet
-exec dunst
-# For audio hotkeys
-exec playerctld
-
-# exec_always --no-startup-id ~/.config/i3/xrandr_polybar_wallpaper.sh
-
-# Requires flameshot
-bindsym Print exec flameshot gui
 
 ################### MEDIA KEYS ###################
 
@@ -96,14 +72,10 @@ bindsym XF86MonBrightnessUp exec brightnessctl set 5%+
 bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
-# bindsym XF86Search exec bemenu-run
 # playerctl -p spotify metadata --format "{{artist}} - {{title}}"
 
 
-
 ################# WORKSPACES ##################
-# bindsym Control+$alt_mod+Left workspace prev
-# bindsym Control+$alt_mod+Right workspace next
 
 # Mouse+$super_mod to drag floating windows
 floating_modifier $super_mod
@@ -164,11 +136,11 @@ bindsym $super_mod+space focus mode_toggle
 
 # for_window [class="Firefox"] move container to workspace 1
 # for_window [class="alacritty"] move container to workspace 2
-for_window [title="^Calculator"] floating enable resize set 300 600
-for_window [title="^Calendar"] floating enable resize set 900 500
-for_window [title="^Terminal"] floating enable resize set 900 500
-for_window [class="blueman-manager"] floating enable resize set 900 500
-for_window [class="Pavucontrol"] floating enable resize set 900 500
+# for_window [title="^Calculator"] floating enable resize set 300 600
+# for_window [title="^Calendar"] floating enable resize set 900 500
+# for_window [title="^Terminal"] floating enable resize set 900 500
+# for_window [class="blueman-manager"] floating enable resize set 900 500
+# for_window [class="Pavucontrol"] floating enable resize set 900 500
 
 # for_window [app_id="galculator"] floating enable
 # for_window [window_type="dialog"] floating enable
@@ -179,44 +151,50 @@ for_window [class="Pavucontrol"] floating enable resize set 900 500
 
 ################### THEME ###################
 
-# resize window (you can also use the mouse for that)
-mode "resize" {
-        bindsym $left       resize shrink width 10 px or 10 ppt
-        bindsym $down       resize grow height 10 px or 10 ppt
-        bindsym $up         resize shrink height 10 px or 10 ppt
-        bindsym $right      resize grow width 10 px or 10 ppt
-
-        # back to normal: Enter or Escape or $super_mod+r
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-        bindsym $super_mod+Shift+g mode "default"
-}
-
-exec_always pkill waybar && waybar -c ~/.config/sway/waybar/config.json --style ~/.config/sway/waybar/style.css & disown
-
-exec swayidle -w \
-	timeout 1800 'swaylock -c 121212 -k --indicator-idle-visible -f' \
-	timeout 1805 'swaymsg "output * power off"' \
-	resume 'swaymsg "output * power on"'
-
-# bar {
-#     position top
-#     status_command while date +'%Y-%m-%d %X'; do sleep 1; done
-#     font pango:$my_font $font_size
-#     colors {
-#         statusline #ffffff
-#         background #323232
-#         inactive_workspace #32323200 #32323200 #5c5c5c
-#     }
-# }
-
 for_window [class="^.*"] border pixel 2
-
 client.focused  #82c8ff #82c8ff #dddddd
 client.focused_inactive #333333 #333333 #888888
 client.unfocused #333333 #333333 #888888
 client.urgent #900000 #900000 #ffffff
 default_border normal
 
-include /etc/sway/config.d/*
-include /etc/sway/config-vars.d/*
+mode "resize" {
+        bindsym $left       resize shrink width 10 px or 10 ppt
+        bindsym $down       resize grow height 10 px or 10 ppt
+        bindsym $up         resize shrink height 10 px or 10 ppt
+        bindsym $right      resize grow width 10 px or 10 ppt
+        bindsym Escape              mode "default"
+        bindsym $super_mod+Shift+g  mode "default"
+}
+
+# bar {
+#     position top
+#     status_command while date +'%Y-%m-%d %X'; do sleep 1; done
+# }
+
+################### APPLICATIONS ###################
+exec "nextcloud --background"
+exec blueman-applet
+exec nm-applet
+exec "dunst -config ~/.config/sway/dunst.conf"
+exec playerctld
+
+set $gnome-schema org.gnome.desktop.interface
+exec_always {
+    gsettings set $gnome-schema gtk-theme 'Yaru-purple-dark'
+    gsettings set $gnome-schema icon-theme 'Yaru-purple-dark'
+    gsettings set $gnome-schema cursor-theme 'DMZ-White'
+    gsettings set $gnome-schema font-name $font
+}
+
+exec_always ~/.config/sway/waybar/run_waybar.sh
+exec swaymsg workspace 1
+exec swayidle -w \
+	timeout 1800 'swaylock -c 121212 -k --indicator-idle-visible -f' \
+	timeout 1805 'swaymsg "output * power off"' \
+	resume 'swaymsg "output * power on"'
+
+
+exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
+exec hash dbus-update-activation-environment 2>/dev/null && \
+        dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
