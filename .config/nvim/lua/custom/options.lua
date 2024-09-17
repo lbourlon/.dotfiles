@@ -20,9 +20,9 @@ vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4 -- for indent auto >>
 vim.opt.expandtab = true -- spaces instead of tabs
---vim.opt.smartindent = true
+vim.opt.smartindent = false
 vim.opt.autoindent = true
---vim.opt.cindent = true
+vim.opt.cindent = true
 
 -- Search
 vim.opt.hlsearch = true

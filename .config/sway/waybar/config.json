@@ -5,11 +5,11 @@
 
     "modules-left": ["sway/workspaces",  "sway/mode", "sway/scratchpad"],
     "modules-center": ["clock"],
-    "modules-right": [ "tray", "backlight", "pulseaudio", "network","custom/vpn",  "battery", "power-profiles-daemon",
+    "modules-right": [ "tray", "backlight", "pulseaudio", "network", "battery",
         "custom/power", "custom/reboot", "custom/logout" , "custom/lock",
         "custom/close", 
     ],
-
+    //, "power-profiles-daemon","custom/vpn", 
     // "cpu", "memory", "temperature", "idle_inhibitor", "custom/media", "privacy",
 
     "privacy": {

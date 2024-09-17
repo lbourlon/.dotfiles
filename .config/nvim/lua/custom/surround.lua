@@ -12,6 +12,7 @@ local function take_some_input(f_consume, prompt_txt)
   )
 end
 
+-- ============== Surround ============== --
 local function surround_selection(input)
   local yang = surround_chars[input]
   if yang == nil then
@@ -35,3 +36,20 @@ vim.keymap.set('v', '<leader>s',
 vim.keymap.set('n', '<leader>ds',
   function() take_some_input(surround_remove_one_char, "Unsurround : ") end,
   {desc="Unsurround"})
+
+-- ============== Align ============== --
+local function align(input)
+  if (input == "=") then
+    vim.cmd('norm gv')
+    vim.cmd(":'<,'>!tr -s ' ' | sed -e 's/\\s*=\\s*/=/g' | column -t -s '=' -o ' = '")
+  else
+    vim.cmd('norm gv')
+    vim.cmd(":'<,'>!column -t -s '"..input.."' -o '"..input.."'<CR>")
+  end
+end
+vim.keymap.set('v','<leader>ma', function() take_some_input(align, "Align on : ") end, {desc = "[M]isc [A]lign"})
+
+-- int bob         = 42  ;
+-- int   bob        = 42 ;
+-- int always_truebob = 42  ;   
+

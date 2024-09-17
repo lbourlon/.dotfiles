@@ -27,3 +27,5 @@
  ;    pushorigin=!git push -u origin $(git rev-parse --abbrev-ref HEAD
  ;    listaliases = "!git config -l | grep alias"
  ;    unstage = reset --soft HEAD~
+[pager]
+	log = false

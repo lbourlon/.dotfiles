@@ -21,3 +21,5 @@
 # Prompt for these and replace
 # git config --global user.name ""
 # git config --global user.email ""
+
+git config --global pager.log false

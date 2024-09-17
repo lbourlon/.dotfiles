@@ -30,7 +30,6 @@ alias v="nvim"
 
 # Better defaults if installed
 if command -v ranger &> /dev/null; then alias r="ranger"; fi
-# if command -v bat &> /dev/null; then alias cat="bat"; fi
 if command -v nvim &> /dev/null; then
     export EDITOR=nvim
     alias vim="nvim";
@@ -49,33 +48,40 @@ fi
 # GIT
 alias gs="git status"
 alias gr="git rebase"
-alias gri="git rebase -i HEAD~"
+# alias gri="git rebase -i HEAD~"
 alias grc="git rebase --continue"
 alias gra="git rebase --abort"
 alias grs="git rebase --skip"
+
+# create fixup and auto rebase it:
+alias gcfr="git commit --fixup HEAD && git rebase --autosquash HEAD~2"
+# alias gcr='git reset --soft HEAD~1 && git commit --edit -m"$(git log --format=%B --reverse HEAD..HEAD@{1})"'
+# git commit --fixup=a0b1c2d3           # Perform the commit to fix broken a0b1c2d3
+# git rebase -i --autosquash a0b1c2d3~1 # Now merge fixup commit into broken commit
+
 alias ga="git add"
 alias gc="git commit"
 alias gca="git commit --amend"
 alias gcf="git commit --fixup HEAD"
 
-# alias gcr='git reset --soft HEAD~1 && git commit --edit -m"$(git log --format=%B --reverse HEAD..HEAD@{1})"'
-alias gcfr="git commit --fixup HEAD && git rebase --autosquash HEAD~2"
-
-# git commit --fixup=a0b1c2d3           # Perform the commit to fix broken a0b1c2d3
-# git rebase -i --autosquash a0b1c2d3~1 # Now merge fixup commit into broken commit
-
-
+alias gp="git push"
+alias gps="git push --set-upstream origin HEAD"
 alias gx="git checkout"
+
 alias gu="git reset --soft HEAD~" # unstage last commit
 alias gur="git reset 'HEAD@{1}" # undo the unstaging (goes back one action on reflog)
 
-alias gl="git log --oneline"
-alias gls="git log --pretty=format:\"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]\" --decorate"
+alias gl='git log --pretty=format:"%C(yellow)%h  %Cblue[%cn] %Cred%d%Creset%n%B" --decorate -4'
+# alias gls='git log --pretty=format:"%C(yellow)%h  %C(blue)[%<|(30,trunc)%cn]%C(reset)  %s%C(red)%d" --decorate -10'
+alias gls='f() { git -c color.ui=always log --pretty=format:"%C(yellow)%h|%C(blue)[|%cn|]%C(reset)|%s%C(red)%d" --decorate -10 $* | column -t -s "|"; }; f'
 alias glt="git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)' --all"
+
 
 alias gd="git diff"
 alias gdr='git diff origin/$(git rev-parse --abbrev-ref @) $(git rev-parse --abbrev-ref @)'
-alias gdm='echo TODO'
+alias gdm='git diff master..HEAD'
+alias gdp='git diff HEAD^..HEAD'
+
 alias gignored='git ls-files -v | grep "^[[:lower:]]"'
 
 export WORK_ENV=no
