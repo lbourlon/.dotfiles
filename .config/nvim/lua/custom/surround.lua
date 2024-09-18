@@ -30,24 +30,30 @@ local function surround_remove_one_char(input)
 end
 
 vim.keymap.set('v', '<leader>s',
-  function() take_some_input(surround_selection, "Surround with : ") end,
+  function() call_function_on_input(surround_selection, "Surround with : ") end,
   {desc="Sourround"})
 
 vim.keymap.set('n', '<leader>ds',
-  function() take_some_input(surround_remove_one_char, "Unsurround : ") end,
+  function() call_function_on_input(surround_remove_one_char, "Unsurround : ") end,
   {desc="Unsurround"})
 
--- ============== Align ============== --
+-- -- ============== Align ============== --
 local function align(input)
+  -- local esc_string = "<C-\\><C-N>"
+  local esc_termcode = vim.api.nvim_replace_termcodes("<esc>" , true, false, true)
   if (input == "=") then
+    vim.api.nvim_feedkeys(esc_termcode, 'x', true)
     vim.cmd('norm gv')
-    vim.cmd(":'<,'>!tr -s ' ' | sed -e 's/\\s*=\\s*/=/g' | column -t -s '=' -o ' = '")
+    vim.cmd("'<,'>!tr -s ' ' | sed -e 's/\\s*=\\s*/=/g' | column -t -s '=' -o ' = '")
+    vim.api.nvim_feedkeys(esc_termcode, 'x', true)
   else
+    vim.api.nvim_feedkeys(esc_termcode, 'x', true)
     vim.cmd('norm gv')
-    vim.cmd(":'<,'>!column -t -s '"..input.."' -o '"..input.."'<CR>")
+    vim.cmd(string.format("'<,'>!column -t -s '%s' -o '%s'", input, input))
+    vim.api.nvim_feedkeys(esc_termcode, 'x', true)
   end
 end
-vim.keymap.set('v','<leader>ma', function() take_some_input(align, "Align on : ") end, {desc = "[M]isc [A]lign"})
+vim.keymap.set('v','<leader>ma', function() call_function_on_input(align, "Align on : ") end, {desc = "[M]isc [A]lign"})
 
 -- int bob         = 42  ;
 -- int   bob        = 42 ;
