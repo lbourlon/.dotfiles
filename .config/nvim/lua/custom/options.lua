@@ -49,6 +49,5 @@ vim.opt.signcolumn = 'yes' -- git, debug, column, and others
 vim.opt.completeopt = 'menu,noselect,noinsert'
 vim.opt.colorcolumn= "80"
 vim.opt.cmdheight = 1
-
-
-vim.opt.listchars="space:⋅" -- :set list | set nolist
+vim.opt.list = true
+vim.opt.listchars="trail:•,extends:⟩,precedes:⟨" -- leadmultispace:┊   ,

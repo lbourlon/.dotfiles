@@ -60,9 +60,10 @@ return { -- LSP Configuration & Plugins
         cmd = {
           "clangd", "--header-insertion-decorators",
           "--completion-style=detailed",
+          "--clang-tidy",
           --'--tweaks="-ferror-limit=0"',
         },
-        root_patterns = {"compile-commands.json", ".clang", ".clang-format"},
+        root_patterns = {"compile-commands.json", ".clang", ".clang-format", ".clang-tidy"},
       },
       pylsp = { pylsp = {
           plugins = {
