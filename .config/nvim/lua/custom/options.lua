@@ -50,4 +50,4 @@ vim.opt.completeopt = 'menu,noselect,noinsert'
 vim.opt.colorcolumn= "80"
 vim.opt.cmdheight = 1
 vim.opt.list = true
-vim.opt.listchars="trail:•,extends:⟩,precedes:⟨" -- leadmultispace:┊   ,
+vim.opt.listchars="trail:•,tab:▶ ,extends:⟩,precedes:⟨" -- leadmultispace:┊   ,

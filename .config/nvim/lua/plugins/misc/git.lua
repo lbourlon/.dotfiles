@@ -35,8 +35,12 @@ return {
       map('n', '<leader>gA', gs.stage_buffer, "[A]dd Buffer")
       map('n', '<leader>gR', gs.reset_buffer, "[R]eset Buffer")
 
-      map('n', '<leader>gd', gs.diffthis, "[G]it [D]iff this")
-      map('n', '<leader>gp', gs.preview_hunk, "hunk preview")
+      map('n', '<leader>gd', gs.diffthis, "[G]it [D]iff")
+      map('n', '<leader>gdm', function() gs.diffthis('master') end, "[G]it [D]iff [M]ain") -- TODO : use git main-branch
+      map('n', '<leader>gdp', function() gs.diffthis('~1') end, "[G]it [D]iff [P]revious")
+      map('n', '<leader>gdr', function() gs.diffthis('origin/$(git rev-parse --abbrev-ref HEAD)') end, "[G]it [D]iff [R]emote")
+
+      map('n', '<leader>gp',  gs.preview_hunk, "hunk preview")
       -- map('n', '<leader>hp', ":Gitsigns setqflist<CR>", "hunk preview")
       map('n', '[g', ":Gitsigns prev_hunk<CR>", "Previous Hunk")
       map('n', ']g', ":Gitsigns next_hunk<CR>", "Next Hunk")

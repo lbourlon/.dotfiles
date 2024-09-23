@@ -12,7 +12,7 @@ vim.api.nvim_create_autocmd({"BufEnter", "BufWinEnter"}, {
   pattern = {"*.robot"},
   callback = function ()
     local buf = vim.api.nvim_get_current_buf()
-    vim.api.nvim_set_option_value('listchars', 'space:•,multispace:␣,trail:•,extends:⟩,precedes:⟨', { buf = buf })
+    vim.api.nvim_set_option_value('listchars', 'space:•,tab:▶ ,multispace:␣,trail:•,extends:⟩,precedes:⟨', { buf = buf })
     vim.api.nvim_set_option_value('colorcolumn', '100', { buf = buf })
   end,
   group=le_group,
