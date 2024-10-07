@@ -45,6 +45,10 @@ else
     alias ll="ls -lah"
 fi
 
+# COLOR
+alias ip="ip --color=always"
+alias ip="ip --color=auto"
+
 # GIT
 alias gs="git status"
 alias gr="git rebase"
@@ -72,7 +76,7 @@ alias gu="git reset --soft HEAD~" # unstage last commit
 alias gur="git reset 'HEAD@{1}" # undo the unstaging (goes back one action on reflog)
 
 alias gl='git log --pretty=format:"%C(yellow)%h  %Cblue[%cn] %Cred%d%Creset%n%B" --decorate -4'
-# alias gls='git log --pretty=format:"%C(yellow)%h  %C(blue)[%<|(30,trunc)%cn]%C(reset)  %s%C(red)%d" --decorate -10'
+alias gls2='git log --pretty=format:"%C(yellow)%h  %C(blue)[%<|(30,trunc)%cn]%C(reset)  %s%C(red)%d" --decorate -10'
 alias gls='f() { git -c color.ui=always log --pretty=format:"%C(yellow)%h|%C(blue)[|%cn|]%C(reset)|%s%C(red)%d" --decorate -10 $* | column -t -s "|"; }; f'
 alias glt="git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)' --all"
 
