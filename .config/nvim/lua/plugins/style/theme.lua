@@ -40,7 +40,7 @@ if (theme == "onedark") then
         --term_colors = true,
 
         code_style = {
-          comments = 'italic',
+          comments = 'none',
           keywords = 'none',
           functions = 'none',
           strings = 'none',

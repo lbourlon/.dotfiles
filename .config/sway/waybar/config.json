@@ -5,11 +5,12 @@
 
     "modules-left": ["sway/workspaces",  "sway/mode", "sway/scratchpad"],
     "modules-center": ["clock"],
-    "modules-right": [ "tray", "backlight", "pulseaudio", "network", "battery",
+    "modules-right": [ "tray", "backlight", "pulseaudio", "battery",
+        "idle_inhibitor",
         "custom/power", "custom/reboot", "custom/logout" , "custom/lock",
         "custom/close", 
     ],
-    //, "power-profiles-daemon","custom/vpn", 
+    //, "power-profiles-daemon","custom/vpn", "network", 
     // "cpu", "memory", "temperature", "idle_inhibitor", "custom/media", "privacy",
 
     "privacy": {
@@ -96,20 +97,20 @@
     },
     "custom/lock": {
         "format" : " ", "tooltip": false,
-        "on-click": "swaylock -c 121212 -k --indicator-idle-visible -f"
+        "on-click": "swaynag --background 121212 info -m 'Do you really want to lock ?' -B '  Lock' 'swaylock -c 121212 -k --indicator-idle-visible -f' -s '󰜺                     Cancel                    󰜺 '"
     },
     "custom/logout": {
         "format" : "󰩈", "tooltip": false,
-        "on-click": "swaynag --background 121212 info -m 'Do you really want to exit ?' -B '󰩈  Logout' 'swaymsg exit' -s '󰜺         Cancel        󰜺 '"
+        "on-click": "swaynag --background 121212 info -m 'Do you really want to exit ?' -B '󰩈  Logout' 'swaymsg exit' -s '󰜺                     Cancel                    󰜺 '"
     },
     "custom/reboot": {
         "format" : " ", "tooltip": false,
-        "on-click": "swaynag --background 121212 info -m 'Do you really want to Reboot ?' -B '  Reboot' 'systemctl reboot' -s '󰜺         Cancel        󰜺 '"
+        "on-click": "swaynag --background 121212 info -m 'Do you really want to Reboot ?' -B '  Reboot' 'systemctl reboot' -s '󰜺                     Cancel                    󰜺 '"
     },
     "custom/power": {
         "format" : "⏻",
         "tooltip": false,
-        "on-click": "swaynag --background 121212 info -m 'Do you really want to Reboot ?' -B '⏻  Power Off' 'systemctl poweroff' -s '󰜺         Cancel        󰜺 '"
+        "on-click": "swaynag --background 121212 info -m 'Do you really want to Reboot ?' -B '⏻  Power Off' 'systemctl poweroff' -s '󰜺                     Cancel                    󰜺 '"
         },
 
     // "off": "<span color=\"#f53c3c\"></span> ",

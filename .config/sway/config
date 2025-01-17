@@ -45,10 +45,12 @@ input "1267:12802:ELAN06FA:00_04F3:3202_Touchpad" {
 output * bg ~/Pictures/desktop-4k-ghost-in-the-shell.jpg fill
 
 # 'BOE 0x0AA8 Unknown'
-output eDP-1 position 0,0 mode 3072x1920@120Hz scale 1.5
+# output eDP-1 position 0,0 mode 3072x1920@120Hz scale 1.5
+output eDP-1 position 0,0 mode 1920x1200@60Hz scale 1
 
 # LG Electronics 27GL850 003NTPCA6960
-output DP-9 position 2048,0
+#output DP-9 position 2048,0
+output DP-9 position 1920,0
 
 workspace 1 output DP-9
 workspace 2 output DP-9
@@ -190,11 +192,10 @@ exec_always {
 exec_always ~/.config/sway/waybar/run_waybar.sh
 exec swaymsg workspace 1
 exec swayidle -w \
-	timeout 1800 'swaylock -c 121212 -k --indicator-idle-visible -f' \
-	timeout 1805 'swaymsg "output * power off"' \
-	resume 'swaymsg "output * power on"'
+        timeout 3600 'swaymsg "output * power off"' \
+        resume 'swaymsg "output * power on"'
 
 
-exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
+exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
 exec hash dbus-update-activation-environment 2>/dev/null && \
-        dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
+        dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP=sway
