@@ -13,7 +13,11 @@ return {
       ensure_installed = {
         'c', 'cpp', 'python', 'zig',
         'vim', 'vimdoc', 'query',
-        'lua', 'luadoc', 'luap'
+        'lua', 'luadoc', 'luap',
+        'go', 'proto', 'bash', 'html',
+        'rust', 'make', 'objdump'
+
+
       },
       auto_install = false,
       sync_install = false,

@@ -98,7 +98,7 @@ return { -- LSP Configuration & Plugins
           capabilities = capabilities,
           handlers = handlers or {},
           on_attach = on_attach,
-          -- filetypes = (servers[server_name] or {}).filetypes,
+          filetypes = (servers[server_name] or {}).filetypes,
           root_patterns = (servers[server_name] or {}).root_patterns,
           cmd = (servers[server_name] or {}).cmd,
         }

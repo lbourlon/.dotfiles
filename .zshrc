@@ -62,6 +62,12 @@ alias gcfr="git commit --fixup HEAD && git rebase --autosquash HEAD~2"
 # alias gcr='git reset --soft HEAD~1 && git commit --edit -m"$(git log --format=%B --reverse HEAD..HEAD@{1})"'
 # git commit --fixup=a0b1c2d3           # Perform the commit to fix broken a0b1c2d3
 # git rebase -i --autosquash a0b1c2d3~1 # Now merge fixup commit into broken commit
+#
+## Rebase remote master onto current branch
+# git pull --rebase origin master
+#
+# Push branch A onto branch B
+# git push origin <branch_A>:<branch_B>
 
 alias ga="git add"
 alias gc="git commit"
@@ -73,7 +79,7 @@ alias gps="git push --set-upstream origin HEAD"
 alias gx="git checkout"
 
 alias gu="git reset --soft HEAD~" # unstage last commit
-alias gur="git reset 'HEAD@{1}" # undo the unstaging (goes back one action on reflog)
+alias gur="git reset HEAD@{1}" # undo the unstaging (goes back one action on reflog)
 
 alias gl='git log --pretty=format:"%C(yellow)%h  %Cblue[%cn] %Cred%d%Creset%n%B" --decorate -4'
 alias gls2='git log --pretty=format:"%C(yellow)%h  %C(blue)[%<|(30,trunc)%cn]%C(reset)  %s%C(red)%d" --decorate -10'
@@ -86,9 +92,15 @@ alias gdr='git diff origin/$(git rev-parse --abbrev-ref @) $(git rev-parse --abb
 alias gdm='git diff master..HEAD'
 alias gdp='git diff HEAD^..HEAD'
 
+alias gdp='f() { if [ ! -z "$1" ]; then git show $1~..$1; else git diff @~..@; fi ; }; f'
 alias gignored='git ls-files -v | grep "^[[:lower:]]"'
 
 export WORK_ENV=no
 if [ -f ~/.extra_source.sh ]; then
     source ~/.extra_source.sh
 fi
+
+
+alias le_flash='f() {sudo dd bs=4M if=$1 of=$2 oflag=sync status=progress}; f'
+
+export PATH="/home/$USER/.config/bin/:$PATH"

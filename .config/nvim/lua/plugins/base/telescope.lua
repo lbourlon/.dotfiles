@@ -73,11 +73,10 @@ return {
     nmap('<leader>tch', tele_builtin.vim_options, '[T]elescope [O]ptions')
     nmap('<leader>sk', tele_builtin.keymaps, '[S]earch [K]eymaps')
 
-    -- local tele_builtin = require('telescope.builtin')
-    -- nmap('<leader>gb', tele_builtin.git_branches, '[G]it [B]ranches')
-    -- nmap('<leader>gl', tele_builtin.git_bcommits, '[G]it [L]og (commits)')
-    -- nmap('<leader>gs', tele_builtin.git_bcommits, '[G]it [S]tatus')
-    -- nmap('<leader>gf', tele_builtin.git_files, '[G]it [F]iles')
+    nmap('<leader>gb', tele_builtin.git_branches, '[G]it [B]ranches')
+    nmap('<leader>gl', tele_builtin.git_bcommits, '[G]it [L]og (commits)')
+    nmap('<leader>gs', tele_builtin.git_bcommits, '[G]it [S]tatus')
+    nmap('<leader>gf', tele_builtin.git_files, '[G]it [F]iles')
 
     nmap('<leader>sd', function () tele_builtin.diagnostics(bottom_pane) end, '[S]earch [D]iagnostics')
     nmap('<leader>sm', function () tele_builtin.marks(bottom_pane) end, '[S]earch [M]arks')

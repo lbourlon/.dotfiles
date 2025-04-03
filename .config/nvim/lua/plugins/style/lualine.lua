@@ -14,7 +14,7 @@ return {
         theme = 'onedark',
         component_separators = '',
         -- component_separators = { left = '', right = '' },
-        section_separators = '',
+        -- section_separators = '',
         section_separators = { left = '', right = '' },
         refresh = { statusline = 150 },
         globalstatus = true,
@@ -29,7 +29,7 @@ return {
         },
 
         -- lualine_x = {{ 'tabs', show_modified_status = false, padding = 0}},
-        -- lualine_x = {{'branch', color = {fg="red"}, }},
+        lualine_x = {{'branch', color = {fg="red"}, }},
 
         lualine_y = {
           {'diagnostics', always_visible = true, sections = {'error','warn'}},
