@@ -6,9 +6,8 @@
     "modules-left": ["sway/workspaces",  "sway/mode", "sway/scratchpad"],
     "modules-center": ["clock"],
     "modules-right": [ "tray", "backlight", "pulseaudio", "battery",
-        "idle_inhibitor",
         "custom/power", "custom/reboot", "custom/logout" , "custom/lock",
-        "custom/close", 
+        "custom/close",
     ],
     //, "power-profiles-daemon","custom/vpn", "network", 
     // "cpu", "memory", "temperature", "idle_inhibitor", "custom/media", "privacy",
@@ -42,7 +41,6 @@
     "tray": { "spacing": 10 },
     "clock": {
         "format" :       "{:%H:%M    %d/%m}",
-        "format-alt": "{:     %H:%M    %d/%m/%Y}",
         "on-click": "exec gnome-calendar",
     },
     "cpu": {
@@ -85,7 +83,8 @@
             "default": [" ", " ", " "]
         },
         "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
-        "on-click-right": "pavucontrol"
+        "on-click-right": "~/.config/sway/waybar/sink_switcher.sh",
+        "on-click-middle": "pavucontrol"
     },
     "custom/close": {
         "format" : "󰅙 ", "tooltip": false,
