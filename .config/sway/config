@@ -49,8 +49,13 @@ output * bg ~/Pictures/desktop-4k-ghost-in-the-shell.jpg fill
 output eDP-1 position 0,0 mode 1920x1200@60Hz scale 1
 
 # LG Electronics 27GL850 003NTPCA6960
-#output DP-9 position 2048,0
-output DP-9 position 1920,0
+# For 3k accounting for scale
+# output DP-9 position 2048,0
+# secondary on the right :
+# output DP-9 position 1920,0
+
+# secondary on the left :
+output DP-9 position -2560,0
 
 workspace 1 output DP-9
 workspace 2 output DP-9

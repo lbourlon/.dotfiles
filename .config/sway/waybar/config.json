@@ -5,7 +5,7 @@
 
     "modules-left": ["sway/workspaces",  "sway/mode", "sway/scratchpad"],
     "modules-center": ["clock"],
-    "modules-right": [ "tray", "backlight", "pulseaudio", "battery",
+    "modules-right": [ "mpris", "tray", "backlight", "pulseaudio", "battery",
         "custom/power", "custom/reboot", "custom/logout" , "custom/lock",
         "custom/close",
     ],
@@ -112,17 +112,19 @@
         "on-click": "swaynag --background 121212 info -m 'Do you really want to Reboot ?' -B '⏻  Power Off' 'systemctl poweroff' -s '󰜺                     Cancel                    󰜺 '"
         },
 
-    // "off": "<span color=\"#f53c3c\"></span> ",
-    // "on": "     "
-    "custom/media": {
-        "format": "{icon} {}",
-        "return-type": "json",
-        "max-length": 40,
-        "format-icons": { "spotify": " ", "default": "🎜 " },
-        "escape": true,
-        // "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null"
-        //"exec": "python ~/.config/sway/waybar/mediaplayer.py --player spotify 2> /tmp/media.log"
-        // Filter player based on name
+    "mpris": {
+        "format": "{player_icon} {dynamic}  {status_icon} ",
+        "dynamic-order":["artist", "title" ],
+        "dynamic-importance-order": ["title", "artist" ],
+        "dynamic-len" : 22,
+        "player-icons": {
+            "default": "🎵",
+            "spotify": " ",
+            "firefox": " "
+        },
+        // "other": "     "
+        "status-icons": { "paused": " ", "stopped": " ", "playing": " " },
+        // "ignored-players": ["firefox"]
     },
     //// Requires v0.10.4
     // "custom/power": {
@@ -137,7 +139,6 @@
     //     "hibernate": "systemctl hibernate",
     //     },
     // },
-
 
     "custom/vpn": {
        "interval": 3,
