@@ -28,8 +28,6 @@ return {
       map('v', '<leader>ga', function() gs.stage_hunk({vfl('.'), vfl('v')}) end, "[A]add hunk")
       map('v', '<leader>gr', function() gs.reset_hunk({vfl('.'), vfl('v')}) end, "[R]eset hunk")
 
-      map('n', '<leader>gu', gs.undo_stage_hunk, "[U]ndo stage")
-      map('n', '<leader>gtd', gs.toggle_deleted, "[T]oggle deleted")
       map('n', '<leader>gth', ':Gitsigns toggle_linehl<CR>', "[T]oggle highlight")
 
       map('n', '<leader>gA', gs.stage_buffer, "[A]dd Buffer")
@@ -40,10 +38,14 @@ return {
       map('n', '<leader>gdp', function() gs.diffthis('~1') end, "[G]it [D]iff [P]revious")
       map('n', '<leader>gdr', function() gs.diffthis('origin/$(git rev-parse --abbrev-ref HEAD)') end, "[G]it [D]iff [R]emote")
 
-      map('n', '<leader>gp',  gs.preview_hunk, "hunk preview")
+      map('n', '<leader>gp',  gs.preview_hunk_inline, "hunk preview")
       -- map('n', '<leader>hp', ":Gitsigns setqflist<CR>", "hunk preview")
       map('n', '[g', ":Gitsigns prev_hunk<CR>", "Previous Hunk")
       map('n', ']g', ":Gitsigns next_hunk<CR>", "Next Hunk")
+
+      -- french keyboard alt-gr :)
+      map('n', '[ŋ', ":Gitsigns prev_hunk<CR>", "Previous Hunk")
+      map('n', ']ŋ', ":Gitsigns next_hunk<CR>", "Next Hunk")
 
     end
   },

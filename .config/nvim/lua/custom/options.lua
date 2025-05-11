@@ -14,6 +14,7 @@ vim.opt.numberwidth = 1
 -- Wrap options
 vim.opt.wrap = true
 vim.opt.breakindent = true -- Enable break indent
+vim.opt.smoothscroll = true -- better scroll with wrapped lines
 
 -- Indentation
 vim.opt.tabstop = 4
@@ -35,7 +36,7 @@ vim.opt.virtualedit = "block"
 -- Cursor
 -- vim.opt.guicursor = "n-v-c-sm:block,i-ci-ve:block,r-cr-o:hor20"
 vim.opt.guicursor = "n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20," .. "i:blinkon20,i:blinkoff100"
-vim.opt.mouse = '' -- Disable mouse mode
+--vim.opt.mouse = '' -- Disable mouse mode
 vim.opt.termguicolors = true
 
 -- Decrease update time
@@ -46,8 +47,11 @@ vim.opt.timeoutlen = 300
 --  Misc
 vim.opt.undofile = true -- Save undo history
 vim.opt.signcolumn = 'yes' -- git, debug, column, and others
-vim.opt.completeopt = 'menu,noselect,noinsert'
+vim.opt.completeopt = 'menu,noselect,noinsert,fuzzy'
 vim.opt.colorcolumn= "80"
 vim.opt.cmdheight = 1
 vim.opt.list = true
 vim.opt.listchars="trail:•,tab:▶ ,extends:⟩,precedes:⟨" -- leadmultispace:┊   ,
+vim.opt.confirm = true
+
+-- vim.o.winborder = 'rounded' -- double border issue with plenary

@@ -26,6 +26,7 @@ return {
         lualine_c = {
           { 'filetype', icon_only = true, padding = {left = 1}},
           { 'filename', path = 1, symbols = { readonly = '[RO]',}, padding = 0},
+          {'lsp_status',},
         },
 
         -- lualine_x = {{ 'tabs', show_modified_status = false, padding = 0}},

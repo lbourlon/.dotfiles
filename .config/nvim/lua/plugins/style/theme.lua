@@ -32,9 +32,8 @@ if (theme == "onedark") then
     priority = 1000,
     config = function()
       require('onedark').setup {
-        -- toggle_style_key = "<leader>csw", -- keybind to toggle theme style. Leave it nil to disable it, or set it to a string, for example "<leader>ts"
-        toggle_style_list = { 'dark', 'darker', 'cool', 'deep'},
-        -- style = 'darker',
+        toggle_style_key = "<leader>ts",
+        toggle_style_list = { 'light', 'darker'},
         style = 'darker',
         --transparent = true,
         --term_colors = true,
