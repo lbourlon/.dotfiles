@@ -16,8 +16,6 @@ return {
         'lua', 'luadoc', 'luap',
         'go', 'proto', 'bash', 'html',
         'rust', 'make', 'objdump'
-
-
       },
       auto_install = false,
       sync_install = false,
@@ -27,36 +25,37 @@ return {
       highlight = { enable = true },
       indent = { enable = true, disable = { 'python' } },
 
-      -- incremental_selection = {
-      --   enable = true,
-      --   keymaps = {
-      --     init_selection = '<Leader>oo',
-      --     node_incremental = '<Leader>op',
-      --     scope_incremental = '<Leader>os',
-      --     node_decremental = '<Leader>om',
-      --   },
-      -- },
+      incremental_selection = { enable = false },
       textobjects = {
+
         select = {
           enable = true,
           lookahead = true,
           keymaps = {
-            -- You can use the capture groups defined in textobjects.scm
-            -- ['aa'] = '@parameter.outer',
-            -- ['ia'] = '@parameter.inner',
             ['af'] = '@function.outer',
             ['if'] = '@function.inner',
-            -- ['ac'] = '@class.outer',
-            -- ['ic'] = '@class.inner',
+            ['ac'] = '@class.outer',
+            ['ic'] = '@class.inner',
+
+            ['ar'] = '@assignment.rhs',
+            ['ir'] = '@assignment.rhs',
+            ['al'] = '@assignment.lhs',
+            ['il'] = '@assignment.lhs',
           },
         },
         move = {
           enable = true,
           set_jumps = true,
-          goto_next_start = { [']f'] = '@function.outer' },
-          -- goto_next_end = { [']F'] = '@function.outer' },
-          goto_previous_start = { ['[f'] = '@function.outer' },
-          -- goto_previous_end = { ['[F'] = '@function.outer' },
+          goto_next_start = {
+            [']f'] = '@function.outer', [']đ'] = '@function.outer',
+            [']c'] = '@conditional.outer', [']¢'] = '@conditional.outer'
+          },
+          goto_previous_start = {
+            ['[f'] = '@function.outer',  ['[đ'] = '@function.outer',
+            ['[c'] = '@conditional.outer', ['[¢'] = '@conditional.outer'
+          },
+          goto_next_end = { [']F'] = '@function.outer',  [']ª'] = '@function.outer'  },
+          goto_previous_end = { ['[F'] = '@function.outer', ['[ª'] = '@function.outer' },
         },
       },
     })

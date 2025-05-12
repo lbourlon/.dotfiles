@@ -63,7 +63,9 @@ return { -- Autocompletion
     }
 
     cmp.setup({
-      snippet = { expand = function(args) lsnip.lsp_expand(args.body) end },
+      snippet = { expand = function(args)
+        lsnip.lsp_expand(args.body)
+      end },
       completion = { completeopt = 'menu,menuone,noinsert' },
       window = {
         completion = cmp.config.window.bordered {col_offset =-1},

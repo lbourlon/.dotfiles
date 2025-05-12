@@ -9,7 +9,6 @@ return { -- LSP Configuration & Plugins
   config = function()
     vim.diagnostic.config({
       virtual_text = true,
-      underline = true,
       update_in_insert = false,
       severity_sort = true,
       float = { border = 'rounded', source = 'if_many' },
@@ -24,11 +23,6 @@ return { -- LSP Configuration & Plugins
       },
     })
 
-    local nmap = function(keys, func, desc)
-      if desc then desc = 'LSP: ' .. desc end
-      vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
-    end
-
     -- temporary workaround until a fix for plenary to avoid double borders of vim.o.winborder = 'rounded'
     local hover = vim.lsp.buf.hover
     vim.lsp.buf.hover = function()
@@ -42,7 +36,11 @@ return { -- LSP Configuration & Plugins
     vim.api.nvim_create_autocmd('LspAttach', {
       group = vim.api.nvim_create_augroup('my.lsp', {}),
       callback = function(args)
-        local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
+        local nmap = function(keys, func, desc)
+          if desc then desc = 'LSP: ' .. desc end
+          vim.keymap.set('n', keys, func, { desc = desc })
+        end
+        -- local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
         -- if client:supports_method('textDocument/hover') then
         --   ["textDocument/hover"] =  round_handler(vim.lsp.handlers.hover),
         -- end
@@ -58,6 +56,10 @@ return { -- LSP Configuration & Plugins
           local new_config = not vim.diagnostic.config().virtual_lines
           vim.diagnostic.config({ virtual_lines = new_config })
         end, { desc = 'Toggle diagnostic virtual_lines' })
+
+        -- same as ]d and [d, french keyboard alt-gr shenanians
+        nmap(']ð', function() vim.diagnostic.jump({count=1, float=true}) end, 'goto next diagnostic')
+        nmap('[ð', function() vim.diagnostic.jump({count=-1, float=true}) end, 'goto previous diagnostic')
 
         nmap('<leader>rn', function() print("Replaced by 'grn'") end, '[R]ename')
         nmap('<leader>ca', function() print("Replaced by 'gca'") end, 'Code Action')
