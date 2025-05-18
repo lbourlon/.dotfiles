@@ -3,7 +3,7 @@
 
     // "spacing": 4, // Gaps between modules (4px)
 
-    "modules-left": ["sway/workspaces",  "sway/mode", "sway/scratchpad"],
+    "modules-left": ["sway/workspaces",  "sway/mode", "sway/scratchpad", "custom/resolution"],
     "modules-center": ["clock"],
     "modules-right": [ "mpris", "tray", "backlight", "pulseaudio", "battery",
         "custom/power", "custom/reboot", "custom/logout" , "custom/lock",
@@ -89,6 +89,11 @@
     "custom/close": {
         "format" : "󰅙 ", "tooltip": false,
         "on-click": "sway kill window"
+    },
+    "custom/resolution": {
+        "return-type":"json",
+        "exec": "~/.config/sway/waybar/resolution_setter.sh tooltip",
+        "on-click": "~/.config/sway/waybar/resolution_setter.sh switcher"
     },
     "custom/buttons": {
         "format" : " 󰐗  ", "tooltip": false,

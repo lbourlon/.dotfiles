@@ -45,8 +45,12 @@ input "1267:12802:ELAN06FA:00_04F3:3202_Touchpad" {
 output * bg ~/Pictures/desktop-4k-ghost-in-the-shell.jpg fill
 
 # 'BOE 0x0AA8 Unknown'
-# output eDP-1 position 0,0 mode 3072x1920@120Hz scale 1.5
-output eDP-1 position 0,0 mode 1920x1200@60Hz scale 1
+output eDP-1 scale_filter smart
+output eDP-1 position 0,0
+output eDP-1 adaptive_sync on
+# output eDP-1 mode 3072x1920@120Hz scale 1.5
+output eDP-1 mode 3072x1920@60Hz scale 1.5
+# output eDP-1 mode 1920x1200@60Hz scale 1
 
 # LG Electronics 27GL850 003NTPCA6960
 # For 3k accounting for scale
@@ -79,8 +83,6 @@ bindsym XF86MonBrightnessUp exec brightnessctl set 5%+
 bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
-# playerctl -p spotify metadata --format "{{artist}} - {{title}}"
-
 
 ################# WORKSPACES ##################
 
