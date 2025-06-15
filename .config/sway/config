@@ -31,7 +31,9 @@ bindsym Print exec grimshot copy area
 ################### SYSTEM ###################
 input type:keyboard {
     xkb_layout fr
-    xkb_options caps:escape
+    xkb_options compose:menu
+    # xkb_options caps:escape
+#xkb_options caps:swapescape
 }
 
 # swaymsg -t get_inputs
@@ -46,7 +48,8 @@ output * bg ~/Pictures/desktop-4k-ghost-in-the-shell.jpg fill
 
 # 'BOE 0x0AA8 Unknown'
 output eDP-1 scale_filter smart
-output eDP-1 position 0,0
+output eDP-1 position 2560,0
+
 output eDP-1 adaptive_sync on
 # output eDP-1 mode 3072x1920@120Hz scale 1.5
 output eDP-1 mode 3072x1920@60Hz scale 1.5
@@ -59,7 +62,7 @@ output eDP-1 mode 3072x1920@60Hz scale 1.5
 # output DP-9 position 1920,0
 
 # secondary on the left :
-output DP-9 position -2560,0
+output DP-9 position 0,0
 
 workspace 1 output DP-9
 workspace 2 output DP-9
