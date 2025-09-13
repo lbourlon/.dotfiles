@@ -13,4 +13,8 @@ BACKLIGHT_ENABLE = no
 WS2812_DRIVER = vendor
 SPLIT_KEYBOARD = yes
 
-WPM_ENABLE = yes
+WPM_ENABLE = no
+
+# Allow to use repeat key
+REPEAT_KEY_ENABLE = yes
+ENCODER_MAP_ENABLE = no
