@@ -6,5 +6,5 @@
 [interactive]
     diffFilter = delta --color-only
 [delta]
-    side-by-side = true
+    side-by-side = 20
     navigate = true

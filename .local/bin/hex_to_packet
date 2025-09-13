@@ -1,0 +1,47 @@
+#!/bin/bash
+
+# This is a helper to manipulate
+#
+# In wireshark, select, a packet you want, then "copy as Hex Stream"
+# This script will remove octets before the IP header, then spit out
+# the wireshark formated paccket
+
+if ! command -v xxd &>/dev/null; then echo "xxd is not installed!"; exit 1;fi
+if ! command -v perl &>/dev/null; then echo "perl is not installed!"; exit 1;fi
+
+function remove_before_ip_header() {
+    perl -pe 's/^.*?(4500.*)/\1/'
+
+    if [[ "$3" == "-f" ]]; then
+        hex_4="[A-Fa-f0-9]{4}"
+        perl -pe 's/'${hex_4}'('${hex_4}': )(.*)/"0x\1 \2"/'
+    else
+        tee
+    fi
+}
+
+function format_xxd_output() {
+    if [[ "$2" == "-f" ]]; then
+        hex_4="[A-Fa-f0-9]{4}"
+        perl -pe 's/'${hex_4}'('${hex_4}': )(.*)/"0x\1 \2"/'
+    else
+        tee
+    fi
+}
+
+function parse_hex_stream() {
+    remove_before_ip_header | xxd -r -p | xxd
+}
+
+if read -t 0; then
+    cat - | parse_hex_stream
+else
+    if [[ -z "$1" ]]; then
+        echo "usage:" 1>&2
+        echo "-f : to format output" 1>&2
+        echo "-r : remove before IP packet" 1>&2
+    else
+        echo -n "$1" | parse_hex_stream
+    fi
+fi
+exit 0

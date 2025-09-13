@@ -27,20 +27,6 @@ return {
         }
       },
       defaults = {
-        vimgrep_arguments = {
-        -- all required except `--smart-case`
-        "rg",
-        "--color=never",
-        "--no-heading",
-        "--with-filename",
-        "--line-number",
-        "--column",
-        "--smart-case",
-        -- "--regexp",
-        -- additional_args :
-        -- "--fixed-strings",
-        },
-
         prompt_prefix = "🔍",
         file_ignore_patterns = { "^.cache/", "build", "dist", "yarn.lock" },
         mappings = { i = { ["<C-space>"] = actions.to_fuzzy_refine, }, },
@@ -68,8 +54,9 @@ return {
     nmap('<leader>sh', tele_builtin.help_tags, '[S]earch [H]elp')
     nmap('<leader>sg', tele_ext.live_grep_args.live_grep_args, '[S]earch by [G]rep')
 
+    nmap('<leader>sg', tele_ext.live_grep_args.live_grep_args, '[S]earch by [G]rep')
     local live_grep_args_shortcuts = require("telescope-live-grep-args.shortcuts")
-    vmap('<leader>sg', live_grep_args_shortcuts.grep_word_visual_selection_current_buffer, '[S]earch by [G]rep')
+    vmap('<leader>sg', live_grep_args_shortcuts.grep_visual_selection, '[S]earch by [G]rep')
 
     nmap('<leader>sch', tele_builtin.command_history, '[S]earch [C]ommand [H]istory')
     nmap('<leader>tc', tele_builtin.commands, '[T]elescope [C]ommands')
@@ -84,11 +71,10 @@ return {
     nmap('<leader>gf', tele_builtin.git_files, '[G]it [F]iles')
 
     nmap('<leader>sd', function() tele_builtin.diagnostics(bottom_pane) end, '[S]earch [D]iagnostics')
-    nmap('<leader>sm', function() tele_builtin.marks(bottom_pane) end, '[S]earch [M]arks')
-    nmap('<leader>sj', function() tele_builtin.jumplist(bottom_pane) end, '[S]earch [J]umplist')
+    -- nmap('<leader>sm', function() tele_builtin.marks(bottom_pane) end, '[S]earch [M]arks')
+    -- nmap('<leader>sj', function() tele_builtin.jumplist(bottom_pane) end, '[S]earch [J]umplist')
     nmap('<leader>sq', function() tele_builtin.quickfix(bottom_pane) end, '[S]earch [Q]uickfix')
-    nmap('<leader>ss', function() tele_builtin.spell_suggest(center_dropdown) end, '[S]earch [S]pelling')
-    nmap('<leader>:', function() tele_builtin.current_buffer_fuzzy_find(center_dropdown) end,
-      '[/] Fuzzily search in current buffer')
+    -- nmap('<leader>ss', function() tele_builtin.spell_suggest(center_dropdown) end, '[S]earch [S]pelling')
+    nmap('<leader>:', function() tele_builtin.current_buffer_fuzzy_find(center_dropdown) end, '[/] Fuzzily search in current buffer')
   end
 }

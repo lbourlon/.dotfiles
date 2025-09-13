@@ -62,14 +62,13 @@ return { -- LSP Configuration & Plugins
         nmap('[ð', function() vim.diagnostic.jump({count=-1, float=true}) end, 'goto previous diagnostic')
 
         nmap('<leader>rn', function() print("Replaced by 'grn'") end, '[R]ename')
-        nmap('<leader>ca', function() print("Replaced by 'gca'") end, 'Code Action')
+        nmap('<leader>ca', function() print("Replaced by 'gra'") end, 'Code Action')
         nmap('<leader>cr', function() print("Replaced by 'grr'") end, 'Code References')
-        nmap('<leader>cr', require('telescope.builtin').lsp_references) -- override
-        nmap('grr', require('telescope.builtin').lsp_references)        -- override
+        nmap('<leader>ct', require('telescope.builtin').lsp_type_definitions, '[C]ode [T]ypes') -- override
+        nmap('grr', require('telescope.builtin').lsp_references, 'vim.lsp.buf.references')        -- override
 
         nmap('gd', vim.lsp.buf.definition, '[g]oto [d]efinition')
         nmap('gD', vim.lsp.buf.declaration, '[g]oto [D]eclaration')
-        nmap('<leader>ct', require('telescope.builtin').lsp_references, '[C]ode [T]ype')
         vim.api.nvim_buf_create_user_command(args.buf, 'Format', function(_)
           vim.lsp.buf.format()
         end, { desc = 'Format current buffer with LSP' })

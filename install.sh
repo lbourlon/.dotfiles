@@ -4,6 +4,14 @@
 # i3-wm polybar blueman lxappearance xrandr picom feh pavucontrol brightnessctl flameshot i3lock xss-lock
 # xserver-xorg-input-synaptics 
 
+# Sway
+apt install sway swayidle swaylock waybar wl-clipboard xdg-desktop-portal-wlr flameshot xdg-desktop-portal
+apt dunst blueman-applet playerctl
+# nm-applet 
+apt install pipewire xdg-desktop-portal xdg-desktop-portal-wlr
+qt5-wayland qt5ct
+
+# gambas3-gb-qt5-waylandl
 
 # Others 
 # neovim tmux fzf bat ripgrep eza ranger

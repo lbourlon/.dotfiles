@@ -61,11 +61,11 @@ alias gc="git commit"
 alias gca="git commit --amend"
 alias gcf="git commit --fixup HEAD"
 
-git_get_main_name() { git branch --format '%(refname:short)' --list master main; }
+function git_get_main_name() { git branch --format '%(refname:short)' --list master main; }
 alias gp="git push"
 alias gps="git push --set-upstream origin HEAD"
 alias gx="git checkout"
-alias gxm="git checkout $(git_get_main_name)"
+alias gxm='git checkout $(git_get_main_name)'
 
 # Git undos
 alias gus="git reset HEAD --"

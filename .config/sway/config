@@ -17,9 +17,13 @@ set $super_mod Mod4
 
 bindsym $super_mod+Shift+g mode "resize"
 bindsym $super_mod+Shift+r reload
-bindsym $super_mod+Shift+q kill
-bindsym $super_mod+Shift+e exec swaynag --background 121212 info -m 'Do you really want to exit sway?' -B '󰩈  Logout' 'swaymsg exit' -s '󰜺     Cancel    󰜺 '
-bindsym $super_mod+Return exec alacritty msg create-window || alacritty
+bindsym $super_mod+Shift+c kill
+bindsym $super_mod+Shift+x exec swaynag --background 121212 info -m 'Do you really want to exit sway?' -B '󰩈  Logout' 'swaymsg exit' -s '󰜺     Cancel    󰜺 '
+
+set $terminal_cmd "exec alacritty msg create-window || alacritty"
+bindsym $super_mod+Return exec $terminal_cmd
+bindsym $super_mod+x exec $terminal_cmd
+
 bindsym $super_mod+w exec firefox
 bindsym $super_mod+r exec "rofi -show drun -no-plugins -font '$my_font 18' -theme Monokai -show-icons"
 
@@ -38,7 +42,8 @@ input type:keyboard {
 
 # swaymsg -t get_inputs
 # swaymsg -t get_outputs swaymsg DP-9 toggle
-input "1267:12802:ELAN06FA:00_04F3:3202_Touchpad" {
+# input "1267:12802:ELAN06FA:00_04F3:3202_Touchpad" {
+input type:touchpad {
     dwt enabled
     tap enabled
     natural_scroll enabled
@@ -46,13 +51,16 @@ input "1267:12802:ELAN06FA:00_04F3:3202_Touchpad" {
 }
 output * bg ~/Pictures/desktop-4k-ghost-in-the-shell.jpg fill
 
-# 'BOE 0x0AA8 Unknown'
-output eDP-1 scale_filter smart
-output eDP-1 position 2560,0
+set $primary_screen "DP-9"
+set $secondary_screen "eDP-1"
 
-output eDP-1 adaptive_sync on
+# 'BOE 0x0AA8 Unknown'
+output $secondary_screen scale_filter smart
+output $secondary_screen position 2560,0
+
+output $secondary_screen adaptive_sync on
 # output eDP-1 mode 3072x1920@120Hz scale 1.5
-output eDP-1 mode 3072x1920@60Hz scale 1.5
+output $secondary_screen mode 3072x1920@60Hz scale 1.5
 # output eDP-1 mode 1920x1200@60Hz scale 1
 
 # LG Electronics 27GL850 003NTPCA6960
@@ -62,15 +70,15 @@ output eDP-1 mode 3072x1920@60Hz scale 1.5
 # output DP-9 position 1920,0
 
 # secondary on the left :
-output DP-9 position 0,0
+output $primary_screen position 0,0
 
-workspace 1 output DP-9
-workspace 2 output DP-9
-workspace 3 output DP-9
-workspace 4 output DP-9
-workspace 5 output DP-9
-workspace 6 output DP-9
-workspace 7 output eDP-1
+workspace 1 output $primary_screen
+workspace 2 output $primary_screen
+workspace 3 output $primary_screen
+workspace 4 output $primary_screen
+workspace 5 output $primary_screen
+workspace 6 output $primary_screen
+workspace 7 output $secondary_screen
 
 # exec "for i in {1..6}; do swaymsg workspace $i; swaymsg move workspace to output DP-9"
 # swaymsg move workspace to output right
@@ -117,6 +125,21 @@ bindsym $alt_mod+Shift+a move container to workspace number $ws5 ; workspace $ws
 bindsym $alt_mod+Shift+z move container to workspace number $ws6 ; workspace $ws6
 bindsym $alt_mod+Shift+e move container to workspace number $ws7 ; workspace $ws7
 
+bindsym $super_mod+q workspace number $ws1
+bindsym $super_mod+s workspace number $ws2
+bindsym $super_mod+d workspace number $ws3
+bindsym $super_mod+f workspace number $ws4
+bindsym $super_mod+a workspace number $ws5
+bindsym $super_mod+z workspace number $ws6
+bindsym $super_mod+e workspace number $ws7
+bindsym $super_mod+Shift+q move container to workspace number $ws1 ; workspace $ws1
+bindsym $super_mod+Shift+s move container to workspace number $ws2 ; workspace $ws2
+bindsym $super_mod+Shift+d move container to workspace number $ws3 ; workspace $ws3
+bindsym $super_mod+Shift+f move container to workspace number $ws4 ; workspace $ws4
+bindsym $super_mod+Shift+a move container to workspace number $ws5 ; workspace $ws5
+bindsym $super_mod+Shift+z move container to workspace number $ws6 ; workspace $ws6
+bindsym $super_mod+Shift+e move container to workspace number $ws7 ; workspace $ws7
+
 ################### WINDOWS ###################
 
 set $up k
@@ -138,23 +161,28 @@ bindsym $super_mod+v split v
 bindsym $super_mod+n layout toggle split
 
 bindsym $super_mod+g fullscreen toggle
+bindsym $super_mod+$alt_mod+L exec "swaylock -c 121212 -k --indicator-idle-visible -f"
 
 # toggle tiling / floating
 bindsym $super_mod+Shift+space floating toggle
 bindsym $super_mod+space focus mode_toggle
 
 
-################### TEST ###################
+################### Programs ###################
 
-# for_window [class="Firefox"] move container to workspace 1
-# for_window [class="alacritty"] move container to workspace 2
-# for_window [title="^Calculator"] floating enable resize set 300 600
-# for_window [title="^Calendar"] floating enable resize set 900 500
+for_window [shell="xwayland"] title_format "[XWayland] %title"
+for_window [app_id="firefox"] move container to workspace 1
+for_window [class="KeepassXC"] move container to workspace 4
+for_window [app_id=".*alculator"] floating enable
+for_window [app_id=".*alculator"] resize set 350 100
+for_window [title=".*alendar"] floating enable
+for_window [title=".*alendar"] resize set 900 500
 # for_window [title="^Terminal"] floating enable resize set 900 500
 # for_window [class="blueman-manager"] floating enable resize set 900 500
-# for_window [class="Pavucontrol"] floating enable resize set 900 500
+# for_window [app_id="pavucontrol"] floating enable
+# for_window [app_id="pavucontrol"] resize set 800 500
+ # swaymsg -t get_tree | grep app_id
 
-# for_window [app_id="galculator"] floating enable
 # for_window [window_type="dialog"] floating enable
 # for_window [window_role="dialog"] floating enable
 # assign [class="firefox"] -> 3
@@ -163,12 +191,13 @@ bindsym $super_mod+space focus mode_toggle
 
 ################### THEME ###################
 
-for_window [class="^.*"] border pixel 2
 client.focused  #82c8ff #82c8ff #dddddd
 client.focused_inactive #333333 #333333 #888888
 client.unfocused #333333 #333333 #888888
 client.urgent #900000 #900000 #ffffff
 default_border normal
+# for_window [class="^.*"] border pixel 2
+default_border pixel 2
 
 mode "resize" {
         bindsym $left       resize shrink width 10 px or 10 ppt
