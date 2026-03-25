@@ -61,6 +61,11 @@ map('n', '<leader>;', vim.diagnostic.setloclist)
 map("n", 'ç', ":cprev<CR>", {desc = 'quickfix move'})
 map("n", 'à', ":cnext<CR>", {desc = 'quickfix move'})
 
+map("n", "[q", ":cprev<CR>", {desc = 'quickfix move'}) -- default in nvim12
+map("n", "]q", ":cnext<CR>", {desc = 'quickfix move'}) -- default in nvim12
+-- map("n", "[l", ":cprev<CR>", {desc = 'quickfix move'}) -- default in nvim12
+-- map("n", "]l", ":cnext<CR>", {desc = 'quickfix move'}) -- default in nvim12
+
 
 map("n", '<leader>zi', "mw:tabedit % <CR>'wzz", {desc = 'tab out pane'})
 map("n", '<leader>zo', ":tabclose<CR>", {desc = 'tab close'})

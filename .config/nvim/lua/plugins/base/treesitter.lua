@@ -3,11 +3,12 @@
 
 return {
   'nvim-treesitter/nvim-treesitter',
+  build = ":TSUpdate",
   dependencies = {
     {'nvim-treesitter/nvim-treesitter-textobjects'},
   },
   config = function()
-    pcall(require('nvim-treesitter.install').update({ with_sync = true }))
+    -- pcall(require('nvim-treesitter.install').update({ with_sync = true }))
 
     require('nvim-treesitter.configs').setup({
       ensure_installed = {
@@ -15,7 +16,9 @@ return {
         'vim', 'vimdoc', 'query',
         'lua', 'luadoc', 'luap',
         'go', 'proto', 'bash', 'html',
-        'rust', 'make', 'objdump'
+        'rust', 'make', 'objdump',
+        'doxygen'
+
       },
       auto_install = false,
       sync_install = false,

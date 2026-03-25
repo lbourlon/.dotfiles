@@ -6,6 +6,13 @@ vim.api.nvim_create_autocmd({"BufEnter", "BufWinEnter"}, {
   group=headers_in_c,
 })
 
+vim.api.nvim_create_autocmd({"BufEnter", "BufWinEnter"}, {
+  pattern = {"*.mc", "*.jungle" },
+  callback = function () vim.cmd.setfiletype("java") end,
+  group=headers_in_c,
+})
+
+
 
 local le_group = vim.api.nvim_create_augroup('le_group', { clear = true })
 -- vim.api.nvim_create_autocmd({"BufEnter", "BufWinEnter"}, {
@@ -17,6 +24,14 @@ local le_group = vim.api.nvim_create_augroup('le_group', { clear = true })
 --   end,
 --   group=le_group,
 -- })
+
+vim.api.nvim_create_autocmd({"BufEnter", "BufWinEnter"}, {
+  pattern = {"*.cpp", "*.hpp", "*.h", "*.c"},
+  callback = function ()
+    vim.api.nvim_set_option_value("makeprg", "cmake --build build/", {scope="local"})
+  end,
+  group=le_group,
+})
 
 -- vim.api.nvim_create_autocmd(
 --   "BufWritePos",

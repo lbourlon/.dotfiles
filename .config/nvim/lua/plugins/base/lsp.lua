@@ -3,7 +3,7 @@ return { -- LSP Configuration & Plugins
   dependencies = {
     { 'williamboman/mason.nvim',          opts = {} },
     { 'williamboman/mason-lspconfig.nvim' },
-    { 'folke/lazydev.nvim',                opts = {} },
+    { 'folke/lazydev.nvim',               opts = {} },
   },
 
   config = function()
@@ -49,8 +49,10 @@ return { -- LSP Configuration & Plugins
         -- end
 
         vim.lsp.inlay_hint.enable(false)
-        nmap('gih', function() vim.lsp.inlay_hint.enable(not
-          vim.lsp.inlay_hint.is_enabled()) end, '[I]nlay [H]ints')
+        nmap('gih', function()
+          vim.lsp.inlay_hint.enable(not
+            vim.lsp.inlay_hint.is_enabled())
+        end, '[I]nlay [H]ints')
 
         vim.keymap.set('n', 'gK', function()
           local new_config = not vim.diagnostic.config().virtual_lines
@@ -58,14 +60,16 @@ return { -- LSP Configuration & Plugins
         end, { desc = 'Toggle diagnostic virtual_lines' })
 
         -- same as ]d and [d, french keyboard alt-gr shenanians
-        nmap(']ð', function() vim.diagnostic.jump({count=1, float=true}) end, 'goto next diagnostic')
-        nmap('[ð', function() vim.diagnostic.jump({count=-1, float=true}) end, 'goto previous diagnostic')
+        nmap(']ð', function() vim.diagnostic.jump({ count = 1, float = true }) end, 'goto next diagnostic')
+        nmap('[ð', function() vim.diagnostic.jump({ count = -1, float = true }) end, 'goto previous diagnostic')
 
         nmap('<leader>rn', function() print("Replaced by 'grn'") end, '[R]ename')
         nmap('<leader>ca', function() print("Replaced by 'gra'") end, 'Code Action')
         nmap('<leader>cr', function() print("Replaced by 'grr'") end, 'Code References')
-        nmap('<leader>ct', require('telescope.builtin').lsp_type_definitions, '[C]ode [T]ypes') -- override
-        nmap('grr', require('telescope.builtin').lsp_references, 'vim.lsp.buf.references')        -- override
+        nmap('<leader>ct', function() print("Replaced by 'grt'") end, 'Code Types')
+        nmap('grt', vim.lsp.buf.type_definition, '[C]ode [T]ypes') -- override (default in v0.12)
+        nmap('g0', vim.lsp.buf.document_symbol, 'document_symbol') -- override (default in v0.12)
+        nmap('grr', require('telescope.builtin').lsp_references, 'vim.lsp.buf.references')      -- override
 
         nmap('gd', vim.lsp.buf.definition, '[g]oto [d]efinition')
         nmap('gD', vim.lsp.buf.declaration, '[g]oto [D]eclaration')
@@ -88,10 +92,13 @@ return { -- LSP Configuration & Plugins
 
     -- SERVERS
     vim.lsp.config('pylsp', {
-        settings = {
-          plugins = {
-            pycodestyle = { enabled = false, },
-            jedi_completition = { enabled = true }, },},})
+      settings = {
+        plugins = {
+          pycodestyle = { enabled = false, },
+          jedi_completition = { enabled = true },
+        },
+      },
+    })
     vim.lsp.enable('pylsp')
     -- TODO : add ruff and pylint
 
@@ -106,17 +113,69 @@ return { -- LSP Configuration & Plugins
 
     vim.lsp.config('clangd', {
       filetypes = { "c", "cpp", "cuda" },
+      cmd = {
+        "clangd", "--header-insertion-decorators",
+        "--completion-style=detailed",
+        "--clang-tidy",
+        --'--tweaks="-ferror-limit=0"',
+      },
       settings = {
-        cmd = {
-          "clangd", "--header-insertion-decorators",
-          "--completion-style=detailed",
-          "--clang-tidy",
-          --'--tweaks="-ferror-limit=0"',
-        },
         root_patterns = { "compile-commands.json", ".clang", ".clang-format", ".clang-tidy" },
       }
     })
     vim.lsp.enable('clangd')
+
+    local mc_capa = vim.lsp.protocol.make_client_capabilities()
+    mc_capa.textDocument.declaration.dynamicRegistration = true
+    mc_capa.textDocument.implementation.dynamicRegistration = true
+    mc_capa.textDocument.typeDefinition.dynamicRegistration = true
+    mc_capa.textDocument.documentHighlight.dynamicRegistration = true
+    mc_capa.textDocument.hover.dynamicRegistration = true
+    mc_capa.textDocument.signatureHelp.contextSupport = true
+    mc_capa.textDocument.signatureHelp.dynamicRegistration = true
+    mc_capa.textDocument.foldingRange.lineFoldingOnly = true
+    mc_capa.textDocument.foldingRange.dynamicRegistration = true
+    mc_capa.workspace = { didChangeWorkspaceFolders = { dynamicRegistration = true, }, }
+
+    local root = require("lspconfig").util.root_pattern("monkey.jungle", "manifest.xml")
+    local rootPath = root(vim.fn.getcwd()) or vim.fn.getcwd()
+    vim.lsp.config('monkeyc_ls', {
+      filetypes = { "mc", "monkeyc", "java" },
+      cmd = {
+        "/usr/bin/java",
+        "-Dapple.awt.UIElement=true",
+        "-classpath",
+        "/home/lbourlon/.Garmin/ConnectIQ/Sdks/connectiq-sdk-lin-8.4.0-2025-12-03-5122605dc/bin/LanguageServer.jar",
+        "com.garmin.monkeybrains.languageserver.LSLauncher"
+      },
+      root_patterns = { "monkey.jungle", "manifest.xml", ".gitignore" },
+      capabilities = mc_capa,
+      init_options = {
+        publishWarnings = vim.g.monkeyc_publish_warnings or true,
+        compilerOptions = vim.g.monkeyc_compiler_options or "",
+        typeCheckMsgDisplayed = false,
+        workspaceSettings = { {
+            path = rootPath,
+            jungleFiles = {
+              rootPath .. "/monkey.jungle",
+            },
+          },
+        },
+      },
+      settings =
+      {
+        developerKeyPath = "/home/lbourlon/.secret/garmin_dev_key",
+        compilerWarnings = true,
+        compilerOptions = vim.g.monkeyc_compiler_options or "",
+        developerId = "",
+        javaPath = "",
+        typeCheckLevel = "Default",
+        optimizationLevel = "Default",
+        testDevices = { "fenix7", },
+        debugLogLevel = "Default",
+      }
+    })
+    vim.lsp.enable('monkeyc_ls')
 
     -- Add nvim-cmp completion capabilities to lsp
     local capabilities = vim.lsp.protocol.make_client_capabilities()
